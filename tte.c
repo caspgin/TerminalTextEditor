@@ -66,25 +66,25 @@ void enableRawMode() {
 }
 
 char editorReadKey() {
-    char charRead;
-    int bytesRead = read(STDIN_FILENO, &charRead, 1);
-    while (bytesRead != 1) {
-        if (bytesRead == -1) {
+    char char_read;
+    int bytes_read = read(STDIN_FILENO, &char_read, 1);
+    while (bytes_read != 1) {
+        if (bytes_read == -1) {
             die("read");  // Program Ends, Error Handling Section
         }
-        bytesRead = read(STDIN_FILENO, &charRead,
-                         1);  // Read Again because nothing read
+        bytes_read = read(STDIN_FILENO, &char_read,
+                          1);  // Read Again because nothing read
     }
 
-    return charRead;
+    return char_read;
 }
 
 /*** input ***/
 
 void editorProcessKeyPress() {
-    char keyRead = editorReadKey();
+    char key_read = editorReadKey();
 
-    switch (keyRead) {
+    switch (key_read) {
         case CTRL_KEY('q'):
             editorClearScreen();
             exit(EXIT_SUCCESS);
@@ -94,8 +94,21 @@ void editorProcessKeyPress() {
 
 /*** output ***/
 
+void editorDrawRows() {
+    int row_num;
+    for (row_num = 0; row_num < 24; row_num++) {
+        write(STDOUT_FILENO, "~\r\n", 3);
+    }
+}
+
 void editorClearScreen() {
     write(STDOUT_FILENO, "\x1b[2J", 4);
+    write(STDOUT_FILENO, "\x1b[H", 3);
+}
+
+void editorRefreshScreen() {
+    editorClearScreen();
+    editorDrawRows();
     write(STDOUT_FILENO, "\x1b[H", 3);
 }
 
@@ -113,7 +126,7 @@ int main(int argc, char *argv[]) {
     good programming?
     ***/
     while (true) {
-        editorClearScreen();
+        editorRefreshScreen();
         editorProcessKeyPress();
     }
 
