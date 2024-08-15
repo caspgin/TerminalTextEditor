@@ -1,12 +1,14 @@
 /*** includes ***/
 
-#include <ctype.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
 
 #define CTRL_KEY(k) ((k) & 0x1f)
+
+void editorClearScreen();
 
 /*** data ***/
 
@@ -16,6 +18,7 @@ struct termios org_termios;
 
 // Error printing before exiting
 void die(const char *msg) {
+    editorClearScreen();
     // prints the error message msg and errno.
     perror(msg);
     exit(EXIT_FAILURE);
@@ -83,9 +86,17 @@ void editorProcessKeyPress() {
 
     switch (keyRead) {
         case CTRL_KEY('q'):
+            editorClearScreen();
             exit(EXIT_SUCCESS);
             break;
     }
+}
+
+/*** output ***/
+
+void editorClearScreen() {
+    write(STDOUT_FILENO, "\x1b[2J", 4);
+    write(STDOUT_FILENO, "\x1b[H", 3);
 }
 
 /*** init ***/
@@ -102,6 +113,7 @@ int main(int argc, char *argv[]) {
     good programming?
     ***/
     while (true) {
+        editorClearScreen();
         editorProcessKeyPress();
     }
 
