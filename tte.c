@@ -116,7 +116,10 @@ void editorProcessKeyPress() {
 void editorDrawRows() {
     int row_num;
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
-        write(STDOUT_FILENO, "~\r\n", 3);
+        write(STDOUT_FILENO, "~", 1);
+        if (row_num < EC.screen_rows - 1) {
+            write(STDOUT_FILENO, "\r\n", 2);
+        }
     }
 }
 
