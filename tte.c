@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
 
@@ -12,7 +13,13 @@ void editorClearScreen();
 
 /*** data ***/
 
-struct termios org_termios;
+struct editorConfig {
+    int screen_rows;
+    int screen_cols;
+    struct termios org_termios;
+};
+
+struct editorConfig EC;
 
 /*** terminal ***/
 
@@ -26,7 +33,7 @@ void die(const char *msg) {
 
 // set the terminal attributes to original values
 void disableRawMode() {
-    if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &org_termios) == -1) {
+    if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &EC.org_termios) == -1) {
         die("tcsetattr");
     }
 }
@@ -35,13 +42,13 @@ void disableRawMode() {
 // terminal in org_termios
 void enableRawMode() {
     // get the default value
-    if (tcgetattr(STDIN_FILENO, &org_termios) == -1) {
+    if (tcgetattr(STDIN_FILENO, &EC.org_termios) == -1) {
         die("tcgetattr");
     }
     // register the disabel function so it runs when program ends
     atexit(disableRawMode);
 
-    struct termios raw = org_termios;
+    struct termios raw = EC.org_termios;
     // turn off input flags
     // IXON - for pausing input
     // ICRNL - carriage return and new line
@@ -79,6 +86,18 @@ char editorReadKey() {
     return char_read;
 }
 
+int getWindowSize(int *rows, int *cols) {
+    struct winsize ws;
+
+    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1 || ws.ws_col == 0 ||
+        ws.ws_row == 0) {
+        return -1;
+    }
+
+    *cols = ws.ws_col;
+    *rows = ws.ws_row;
+    return 0;
+}
 /*** input ***/
 
 void editorProcessKeyPress() {
@@ -96,7 +115,7 @@ void editorProcessKeyPress() {
 
 void editorDrawRows() {
     int row_num;
-    for (row_num = 0; row_num < 24; row_num++) {
+    for (row_num = 0; row_num < EC.screen_rows; row_num++) {
         write(STDOUT_FILENO, "~\r\n", 3);
     }
 }
@@ -114,8 +133,15 @@ void editorRefreshScreen() {
 
 /*** init ***/
 
+void initEditor() {
+    if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
+        die("getWindowSize");
+    }
+}
+
 int main(int argc, char *argv[]) {
     enableRawMode();
+    initEditor();
     /***
             => Problem: Can't tell when while loop ends. is this good
     programming?
