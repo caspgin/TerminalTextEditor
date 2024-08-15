@@ -62,24 +62,38 @@ void enableRawMode() {
     }
 }
 
+char editorReadKey() {
+    char charRead;
+    int bytesRead = read(STDIN_FILENO, &charRead, 1);
+    while (bytesRead != 1) {
+        if (bytesRead == -1) {
+            die("read"); // Program Ends, Error Handling Section
+        }
+        bytesRead =
+            read(STDIN_FILENO, &charRead, 1); // Read Again because nothing read
+    }
+
+    return charRead;
+}
+
+/*** input ***/
+
+void editorProcessKeyPress() {
+    char keyRead = editorReadKey();
+
+    switch (keyRead) {
+    case CTRL_KEY('q'):
+        exit(EXIT_SUCCESS);
+        break;
+    }
+}
+
 /*** init ***/
 
 int main(int argc, char *argv[]) {
     enableRawMode();
-    char c;
     while (1) {
-        if (read(STDIN_FILENO, &c, 1) == -1) {
-            die("read");
-        }
-        if (iscntrl(c)) {
-            printf("%d\r\n", c);
-        } else {
-            printf("%d ('%c')\r\n", c, c);
-        }
-
-        if (c == CTRL_KEY('q')) {
-            break;
-        }
+        editorProcessKeyPress();
     }
 
     return 0;
