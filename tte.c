@@ -67,10 +67,10 @@ char editorReadKey() {
     int bytesRead = read(STDIN_FILENO, &charRead, 1);
     while (bytesRead != 1) {
         if (bytesRead == -1) {
-            die("read"); // Program Ends, Error Handling Section
+            die("read");  // Program Ends, Error Handling Section
         }
-        bytesRead =
-            read(STDIN_FILENO, &charRead, 1); // Read Again because nothing read
+        bytesRead = read(STDIN_FILENO, &charRead,
+                         1);  // Read Again because nothing read
     }
 
     return charRead;
@@ -82,9 +82,9 @@ void editorProcessKeyPress() {
     char keyRead = editorReadKey();
 
     switch (keyRead) {
-    case CTRL_KEY('q'):
-        exit(EXIT_SUCCESS);
-        break;
+        case CTRL_KEY('q'):
+            exit(EXIT_SUCCESS);
+            break;
     }
 }
 
@@ -92,7 +92,16 @@ void editorProcessKeyPress() {
 
 int main(int argc, char *argv[]) {
     enableRawMode();
-    while (1) {
+    /***
+            => Problem: Can't tell when while loop ends. is this good
+    programming?
+            => Problem: program Exits from different places. 3 possibilities
+    Exit function for success, Exit function for failure and die function for
+    error.
+            => TODO: Combine all exits in 1 function -- Quit function. is this
+    good programming?
+    ***/
+    while (true) {
         editorProcessKeyPress();
     }
 
