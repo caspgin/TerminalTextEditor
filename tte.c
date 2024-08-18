@@ -158,12 +158,18 @@ void editorClearScreen() {
     write(STDOUT_FILENO, "\x1b[H", 3);
 }
 
+void hideCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25l", 6); }
+
+void showCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25h", 6); }
+
 void editorRefreshScreen() {
     struct writeBuf wBuf = WRITEBUF_INIT;
 
+    hideCursor(&wBuf);
     editorClearBufScreen(&wBuf);
     editorDrawRows(&wBuf);
     bufAppend(&wBuf, "\x1b[H", 3);
+    showCursor(&wBuf);
 
     write(STDOUT_FILENO, wBuf.pointer, wBuf.len);
     bufFree(&wBuf);
