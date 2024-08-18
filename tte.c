@@ -137,21 +137,20 @@ void editorProcessKeyPress() {
 }
 
 /*** output ***/
+void clearLineRight(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[K", 3); }
 
 void editorDrawRows(struct writeBuf *wBuf) {
     int row_num;
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
         bufAppend(wBuf, "~", 1);
+        clearLineRight(wBuf);
         if (row_num < EC.screen_rows - 1) {
             bufAppend(wBuf, "\r\n", 2);
         }
     }
 }
 
-void editorClearBufScreen(struct writeBuf *wBuf) {
-    bufAppend(wBuf, "\x1b[2J", 4);
-    bufAppend(wBuf, "\x1b[H", 3);
-}
+void cursorToHome(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[H", 3); }
 
 void editorClearScreen() {
     write(STDOUT_FILENO, "\x1b[2J", 4);
@@ -166,9 +165,9 @@ void editorRefreshScreen() {
     struct writeBuf wBuf = WRITEBUF_INIT;
 
     hideCursor(&wBuf);
-    editorClearBufScreen(&wBuf);
+    cursorToHome(&wBuf);
     editorDrawRows(&wBuf);
-    bufAppend(&wBuf, "\x1b[H", 3);
+    cursorToHome(&wBuf);
     showCursor(&wBuf);
 
     write(STDOUT_FILENO, wBuf.pointer, wBuf.len);
