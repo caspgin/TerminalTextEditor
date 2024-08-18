@@ -142,8 +142,8 @@ void clearLineRight(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[K", 3); }
 void editorDrawRows(struct writeBuf *wBuf) {
     int row_num;
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
-        bufAppend(wBuf, "~", 1);
         clearLineRight(wBuf);
+        bufAppend(wBuf, "~", 1);
         if (row_num < EC.screen_rows - 1) {
             bufAppend(wBuf, "\r\n", 2);
         }
@@ -152,10 +152,7 @@ void editorDrawRows(struct writeBuf *wBuf) {
 
 void cursorToHome(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[H", 3); }
 
-void editorClearScreen() {
-    write(STDOUT_FILENO, "\x1b[2J", 4);
-    write(STDOUT_FILENO, "\x1b[H", 3);
-}
+void editorClearScreen() { write(STDOUT_FILENO, "\x1b[2J\x1b[H", 7); }
 
 void hideCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25l", 6); }
 
