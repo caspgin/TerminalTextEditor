@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
@@ -20,6 +21,30 @@ struct editorConfig {
 };
 
 struct editorConfig EC;
+
+/*** buffers ***/
+
+struct writeBuf {
+    char *pointer;
+    int len;
+};
+
+#define WRITEBUF_INIT {NULL, 0};
+
+// realocate new memory for additional characters to append of size appendLen to
+// buffer wBuf
+void bufAppend(struct writeBuf *wBuf, const char *appendSrc, int appendLen) {
+    char *newBuf = realloc(wBuf->pointer, wBuf->len + appendLen);
+    if (newBuf == NULL) {
+        return;  // reallocation failed. original buffer still intact.
+    }
+    memcpy(&newBuf[wBuf->len], appendSrc, appendLen);
+    wBuf->pointer = newBuf;
+    wBuf->len += appendLen;
+}
+
+// dealocate memory using free function from stdlib
+void bufFree(struct writeBuf *wBuf) { free(wBuf->pointer); }
 
 /*** terminal ***/
 
@@ -113,14 +138,19 @@ void editorProcessKeyPress() {
 
 /*** output ***/
 
-void editorDrawRows() {
+void editorDrawRows(struct writeBuf *wBuf) {
     int row_num;
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
-        write(STDOUT_FILENO, "~", 1);
+        bufAppend(wBuf, "~", 1);
         if (row_num < EC.screen_rows - 1) {
-            write(STDOUT_FILENO, "\r\n", 2);
+            bufAppend(wBuf, "\r\n", 2);
         }
     }
+}
+
+void editorClearBufScreen(struct writeBuf *wBuf) {
+    bufAppend(wBuf, "\x1b[2J", 4);
+    bufAppend(wBuf, "\x1b[H", 3);
 }
 
 void editorClearScreen() {
@@ -129,9 +159,14 @@ void editorClearScreen() {
 }
 
 void editorRefreshScreen() {
-    editorClearScreen();
-    editorDrawRows();
-    write(STDOUT_FILENO, "\x1b[H", 3);
+    struct writeBuf wBuf = WRITEBUF_INIT;
+
+    editorClearBufScreen(&wBuf);
+    editorDrawRows(&wBuf);
+    bufAppend(&wBuf, "\x1b[H", 3);
+
+    write(STDOUT_FILENO, wBuf.pointer, wBuf.len);
+    bufFree(&wBuf);
 }
 
 /*** init ***/
