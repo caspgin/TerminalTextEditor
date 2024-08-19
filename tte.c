@@ -8,9 +8,19 @@
 #include <termios.h>
 #include <unistd.h>
 
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
+
+/*** defines ***/
+#define TTE_VERSION "0.0.1"
 #define CTRL_KEY(k) ((k) & 0x1f)
+#define WRITEBUF_INIT {NULL, 0};
+
+//== == == == == == == == == == == == == == == == == == == == == == == ==
+/*** function declaration ***/
 
 void editorClearScreen();
+
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** data ***/
 
@@ -22,14 +32,13 @@ struct editorConfig {
 
 struct editorConfig EC;
 
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** buffers ***/
 
 struct writeBuf {
     char *pointer;
     int len;
 };
-
-#define WRITEBUF_INIT {NULL, 0};
 
 // realocate new memory for additional characters to append of size appendLen to
 // buffer wBuf
@@ -46,6 +55,7 @@ void bufAppend(struct writeBuf *wBuf, const char *appendSrc, int appendLen) {
 // dealocate memory using free function from stdlib
 void bufFree(struct writeBuf *wBuf) { free(wBuf->pointer); }
 
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** terminal ***/
 
 // Error printing before exiting
@@ -123,6 +133,8 @@ int getWindowSize(int *rows, int *cols) {
     *rows = ws.ws_row;
     return 0;
 }
+
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** input ***/
 
 void editorProcessKeyPress() {
@@ -136,6 +148,8 @@ void editorProcessKeyPress() {
     }
 }
 
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
+
 /*** output ***/
 void clearLineRight(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[K", 3); }
 
@@ -143,7 +157,25 @@ void editorDrawRows(struct writeBuf *wBuf) {
     int row_num;
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
         clearLineRight(wBuf);
-        bufAppend(wBuf, "~", 1);
+
+        if (row_num == EC.screen_rows / 2) {
+            char welcome[80];
+            int welcomelen =
+                snprintf(welcome, sizeof(welcome),
+                         "Terminal Text editor -- version %s", TTE_VERSION);
+            if (welcomelen > EC.screen_cols) {
+                welcomelen = EC.screen_cols;
+            }
+            int padding = (EC.screen_cols - welcomelen) / 2;
+            if (padding) {
+                bufAppend(wBuf, "~", 1);
+                padding--;
+            }
+            while (padding--) bufAppend(wBuf, " ", 1);
+            bufAppend(wBuf, welcome, welcomelen);
+        } else {
+            bufAppend(wBuf, "~", 1);
+        }
         if (row_num < EC.screen_rows - 1) {
             bufAppend(wBuf, "\r\n", 2);
         }
@@ -170,6 +202,8 @@ void editorRefreshScreen() {
     write(STDOUT_FILENO, wBuf.pointer, wBuf.len);
     bufFree(&wBuf);
 }
+
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** init ***/
 
