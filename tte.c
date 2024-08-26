@@ -24,12 +24,7 @@ void editorClearScreen();
 
 /*** data ***/
 
-enum editorKey {
-    ARROW_LEFT = 'a',
-    ARROW_RIGHT = 'd',
-    ARROW_UP = 'w',
-    ARRPW_DOWN = 's'
-};
+enum editorKey { ARROW_LEFT = 1000, ARROW_RIGHT, ARROW_UP, ARRPW_DOWN };
 
 struct editorConfig {
     int cx;
@@ -116,7 +111,7 @@ void enableRawMode() {
     }
 }
 
-char editorReadKey() {
+int editorReadKey() {
     char char_read;
     int bytes_read = read(STDIN_FILENO, &char_read, 1);
     while (bytes_read != 1) {
@@ -166,25 +161,25 @@ int getWindowSize(int *rows, int *cols) {
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** input ***/
 
-void editorMoveCursor(char key) {
+void editorMoveCursor(int key) {
     switch (key) {
-        case 'a':
+        case ARROW_LEFT:
             if (EC.cx > 0) EC.cx--;
             break;
-        case 'd':
+        case ARROW_RIGHT:
             if (EC.cx < EC.screen_cols) EC.cx++;
             break;
-        case 's':
+        case ARRPW_DOWN:
             if (EC.cy < EC.screen_rows) EC.cy++;
             break;
-        case 'w':
+        case ARROW_UP:
             if (EC.cy > 0) EC.cy--;
             break;
     }
 }
 
 void editorProcessKeyPress() {
-    char key_read = editorReadKey();
+    int key_read = editorReadKey();
 
     switch (key_read) {
         case CTRL_KEY('q'):
