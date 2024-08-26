@@ -24,7 +24,16 @@ void editorClearScreen();
 
 /*** data ***/
 
+enum editorKey {
+    ARROW_LEFT = 'a',
+    ARROW_RIGHT = 'd',
+    ARROW_UP = 'w',
+    ARRPW_DOWN = 's'
+};
+
 struct editorConfig {
+    int cx;
+    int cy;
     int screen_rows;
     int screen_cols;
     struct termios org_termios;
@@ -118,6 +127,26 @@ char editorReadKey() {
                           1);  // Read Again because nothing read
     }
 
+    if (char_read == '\x1b') {
+        char seq[3];
+
+        if (read(STDIN_FILENO, &seq[0], 1) != 1) return '\x1b';
+        if (read(STDIN_FILENO, &seq[1], 1) != 1) return '\x1b';
+
+        if (seq[0] == '[') {
+            switch (seq[1]) {
+                case 'A':
+                    return ARROW_UP;
+                case 'B':
+                    return ARRPW_DOWN;
+                case 'C':
+                    return ARROW_RIGHT;
+                case 'D':
+                    return ARROW_LEFT;
+            }
+        }
+        return '\x1b';
+    }
     return char_read;
 }
 
@@ -137,6 +166,23 @@ int getWindowSize(int *rows, int *cols) {
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** input ***/
 
+void editorMoveCursor(char key) {
+    switch (key) {
+        case 'a':
+            if (EC.cx > 0) EC.cx--;
+            break;
+        case 'd':
+            if (EC.cx < EC.screen_cols) EC.cx++;
+            break;
+        case 's':
+            if (EC.cy < EC.screen_rows) EC.cy++;
+            break;
+        case 'w':
+            if (EC.cy > 0) EC.cy--;
+            break;
+    }
+}
+
 void editorProcessKeyPress() {
     char key_read = editorReadKey();
 
@@ -144,6 +190,12 @@ void editorProcessKeyPress() {
         case CTRL_KEY('q'):
             editorClearScreen();
             exit(EXIT_SUCCESS);
+            break;
+        case ARROW_LEFT:
+        case ARROW_RIGHT:
+        case ARRPW_DOWN:
+        case ARROW_UP:
+            editorMoveCursor(key_read);
             break;
     }
 }
@@ -184,6 +236,12 @@ void editorDrawRows(struct writeBuf *wBuf) {
 
 void cursorToHome(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[H", 3); }
 
+void cursorToPosition(struct writeBuf *wBuf) {
+    char buf[32];
+    snprintf(buf, sizeof(buf), "\x1b[%d;%dH", EC.cy + 1, EC.cx + 1);
+    bufAppend(wBuf, buf, strlen(buf));
+}
+
 void editorClearScreen() { write(STDOUT_FILENO, "\x1b[2J\x1b[H", 7); }
 
 void hideCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25l", 6); }
@@ -196,7 +254,7 @@ void editorRefreshScreen() {
     hideCursor(&wBuf);
     cursorToHome(&wBuf);
     editorDrawRows(&wBuf);
-    cursorToHome(&wBuf);
+    cursorToPosition(&wBuf);
     showCursor(&wBuf);
 
     write(STDOUT_FILENO, wBuf.pointer, wBuf.len);
@@ -208,6 +266,8 @@ void editorRefreshScreen() {
 /*** init ***/
 
 void initEditor() {
+    EC.cx = 0;
+    EC.cy = 0;
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
         die("getWindowSize");
     }
