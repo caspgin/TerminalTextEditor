@@ -24,6 +24,11 @@ void editorClearScreen();
 
 /*** data ***/
 
+typedef struct erow {
+    int size;
+    char *chars;
+} erow;
+
 enum editorKey {
     ARROW_LEFT = 1000,
     ARROW_RIGHT,
@@ -37,6 +42,8 @@ struct editorConfig {
     int cy;
     int screen_rows;
     int screen_cols;
+    int num_rows;
+    erow row;
     struct termios org_termios;
 };
 
@@ -212,7 +219,20 @@ void editorProcessKeyPress() {
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
+/*** file i/o ***/
 
+void editorOpen() {
+    char *line = "Hello, World!";
+    size_t linelen = 13;
+
+    EC.row.size = linelen;
+    EC.row.chars = malloc(linelen + 1);
+    memcpy(EC.row.chars, line, linelen);
+    EC.row.chars[linelen] = '\0';
+    EC.num_rows = 1;
+}
+
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** output ***/
 void clearLineRight(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[K", 3); }
 
@@ -220,24 +240,29 @@ void editorDrawRows(struct writeBuf *wBuf) {
     int row_num;
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
         clearLineRight(wBuf);
-
-        if (row_num == EC.screen_rows / 2) {
-            char welcome[80];
-            int welcomelen =
-                snprintf(welcome, sizeof(welcome),
-                         "Terminal Text editor -- version %s", TTE_VERSION);
-            if (welcomelen > EC.screen_cols) {
-                welcomelen = EC.screen_cols;
-            }
-            int padding = (EC.screen_cols - welcomelen) / 2;
-            if (padding) {
+        if (row_num >= EC.num_rows) {
+            if (row_num == EC.screen_rows / 2) {
+                char welcome[80];
+                int welcomelen =
+                    snprintf(welcome, sizeof(welcome),
+                             "Terminal Text editor -- version %s", TTE_VERSION);
+                if (welcomelen > EC.screen_cols) {
+                    welcomelen = EC.screen_cols;
+                }
+                int padding = (EC.screen_cols - welcomelen) / 2;
+                if (padding) {
+                    bufAppend(wBuf, "~", 1);
+                    padding--;
+                }
+                while (padding--) bufAppend(wBuf, " ", 1);
+                bufAppend(wBuf, welcome, welcomelen);
+            } else {
                 bufAppend(wBuf, "~", 1);
-                padding--;
             }
-            while (padding--) bufAppend(wBuf, " ", 1);
-            bufAppend(wBuf, welcome, welcomelen);
         } else {
-            bufAppend(wBuf, "~", 1);
+            int len = EC.row.size;
+            if (len > EC.screen_cols) len = EC.screen_cols;
+            bufAppend(wBuf, EC.row.chars, len);
         }
         if (row_num < EC.screen_rows - 1) {
             bufAppend(wBuf, "\r\n", 2);
@@ -279,6 +304,8 @@ void editorRefreshScreen() {
 void initEditor() {
     EC.cx = 0;
     EC.cy = 0;
+    EC.num_rows = 0;
+
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
         die("getWindowSize");
     }
@@ -287,6 +314,7 @@ void initEditor() {
 int main(int argc, char *argv[]) {
     enableRawMode();
     initEditor();
+    editorOpen();
     /***
             => Problem: Can't tell when while loop ends. is this good
     programming?
