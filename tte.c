@@ -240,6 +240,9 @@ void editorDrawRows(struct writeBuf *wBuf) {
     int row_num;
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
         clearLineRight(wBuf);
+
+        bufAppend(wBuf, "~", 1);
+
         if (row_num >= EC.num_rows) {
             if (row_num == EC.screen_rows / 2) {
                 char welcome[80];
@@ -256,8 +259,6 @@ void editorDrawRows(struct writeBuf *wBuf) {
                 }
                 while (padding--) bufAppend(wBuf, " ", 1);
                 bufAppend(wBuf, welcome, welcomelen);
-            } else {
-                bufAppend(wBuf, "~", 1);
             }
         } else {
             int len = EC.row.size;
