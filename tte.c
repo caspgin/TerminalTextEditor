@@ -10,6 +10,12 @@
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 
+void debugMsg(char *msg) {
+    char buf[32];
+    int len = sprintf(buf, "%s\n", msg);
+    write(STDOUT_FILENO, buf, len);
+}
+
 /*** defines ***/
 #define TTE_VERSION "0.0.1"
 #define CTRL_KEY(k) ((k) & 0x1f)
@@ -43,7 +49,8 @@ struct editorConfig {
     int screen_rows;
     int screen_cols;
     int num_rows;
-    erow row;
+    int rows_cap;
+    erow *row;
     struct termios org_termios;
 };
 
@@ -219,17 +226,48 @@ void editorProcessKeyPress() {
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
+/*** row operations ***/
+
+void expandBuffer() {
+    int newSize = EC.rows_cap * 2;
+    EC.row = realloc(EC.row, sizeof(erow) * newSize);
+    EC.rows_cap = newSize;
+}
+
+void editorRowAppend(char *row, size_t len) {
+    if (EC.num_rows >= EC.rows_cap) {
+        expandBuffer();
+    }
+
+    int line_num = EC.num_rows;
+    EC.row[line_num].size = len;
+    EC.row[line_num].chars = malloc(len + 1);
+    memcpy(EC.row[line_num].chars, row, len);
+    EC.row[line_num].chars[len] = '\0';
+    EC.num_rows++;
+}
+
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** file i/o ***/
 
-void editorOpen() {
-    char *line = "Hello, World!";
-    size_t linelen = 13;
+void editorOpen(char *filename) {
+    FILE *fp = fopen(filename, "r");
+    if (!fp) die("fopen");
 
-    EC.row.size = linelen;
-    EC.row.chars = malloc(linelen + 1);
-    memcpy(EC.row.chars, line, linelen);
-    EC.row.chars[linelen] = '\0';
-    EC.num_rows = 1;
+    char *line = NULL;
+    size_t linecap = 0;
+    size_t linelen;
+
+    while (! = -1) {
+        while (linelen > 0 &&
+               (line[linelen - 1] == '\n' || line[linelen - 1] == '\r')) {
+            linelen--;
+        }
+        editorRowAppend(line, linelen);
+    }
+
+    free(line);
+    fclose(fp);
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -241,9 +279,7 @@ void editorDrawRows(struct writeBuf *wBuf) {
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
         clearLineRight(wBuf);
 
-        bufAppend(wBuf, "~", 1);
-
-        if (row_num >= EC.num_rows) {
+        if (EC.num_rows == 0 && row_num >= EC.num_rows) {
             if (row_num == EC.screen_rows / 2) {
                 char welcome[80];
                 int welcomelen =
@@ -259,11 +295,14 @@ void editorDrawRows(struct writeBuf *wBuf) {
                 }
                 while (padding--) bufAppend(wBuf, " ", 1);
                 bufAppend(wBuf, welcome, welcomelen);
+            } else {
+                bufAppend(wBuf, "~", 1);
             }
+
         } else {
-            int len = EC.row.size;
+            int len = EC.row[row_num].size;
             if (len > EC.screen_cols) len = EC.screen_cols;
-            bufAppend(wBuf, EC.row.chars, len);
+            bufAppend(wBuf, EC.row[row_num].chars, len);
         }
         if (row_num < EC.screen_rows - 1) {
             bufAppend(wBuf, "\r\n", 2);
@@ -306,7 +345,8 @@ void initEditor() {
     EC.cx = 0;
     EC.cy = 0;
     EC.num_rows = 0;
-
+    EC.rows_cap = 0;
+    EC.row = NULL;
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
         die("getWindowSize");
     }
@@ -315,7 +355,9 @@ void initEditor() {
 int main(int argc, char *argv[]) {
     enableRawMode();
     initEditor();
-    editorOpen();
+    if (argc >= 2) {
+        editorOpen(argv[1]);
+    }
     /***
             => Problem: Can't tell when while loop ends. is this good
     programming?
