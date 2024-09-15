@@ -1,10 +1,11 @@
 /*** includes ***/
-
+#define _GNU_SOURCE
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
+#include <sys/types.h>
 #include <termios.h>
 #include <unistd.h>
 
@@ -12,7 +13,13 @@
 
 void debugMsg(char *msg) {
     char buf[32];
-    int len = sprintf(buf, "%s\n", msg);
+    int len = sprintf(buf, "%s\n\r", msg);
+    write(STDOUT_FILENO, buf, len);
+}
+
+void debugNumber(int num) {
+    char buf[32];
+    int len = sprintf(buf, "%d\n\r", num);
     write(STDOUT_FILENO, buf, len);
 }
 
@@ -30,11 +37,6 @@ void editorClearScreen();
 
 /*** data ***/
 
-typedef struct erow {
-    int size;
-    char *chars;
-} erow;
-
 enum editorKey {
     ARROW_LEFT = 1000,
     ARROW_RIGHT,
@@ -42,6 +44,11 @@ enum editorKey {
     ARRPW_DOWN,
     DEL_KEY
 };
+
+typedef struct erow {
+    int size;
+    char *chars;
+} erow;
 
 struct editorConfig {
     int cx;
@@ -229,7 +236,7 @@ void editorProcessKeyPress() {
 /*** row operations ***/
 
 void expandBuffer() {
-    int newSize = EC.rows_cap * 2;
+    int newSize = (EC.rows_cap == 0) ? 1 : (EC.rows_cap * 2);
     EC.row = realloc(EC.row, sizeof(erow) * newSize);
     EC.rows_cap = newSize;
 }
@@ -257,13 +264,16 @@ void editorOpen(char *filename) {
     char *line = NULL;
     size_t linecap = 0;
     size_t linelen;
+    linelen = getline(&line, &linecap, fp);
 
-    while (! = -1) {
+    while (linelen != (size_t)-1) {
         while (linelen > 0 &&
                (line[linelen - 1] == '\n' || line[linelen - 1] == '\r')) {
             linelen--;
         }
+
         editorRowAppend(line, linelen);
+        linelen = getline(&line, &linecap, fp);
     }
 
     free(line);
@@ -279,8 +289,8 @@ void editorDrawRows(struct writeBuf *wBuf) {
     for (row_num = 0; row_num < EC.screen_rows; row_num++) {
         clearLineRight(wBuf);
 
-        if (EC.num_rows == 0 && row_num >= EC.num_rows) {
-            if (row_num == EC.screen_rows / 2) {
+        if (row_num >= EC.num_rows) {
+            if (EC.num_rows == 0 && row_num == EC.screen_rows / 2) {
                 char welcome[80];
                 int welcomelen =
                     snprintf(welcome, sizeof(welcome),
