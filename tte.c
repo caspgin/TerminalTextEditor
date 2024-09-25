@@ -41,7 +41,7 @@ enum editorKey {
     ARROW_LEFT = 1000,
     ARROW_RIGHT,
     ARROW_UP,
-    ARRPW_DOWN,
+    ARROW_DOWN,
     DEL_KEY
 };
 
@@ -53,9 +53,10 @@ typedef struct erow {
 struct editorConfig {
     int cx;
     int cy;
+    int rowoff;
     int screen_rows;
     int screen_cols;
-    int num_rows;
+    int data_rows;
     int rows_cap;
     erow *row;
     struct termios org_termios;
@@ -169,7 +170,7 @@ int editorReadKey() {
                     case 'A':
                         return ARROW_UP;
                     case 'B':
-                        return ARRPW_DOWN;
+                        return ARROW_DOWN;
                     case 'C':
                         return ARROW_RIGHT;
                     case 'D':
@@ -206,8 +207,8 @@ void editorMoveCursor(int key) {
         case ARROW_RIGHT:
             if (EC.cx < EC.screen_cols) EC.cx++;
             break;
-        case ARRPW_DOWN:
-            if (EC.cy < EC.screen_rows) EC.cy++;
+        case ARROW_DOWN:
+            if (EC.cy < EC.data_rows) EC.cy++;
             break;
         case ARROW_UP:
             if (EC.cy > 0) EC.cy--;
@@ -225,7 +226,7 @@ void editorProcessKeyPress() {
             break;
         case ARROW_LEFT:
         case ARROW_RIGHT:
-        case ARRPW_DOWN:
+        case ARROW_DOWN:
         case ARROW_UP:
             editorMoveCursor(key_read);
             break;
@@ -242,16 +243,16 @@ void expandBuffer() {
 }
 
 void editorRowAppend(char *row, size_t len) {
-    if (EC.num_rows >= EC.rows_cap) {
+    if (EC.data_rows >= EC.rows_cap) {
         expandBuffer();
     }
 
-    int line_num = EC.num_rows;
+    int line_num = EC.data_rows;
     EC.row[line_num].size = len;
     EC.row[line_num].chars = malloc(len + 1);
     memcpy(EC.row[line_num].chars, row, len);
     EC.row[line_num].chars[len] = '\0';
-    EC.num_rows++;
+    EC.data_rows++;
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -284,37 +285,42 @@ void editorOpen(char *filename) {
 /*** output ***/
 void clearLineRight(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[K", 3); }
 
+void printWelcomeMsg(struct writeBuf *wBuf) {
+    char welcome[80];
+    int welcomelen =
+        snprintf(welcome, sizeof(welcome), "Terminal Text editor -- version %s",
+                 TTE_VERSION);
+    if (welcomelen > EC.screen_cols) {
+        welcomelen = EC.screen_cols;
+    }
+    int padding = (EC.screen_cols - welcomelen) / 2;
+    if (padding) {
+        bufAppend(wBuf, "~", 1);
+        padding--;
+    }
+    while (padding--) bufAppend(wBuf, " ", 1);
+    bufAppend(wBuf, welcome, welcomelen);
+}
+
 void editorDrawRows(struct writeBuf *wBuf) {
-    int row_num;
-    for (row_num = 0; row_num < EC.screen_rows; row_num++) {
+    int screen_line_num;
+    for (screen_line_num = 0; screen_line_num < EC.screen_rows;
+         screen_line_num++) {
         clearLineRight(wBuf);
 
-        if (row_num >= EC.num_rows) {
-            if (EC.num_rows == 0 && row_num == EC.screen_rows / 2) {
-                char welcome[80];
-                int welcomelen =
-                    snprintf(welcome, sizeof(welcome),
-                             "Terminal Text editor -- version %s", TTE_VERSION);
-                if (welcomelen > EC.screen_cols) {
-                    welcomelen = EC.screen_cols;
-                }
-                int padding = (EC.screen_cols - welcomelen) / 2;
-                if (padding) {
-                    bufAppend(wBuf, "~", 1);
-                    padding--;
-                }
-                while (padding--) bufAppend(wBuf, " ", 1);
-                bufAppend(wBuf, welcome, welcomelen);
+        int data_line_num = screen_line_num + EC.rowoff;
+        if (screen_line_num >= EC.data_rows) {
+            if (EC.data_rows == 0 && screen_line_num == EC.screen_rows / 2) {
+                printWelcomeMsg(wBuf);
             } else {
                 bufAppend(wBuf, "~", 1);
             }
-
         } else {
-            int len = EC.row[row_num].size;
+            int len = EC.row[data_line_num].size;
             if (len > EC.screen_cols) len = EC.screen_cols;
-            bufAppend(wBuf, EC.row[row_num].chars, len);
+            bufAppend(wBuf, EC.row[data_line_num].chars, len);
         }
-        if (row_num < EC.screen_rows - 1) {
+        if (screen_line_num < EC.screen_rows - 1) {
             bufAppend(wBuf, "\r\n", 2);
         }
     }
@@ -334,7 +340,17 @@ void hideCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25l", 6); }
 
 void showCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25h", 6); }
 
+void editorScroll() {
+    if (EC.cy < EC.rowoff) {
+        EC.rowoff = EC.cy;
+    }
+    if (EC.cy >= EC.rowoff + EC.screen_rows) {
+        EC.rowoff = EC.cy - EC.screen_rows + 1;
+    }
+}
+
 void editorRefreshScreen() {
+    editorScroll();
     struct writeBuf wBuf = WRITEBUF_INIT;
 
     hideCursor(&wBuf);
@@ -354,7 +370,8 @@ void editorRefreshScreen() {
 void initEditor() {
     EC.cx = 0;
     EC.cy = 0;
-    EC.num_rows = 0;
+    EC.rowoff = 0;
+    EC.data_rows = 0;
     EC.rows_cap = 0;
     EC.row = NULL;
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
