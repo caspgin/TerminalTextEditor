@@ -212,10 +212,20 @@ void editorMoveCursor(int key) {
     // Update Curosor Position
     switch (key) {
         case ARROW_LEFT:
-            if (EC.cx > 0) EC.cx--;
+            if (EC.cx > 0) {
+                EC.cx--;
+            } else if (EC.cy > 0) {
+                EC.cy--;
+                EC.cx = EC.row[EC.cy].size;
+            }
             break;
         case ARROW_RIGHT:
-            if (curRow && EC.cx < curRow->size) EC.cx++;
+            if (curRow && EC.cx < curRow->size) {
+                EC.cx++;
+            } else if (EC.cy < EC.data_rows) {
+                EC.cy++;
+                EC.cx = 0;
+            }
             break;
         case ARROW_DOWN:
             if (EC.cy < EC.data_rows) EC.cy++;

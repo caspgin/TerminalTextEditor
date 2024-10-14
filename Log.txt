@@ -29,7 +29,7 @@ FRAME NUMBER :
 0
 
  Cx is: 
-1
+0
 
 
 
@@ -47,7 +47,7 @@ FRAME NUMBER :
 0
 
  Cx is: 
-2
+0
 
 
 
@@ -62,10 +62,10 @@ FRAME NUMBER :
 4
 
  Cy is: 
-0
+1
 
  Cx is: 
-3
+0
 
 
 
@@ -80,10 +80,10 @@ FRAME NUMBER :
 5
 
  Cy is: 
-0
+2
 
  Cx is: 
-4
+0
 
 
 
@@ -98,10 +98,10 @@ FRAME NUMBER :
 6
 
  Cy is: 
-0
+1
 
  Cx is: 
-5
+0
 
 
 
@@ -119,7 +119,7 @@ FRAME NUMBER :
 0
 
  Cx is: 
-6
+390
 
 
 
@@ -134,10 +134,10 @@ FRAME NUMBER :
 8
 
  Cy is: 
-0
+1
 
  Cx is: 
-7
+0
 
 
 
@@ -152,10 +152,10 @@ FRAME NUMBER :
 9
 
  Cy is: 
-0
+2
 
  Cx is: 
-8
+0
 
 
 
@@ -170,10 +170,10 @@ FRAME NUMBER :
 10
 
  Cy is: 
-0
+2
 
  Cx is: 
-9
+1
 
 
 
@@ -188,10 +188,10 @@ FRAME NUMBER :
 11
 
  Cy is: 
-0
+3
 
  Cx is: 
-10
+0
 
 
 
@@ -206,10 +206,10 @@ FRAME NUMBER :
 12
 
  Cy is: 
-0
+4
 
  Cx is: 
-11
+0
 
 
 
@@ -224,10 +224,10 @@ FRAME NUMBER :
 13
 
  Cy is: 
-0
+5
 
  Cx is: 
-12
+0
 
 
 
@@ -242,10 +242,10 @@ FRAME NUMBER :
 14
 
  Cy is: 
-0
+6
 
  Cx is: 
-13
+0
 
 
 
@@ -260,10 +260,10 @@ FRAME NUMBER :
 15
 
  Cy is: 
-0
+7
 
  Cx is: 
-14
+0
 
 
 
@@ -278,10 +278,10 @@ FRAME NUMBER :
 16
 
  Cy is: 
-0
+8
 
  Cx is: 
-15
+0
 
 
 
@@ -296,10 +296,10 @@ FRAME NUMBER :
 17
 
  Cy is: 
-0
+9
 
  Cx is: 
-16
+0
 
 
 
@@ -314,7211 +314,11 @@ FRAME NUMBER :
 18
 
  Cy is: 
-0
-
- Cx is: 
-17
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-19
-
- Cy is: 
-0
-
- Cx is: 
-18
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-20
-
- Cy is: 
-0
-
- Cx is: 
-19
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-21
-
- Cy is: 
-0
-
- Cx is: 
-20
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-22
-
- Cy is: 
-0
-
- Cx is: 
-21
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-23
-
- Cy is: 
-0
-
- Cx is: 
-22
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-24
-
- Cy is: 
-0
-
- Cx is: 
-23
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-25
-
- Cy is: 
-0
-
- Cx is: 
-24
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-26
-
- Cy is: 
-0
-
- Cx is: 
-25
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-27
-
- Cy is: 
-0
-
- Cx is: 
-26
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-28
-
- Cy is: 
-0
-
- Cx is: 
-27
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-29
-
- Cy is: 
-0
-
- Cx is: 
-28
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-30
-
- Cy is: 
-0
-
- Cx is: 
-29
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-31
-
- Cy is: 
-0
-
- Cx is: 
-30
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-32
-
- Cy is: 
-0
-
- Cx is: 
-31
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-33
-
- Cy is: 
-0
-
- Cx is: 
-32
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-34
-
- Cy is: 
-0
-
- Cx is: 
-33
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-35
-
- Cy is: 
-0
-
- Cx is: 
-34
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-36
-
- Cy is: 
-0
-
- Cx is: 
-35
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-37
-
- Cy is: 
-0
-
- Cx is: 
-36
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-38
-
- Cy is: 
-0
-
- Cx is: 
-37
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-39
-
- Cy is: 
-0
-
- Cx is: 
-38
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-40
-
- Cy is: 
-0
-
- Cx is: 
-39
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-41
-
- Cy is: 
-0
-
- Cx is: 
-40
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-42
-
- Cy is: 
-0
-
- Cx is: 
-41
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-43
-
- Cy is: 
-0
-
- Cx is: 
-42
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-44
-
- Cy is: 
-0
-
- Cx is: 
-43
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-45
-
- Cy is: 
-0
-
- Cx is: 
-44
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-46
-
- Cy is: 
-0
-
- Cx is: 
-45
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-47
-
- Cy is: 
-0
-
- Cx is: 
-46
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-48
-
- Cy is: 
-0
-
- Cx is: 
-47
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-49
-
- Cy is: 
-0
-
- Cx is: 
-48
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-50
-
- Cy is: 
-0
-
- Cx is: 
-49
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-51
-
- Cy is: 
-0
-
- Cx is: 
-50
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-52
-
- Cy is: 
-0
-
- Cx is: 
-51
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-53
-
- Cy is: 
-0
-
- Cx is: 
-52
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-54
-
- Cy is: 
-0
-
- Cx is: 
-53
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-55
-
- Cy is: 
-0
-
- Cx is: 
-54
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-56
-
- Cy is: 
-0
-
- Cx is: 
-55
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-57
-
- Cy is: 
-0
-
- Cx is: 
-56
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-58
-
- Cy is: 
-0
-
- Cx is: 
-57
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-59
-
- Cy is: 
-0
-
- Cx is: 
-58
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-60
-
- Cy is: 
-0
-
- Cx is: 
-59
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-61
-
- Cy is: 
-0
-
- Cx is: 
-60
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-62
-
- Cy is: 
-0
-
- Cx is: 
-61
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-63
-
- Cy is: 
-0
-
- Cx is: 
-62
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-64
-
- Cy is: 
-0
-
- Cx is: 
-63
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-65
-
- Cy is: 
-0
-
- Cx is: 
-64
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-66
-
- Cy is: 
-0
-
- Cx is: 
-65
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-67
-
- Cy is: 
-0
-
- Cx is: 
-66
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-68
-
- Cy is: 
-0
-
- Cx is: 
-67
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-69
-
- Cy is: 
-0
-
- Cx is: 
-68
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-70
-
- Cy is: 
-0
-
- Cx is: 
-69
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-71
-
- Cy is: 
-0
-
- Cx is: 
-70
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-72
-
- Cy is: 
-0
-
- Cx is: 
-71
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-73
-
- Cy is: 
-0
-
- Cx is: 
-72
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-74
-
- Cy is: 
-0
-
- Cx is: 
-73
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-75
-
- Cy is: 
-0
-
- Cx is: 
-74
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-76
-
- Cy is: 
-0
-
- Cx is: 
-75
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-77
-
- Cy is: 
-0
-
- Cx is: 
-76
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-78
-
- Cy is: 
-0
-
- Cx is: 
-77
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-79
-
- Cy is: 
-0
-
- Cx is: 
-78
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-80
-
- Cy is: 
-0
-
- Cx is: 
-79
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-81
-
- Cy is: 
-0
-
- Cx is: 
-80
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-82
-
- Cy is: 
-0
-
- Cx is: 
-81
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-83
-
- Cy is: 
-0
-
- Cx is: 
-82
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-84
-
- Cy is: 
-0
-
- Cx is: 
-83
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-85
-
- Cy is: 
-0
-
- Cx is: 
-84
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-86
-
- Cy is: 
-0
-
- Cx is: 
-85
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-87
-
- Cy is: 
-0
-
- Cx is: 
-86
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-88
-
- Cy is: 
-0
-
- Cx is: 
-87
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-89
-
- Cy is: 
-0
-
- Cx is: 
-88
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-90
-
- Cy is: 
-0
-
- Cx is: 
-89
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-91
-
- Cy is: 
-0
-
- Cx is: 
-90
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-92
-
- Cy is: 
-0
-
- Cx is: 
-91
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-93
-
- Cy is: 
-0
-
- Cx is: 
-92
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-94
-
- Cy is: 
-0
-
- Cx is: 
-93
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-95
-
- Cy is: 
-0
-
- Cx is: 
-94
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-96
-
- Cy is: 
-0
-
- Cx is: 
-95
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-97
-
- Cy is: 
-0
-
- Cx is: 
-96
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-98
-
- Cy is: 
-0
-
- Cx is: 
-97
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-99
-
- Cy is: 
-0
-
- Cx is: 
-98
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-100
-
- Cy is: 
-0
-
- Cx is: 
-99
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-101
-
- Cy is: 
-0
-
- Cx is: 
-100
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-102
-
- Cy is: 
-0
-
- Cx is: 
-101
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-103
-
- Cy is: 
-0
-
- Cx is: 
-102
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-104
-
- Cy is: 
-0
-
- Cx is: 
-103
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-105
-
- Cy is: 
-0
-
- Cx is: 
-104
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-106
-
- Cy is: 
-0
-
- Cx is: 
-105
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-107
-
- Cy is: 
-0
-
- Cx is: 
-106
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-108
-
- Cy is: 
-0
-
- Cx is: 
-107
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-109
-
- Cy is: 
-0
-
- Cx is: 
-108
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-110
-
- Cy is: 
-0
-
- Cx is: 
-109
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-111
-
- Cy is: 
-0
-
- Cx is: 
-110
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-112
-
- Cy is: 
-0
-
- Cx is: 
-111
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-113
-
- Cy is: 
-0
-
- Cx is: 
-112
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-114
-
- Cy is: 
-0
-
- Cx is: 
-113
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-115
-
- Cy is: 
-0
-
- Cx is: 
-114
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-116
-
- Cy is: 
-0
-
- Cx is: 
-115
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-117
-
- Cy is: 
-0
-
- Cx is: 
-116
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-118
-
- Cy is: 
-0
-
- Cx is: 
-117
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-119
-
- Cy is: 
-0
-
- Cx is: 
-118
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-120
-
- Cy is: 
-0
-
- Cx is: 
-119
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-121
-
- Cy is: 
-0
-
- Cx is: 
-120
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-122
-
- Cy is: 
-0
-
- Cx is: 
-121
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-123
-
- Cy is: 
-0
-
- Cx is: 
-122
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-124
-
- Cy is: 
-0
-
- Cx is: 
-123
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-125
-
- Cy is: 
-0
-
- Cx is: 
-124
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-126
-
- Cy is: 
-0
-
- Cx is: 
-125
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-127
-
- Cy is: 
-0
-
- Cx is: 
-126
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-128
-
- Cy is: 
-0
-
- Cx is: 
-127
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-129
-
- Cy is: 
-0
-
- Cx is: 
-128
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-130
-
- Cy is: 
-0
-
- Cx is: 
-129
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-131
-
- Cy is: 
-0
-
- Cx is: 
-130
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-132
-
- Cy is: 
-0
-
- Cx is: 
-131
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-133
-
- Cy is: 
-0
-
- Cx is: 
-132
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-134
-
- Cy is: 
-0
-
- Cx is: 
-133
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-135
-
- Cy is: 
-0
-
- Cx is: 
-134
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-136
-
- Cy is: 
-0
-
- Cx is: 
-135
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-137
-
- Cy is: 
-0
-
- Cx is: 
-136
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-138
-
- Cy is: 
-0
-
- Cx is: 
-137
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-139
-
- Cy is: 
-0
-
- Cx is: 
-138
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-140
-
- Cy is: 
-0
-
- Cx is: 
-139
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-141
-
- Cy is: 
-0
-
- Cx is: 
-140
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-142
-
- Cy is: 
-0
-
- Cx is: 
-141
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-143
-
- Cy is: 
-0
-
- Cx is: 
-142
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-144
-
- Cy is: 
-0
-
- Cx is: 
-143
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-145
-
- Cy is: 
-0
-
- Cx is: 
-144
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-146
-
- Cy is: 
-0
-
- Cx is: 
-145
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-147
-
- Cy is: 
-0
-
- Cx is: 
-146
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-148
-
- Cy is: 
-0
-
- Cx is: 
-147
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-149
-
- Cy is: 
-0
-
- Cx is: 
-148
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-150
-
- Cy is: 
-0
-
- Cx is: 
-149
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-151
-
- Cy is: 
-0
-
- Cx is: 
-150
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-152
-
- Cy is: 
-0
-
- Cx is: 
-151
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-153
-
- Cy is: 
-0
-
- Cx is: 
-152
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-154
-
- Cy is: 
-0
-
- Cx is: 
-153
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-155
-
- Cy is: 
-0
-
- Cx is: 
-154
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-156
-
- Cy is: 
-0
-
- Cx is: 
-155
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-157
-
- Cy is: 
-0
-
- Cx is: 
-156
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-158
-
- Cy is: 
-0
-
- Cx is: 
-157
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-159
-
- Cy is: 
-0
-
- Cx is: 
-158
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-160
-
- Cy is: 
-0
-
- Cx is: 
-159
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-161
-
- Cy is: 
-0
-
- Cx is: 
-160
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-162
-
- Cy is: 
-0
-
- Cx is: 
-161
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-163
-
- Cy is: 
-0
-
- Cx is: 
-162
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-164
-
- Cy is: 
-0
-
- Cx is: 
-163
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-165
-
- Cy is: 
-0
-
- Cx is: 
-164
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-166
-
- Cy is: 
-0
-
- Cx is: 
-165
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-167
-
- Cy is: 
-0
-
- Cx is: 
-166
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-168
-
- Cy is: 
-0
-
- Cx is: 
-167
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-169
-
- Cy is: 
-0
-
- Cx is: 
-168
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-170
-
- Cy is: 
-0
-
- Cx is: 
-169
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-171
-
- Cy is: 
-0
-
- Cx is: 
-170
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-172
-
- Cy is: 
-0
-
- Cx is: 
-171
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-173
-
- Cy is: 
-0
-
- Cx is: 
-172
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-174
-
- Cy is: 
-0
-
- Cx is: 
-173
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-175
-
- Cy is: 
-0
-
- Cx is: 
-174
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-176
-
- Cy is: 
-0
-
- Cx is: 
-175
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-177
-
- Cy is: 
-0
-
- Cx is: 
-176
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-178
-
- Cy is: 
-0
-
- Cx is: 
-177
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-179
-
- Cy is: 
-0
-
- Cx is: 
-178
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-180
-
- Cy is: 
-0
-
- Cx is: 
-179
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-181
-
- Cy is: 
-0
-
- Cx is: 
-180
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-182
-
- Cy is: 
-0
-
- Cx is: 
-181
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-183
-
- Cy is: 
-0
-
- Cx is: 
-182
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-184
-
- Cy is: 
-0
-
- Cx is: 
-183
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-185
-
- Cy is: 
-0
-
- Cx is: 
-184
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-186
-
- Cy is: 
-0
-
- Cx is: 
-185
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-187
-
- Cy is: 
-0
-
- Cx is: 
-186
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-188
-
- Cy is: 
-0
-
- Cx is: 
-187
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-189
-
- Cy is: 
-0
-
- Cx is: 
-188
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-190
-
- Cy is: 
-0
-
- Cx is: 
-189
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-191
-
- Cy is: 
-0
-
- Cx is: 
-190
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-192
-
- Cy is: 
-0
-
- Cx is: 
-191
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-193
-
- Cy is: 
-0
-
- Cx is: 
-192
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-194
-
- Cy is: 
-0
-
- Cx is: 
-193
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-195
-
- Cy is: 
-0
-
- Cx is: 
-194
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-196
-
- Cy is: 
-0
-
- Cx is: 
-195
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-197
-
- Cy is: 
-0
-
- Cx is: 
-196
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-198
-
- Cy is: 
-0
-
- Cx is: 
-197
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-199
-
- Cy is: 
-0
-
- Cx is: 
-198
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-200
-
- Cy is: 
-0
-
- Cx is: 
-199
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-201
-
- Cy is: 
-0
-
- Cx is: 
-200
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-202
-
- Cy is: 
-0
-
- Cx is: 
-201
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-203
-
- Cy is: 
-0
-
- Cx is: 
-202
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-204
-
- Cy is: 
-0
-
- Cx is: 
-203
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-205
-
- Cy is: 
-0
-
- Cx is: 
-204
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-206
-
- Cy is: 
-0
-
- Cx is: 
-205
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-207
-
- Cy is: 
-0
-
- Cx is: 
-206
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-208
-
- Cy is: 
-0
-
- Cx is: 
-207
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-209
-
- Cy is: 
-0
-
- Cx is: 
-208
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-210
-
- Cy is: 
-0
-
- Cx is: 
-209
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-211
-
- Cy is: 
-0
-
- Cx is: 
-210
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-212
-
- Cy is: 
-0
-
- Cx is: 
-211
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-213
-
- Cy is: 
-0
-
- Cx is: 
-212
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-214
-
- Cy is: 
-0
-
- Cx is: 
-213
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-215
-
- Cy is: 
-0
-
- Cx is: 
-214
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-216
-
- Cy is: 
-0
-
- Cx is: 
-215
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-217
-
- Cy is: 
-0
-
- Cx is: 
-216
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-218
-
- Cy is: 
-0
-
- Cx is: 
-217
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-219
-
- Cy is: 
-0
-
- Cx is: 
-218
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-220
-
- Cy is: 
-0
-
- Cx is: 
-219
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-221
-
- Cy is: 
-0
-
- Cx is: 
-220
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-222
-
- Cy is: 
-0
-
- Cx is: 
-221
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-223
-
- Cy is: 
-0
-
- Cx is: 
-222
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-224
-
- Cy is: 
-0
-
- Cx is: 
-223
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-225
-
- Cy is: 
-0
-
- Cx is: 
-224
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-226
-
- Cy is: 
-0
-
- Cx is: 
-225
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-227
-
- Cy is: 
-0
-
- Cx is: 
-226
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-228
-
- Cy is: 
-0
-
- Cx is: 
-227
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-229
-
- Cy is: 
-0
-
- Cx is: 
-228
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-230
-
- Cy is: 
-0
-
- Cx is: 
-229
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-231
-
- Cy is: 
-0
-
- Cx is: 
-230
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-232
-
- Cy is: 
-0
-
- Cx is: 
-231
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-233
-
- Cy is: 
-0
-
- Cx is: 
-232
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-234
-
- Cy is: 
-0
-
- Cx is: 
-233
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-235
-
- Cy is: 
-0
-
- Cx is: 
-234
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-236
-
- Cy is: 
-0
-
- Cx is: 
-235
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-237
-
- Cy is: 
-0
-
- Cx is: 
-236
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-238
-
- Cy is: 
-0
-
- Cx is: 
-237
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-239
-
- Cy is: 
-0
-
- Cx is: 
-238
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-240
-
- Cy is: 
-0
-
- Cx is: 
-239
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-241
-
- Cy is: 
-0
-
- Cx is: 
-240
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-242
-
- Cy is: 
-0
-
- Cx is: 
-241
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-243
-
- Cy is: 
-0
-
- Cx is: 
-242
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-244
-
- Cy is: 
-0
-
- Cx is: 
-243
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-245
-
- Cy is: 
-0
-
- Cx is: 
-244
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-246
-
- Cy is: 
-0
-
- Cx is: 
-245
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-247
-
- Cy is: 
-0
-
- Cx is: 
-246
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-248
-
- Cy is: 
-0
-
- Cx is: 
-247
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-249
-
- Cy is: 
-0
-
- Cx is: 
-248
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-250
-
- Cy is: 
-0
-
- Cx is: 
-249
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-251
-
- Cy is: 
-0
-
- Cx is: 
-250
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-252
-
- Cy is: 
-0
-
- Cx is: 
-251
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-253
-
- Cy is: 
-0
-
- Cx is: 
-252
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-254
-
- Cy is: 
-0
-
- Cx is: 
-253
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-255
-
- Cy is: 
-0
-
- Cx is: 
-254
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-256
-
- Cy is: 
-0
-
- Cx is: 
-255
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-257
-
- Cy is: 
-0
-
- Cx is: 
-256
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-258
-
- Cy is: 
-0
-
- Cx is: 
-257
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-259
-
- Cy is: 
-0
-
- Cx is: 
-258
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-260
-
- Cy is: 
-0
-
- Cx is: 
-259
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-261
-
- Cy is: 
-0
-
- Cx is: 
-260
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-262
-
- Cy is: 
-0
-
- Cx is: 
-261
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-263
-
- Cy is: 
-0
-
- Cx is: 
-262
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-264
-
- Cy is: 
-0
-
- Cx is: 
-263
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-265
-
- Cy is: 
-0
-
- Cx is: 
-264
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-266
-
- Cy is: 
-0
-
- Cx is: 
-265
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-267
-
- Cy is: 
-0
-
- Cx is: 
-266
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-268
-
- Cy is: 
-0
-
- Cx is: 
-267
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-269
-
- Cy is: 
-0
-
- Cx is: 
-268
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-270
-
- Cy is: 
-0
-
- Cx is: 
-269
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-271
-
- Cy is: 
-0
-
- Cx is: 
-270
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-272
-
- Cy is: 
-0
-
- Cx is: 
-271
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-273
-
- Cy is: 
-0
-
- Cx is: 
-272
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-274
-
- Cy is: 
-0
-
- Cx is: 
-273
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-275
-
- Cy is: 
-0
-
- Cx is: 
-274
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-276
-
- Cy is: 
-0
-
- Cx is: 
-275
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-277
-
- Cy is: 
-0
-
- Cx is: 
-276
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-278
-
- Cy is: 
-0
-
- Cx is: 
-277
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-279
-
- Cy is: 
-0
-
- Cx is: 
-278
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-280
-
- Cy is: 
-0
-
- Cx is: 
-279
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-281
-
- Cy is: 
-0
-
- Cx is: 
-280
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-282
-
- Cy is: 
-0
-
- Cx is: 
-281
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-283
-
- Cy is: 
-0
-
- Cx is: 
-282
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-284
-
- Cy is: 
-0
-
- Cx is: 
-283
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-285
-
- Cy is: 
-0
-
- Cx is: 
-284
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-286
-
- Cy is: 
-0
-
- Cx is: 
-285
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-287
-
- Cy is: 
-0
-
- Cx is: 
-286
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-288
-
- Cy is: 
-0
-
- Cx is: 
-287
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-289
-
- Cy is: 
-0
-
- Cx is: 
-288
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-290
-
- Cy is: 
-0
-
- Cx is: 
-289
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-291
-
- Cy is: 
-0
-
- Cx is: 
-290
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-292
-
- Cy is: 
-0
-
- Cx is: 
-291
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-293
-
- Cy is: 
-0
-
- Cx is: 
-292
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-294
-
- Cy is: 
-0
-
- Cx is: 
-293
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-295
-
- Cy is: 
-0
-
- Cx is: 
-294
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-296
-
- Cy is: 
-0
-
- Cx is: 
-295
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-297
-
- Cy is: 
-0
-
- Cx is: 
-296
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-298
-
- Cy is: 
-0
-
- Cx is: 
-297
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-299
-
- Cy is: 
-0
-
- Cx is: 
-298
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-300
-
- Cy is: 
-0
-
- Cx is: 
-299
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-301
-
- Cy is: 
-0
-
- Cx is: 
-300
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-302
-
- Cy is: 
-0
-
- Cx is: 
-301
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-303
-
- Cy is: 
-0
-
- Cx is: 
-302
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-304
-
- Cy is: 
-0
-
- Cx is: 
-303
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-305
-
- Cy is: 
-0
-
- Cx is: 
-304
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-306
-
- Cy is: 
-0
-
- Cx is: 
-305
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-307
-
- Cy is: 
-0
-
- Cx is: 
-306
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-308
-
- Cy is: 
-0
-
- Cx is: 
-307
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-309
-
- Cy is: 
-0
-
- Cx is: 
-308
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-310
-
- Cy is: 
-0
-
- Cx is: 
-309
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-311
-
- Cy is: 
-0
-
- Cx is: 
-310
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-312
-
- Cy is: 
-0
-
- Cx is: 
-311
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-313
-
- Cy is: 
-0
-
- Cx is: 
-312
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-314
-
- Cy is: 
-0
-
- Cx is: 
-313
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-315
-
- Cy is: 
-0
-
- Cx is: 
-314
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-316
-
- Cy is: 
-0
-
- Cx is: 
-315
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-317
-
- Cy is: 
-0
-
- Cx is: 
-316
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-318
-
- Cy is: 
-0
-
- Cx is: 
-317
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-319
-
- Cy is: 
-0
-
- Cx is: 
-318
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-320
-
- Cy is: 
-0
-
- Cx is: 
-319
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-321
-
- Cy is: 
-0
-
- Cx is: 
-320
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-322
-
- Cy is: 
-0
-
- Cx is: 
-321
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-323
-
- Cy is: 
-0
-
- Cx is: 
-322
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-324
-
- Cy is: 
-0
-
- Cx is: 
-323
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-325
-
- Cy is: 
-0
-
- Cx is: 
-324
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-326
-
- Cy is: 
-0
-
- Cx is: 
-325
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-327
-
- Cy is: 
-0
-
- Cx is: 
-326
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-328
-
- Cy is: 
-0
-
- Cx is: 
-327
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-329
-
- Cy is: 
-0
-
- Cx is: 
-328
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-330
-
- Cy is: 
-0
-
- Cx is: 
-329
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-331
-
- Cy is: 
-0
-
- Cx is: 
-330
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-332
-
- Cy is: 
-0
-
- Cx is: 
-331
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-333
-
- Cy is: 
-0
-
- Cx is: 
-332
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-334
-
- Cy is: 
-0
-
- Cx is: 
-333
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-335
-
- Cy is: 
-0
-
- Cx is: 
-334
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-336
-
- Cy is: 
-0
-
- Cx is: 
-335
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-337
-
- Cy is: 
-0
-
- Cx is: 
-336
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-338
-
- Cy is: 
-0
-
- Cx is: 
-337
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-339
-
- Cy is: 
-0
-
- Cx is: 
-338
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-340
-
- Cy is: 
-0
-
- Cx is: 
-339
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-341
-
- Cy is: 
-0
-
- Cx is: 
-340
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-342
-
- Cy is: 
-0
-
- Cx is: 
-341
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-343
-
- Cy is: 
-0
-
- Cx is: 
-342
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-344
-
- Cy is: 
-0
-
- Cx is: 
-343
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-345
-
- Cy is: 
-0
-
- Cx is: 
-344
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-346
-
- Cy is: 
-0
-
- Cx is: 
-345
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-347
-
- Cy is: 
-0
-
- Cx is: 
-346
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-348
-
- Cy is: 
-0
-
- Cx is: 
-347
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-349
-
- Cy is: 
-0
-
- Cx is: 
-348
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-350
-
- Cy is: 
-0
-
- Cx is: 
-349
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-351
-
- Cy is: 
-0
-
- Cx is: 
-350
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-352
-
- Cy is: 
-0
-
- Cx is: 
-351
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-353
-
- Cy is: 
-0
-
- Cx is: 
-352
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-354
-
- Cy is: 
-0
-
- Cx is: 
-353
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-355
-
- Cy is: 
-0
-
- Cx is: 
-354
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-356
-
- Cy is: 
-0
-
- Cx is: 
-355
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-357
-
- Cy is: 
-0
-
- Cx is: 
-356
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-358
-
- Cy is: 
-0
-
- Cx is: 
-357
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-359
-
- Cy is: 
-0
-
- Cx is: 
-358
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-360
-
- Cy is: 
-0
-
- Cx is: 
-359
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-361
-
- Cy is: 
-0
-
- Cx is: 
-360
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-362
-
- Cy is: 
-0
-
- Cx is: 
-361
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-363
-
- Cy is: 
-0
-
- Cx is: 
-362
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-364
-
- Cy is: 
-0
-
- Cx is: 
-363
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-365
-
- Cy is: 
-0
-
- Cx is: 
-364
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-366
-
- Cy is: 
-0
-
- Cx is: 
-365
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-367
-
- Cy is: 
-0
-
- Cx is: 
-366
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-368
-
- Cy is: 
-0
-
- Cx is: 
-367
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-369
-
- Cy is: 
-0
-
- Cx is: 
-368
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-370
-
- Cy is: 
-0
-
- Cx is: 
-369
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-371
-
- Cy is: 
-0
-
- Cx is: 
-370
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-372
-
- Cy is: 
-0
-
- Cx is: 
-371
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-373
-
- Cy is: 
-0
-
- Cx is: 
-372
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-374
-
- Cy is: 
-0
-
- Cx is: 
-373
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-375
-
- Cy is: 
-0
-
- Cx is: 
-374
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-376
-
- Cy is: 
-0
-
- Cx is: 
-375
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-377
-
- Cy is: 
-0
-
- Cx is: 
-376
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-378
-
- Cy is: 
-0
-
- Cx is: 
-377
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-379
-
- Cy is: 
-0
-
- Cx is: 
-378
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-380
-
- Cy is: 
-0
-
- Cx is: 
-379
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-381
-
- Cy is: 
-0
-
- Cx is: 
-380
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-382
-
- Cy is: 
-0
-
- Cx is: 
-381
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-383
-
- Cy is: 
-0
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-384
-
- Cy is: 
-0
-
- Cx is: 
-383
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-385
-
- Cy is: 
-0
-
- Cx is: 
-384
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-386
-
- Cy is: 
-0
-
- Cx is: 
-385
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-387
-
- Cy is: 
-0
-
- Cx is: 
-386
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-388
-
- Cy is: 
-0
-
- Cx is: 
-387
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-389
-
- Cy is: 
-0
-
- Cx is: 
-388
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-390
-
- Cy is: 
-0
-
- Cx is: 
-389
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-391
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-392
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-393
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-394
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-395
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-396
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-397
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-398
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-399
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-400
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-401
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-402
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-403
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-404
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-405
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-406
-
- Cy is: 
-0
-
- Cx is: 
-390
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-407
-
- Cy is: 
-1
-
- Cx is: 
-0
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-408
-
- Cy is: 
-2
-
- Cx is: 
-0
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-409
-
- Cy is: 
-2
-
- Cx is: 
-1
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-410
-
- Cy is: 
-2
-
- Cx is: 
-2
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-411
-
- Cy is: 
-2
-
- Cx is: 
-3
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-412
-
- Cy is: 
-2
-
- Cx is: 
-4
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-413
-
- Cy is: 
-2
-
- Cx is: 
-5
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-414
-
- Cy is: 
-2
-
- Cx is: 
-6
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-415
-
- Cy is: 
-2
-
- Cx is: 
-7
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-416
-
- Cy is: 
-2
-
- Cx is: 
-8
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-417
-
- Cy is: 
-2
-
- Cx is: 
-9
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-418
-
- Cy is: 
-2
-
- Cx is: 
 10
 
+ Cx is: 
+0
+
 
 
 
@@ -7529,14 +329,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-419
+19
 
  Cy is: 
-2
-
- Cx is: 
 11
 
+ Cx is: 
+0
+
 
 
 
@@ -7547,14 +347,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-420
+20
 
  Cy is: 
-2
-
- Cx is: 
 12
 
+ Cx is: 
+0
+
 
 
 
@@ -7565,14 +365,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-421
+21
 
  Cy is: 
-2
-
- Cx is: 
 13
 
+ Cx is: 
+0
+
 
 
 
@@ -7583,14 +383,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-422
+22
 
  Cy is: 
-2
-
- Cx is: 
 14
 
+ Cx is: 
+0
+
 
 
 
@@ -7601,14 +401,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-423
+23
 
  Cy is: 
-2
-
- Cx is: 
 15
 
+ Cx is: 
+0
+
 
 
 
@@ -7619,14 +419,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-424
+24
 
  Cy is: 
-2
-
- Cx is: 
 16
 
+ Cx is: 
+0
+
 
 
 
@@ -7637,13 +437,13 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-425
+25
 
  Cy is: 
-2
+17
 
  Cx is: 
-17
+0
 
 
 
@@ -7655,13 +455,1167 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
+26
+
+ Cy is: 
+18
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+27
+
+ Cy is: 
+19
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+28
+
+ Cy is: 
+20
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+29
+
+ Cy is: 
+21
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+30
+
+ Cy is: 
+22
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+31
+
+ Cy is: 
+23
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+32
+
+ Cy is: 
+24
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+33
+
+ Cy is: 
+25
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+34
+
+ Cy is: 
+26
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+35
+
+ Cy is: 
+27
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+36
+
+ Cy is: 
+28
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+37
+
+ Cy is: 
+29
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+38
+
+ Cy is: 
+30
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+39
+
+ Cy is: 
+31
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+40
+
+ Cy is: 
+32
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+41
+
+ Cy is: 
+33
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+42
+
+ Cy is: 
+34
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+43
+
+ Cy is: 
+35
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+44
+
+ Cy is: 
+36
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+45
+
+ Cy is: 
+37
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+46
+
+ Cy is: 
+38
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+47
+
+ Cy is: 
+39
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+48
+
+ Cy is: 
+40
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+49
+
+ Cy is: 
+41
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+50
+
+ Cy is: 
+42
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+51
+
+ Cy is: 
+43
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+52
+
+ Cy is: 
+44
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+53
+
+ Cy is: 
+45
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+54
+
+ Cy is: 
+46
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+55
+
+ Cy is: 
+47
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+56
+
+ Cy is: 
+48
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+57
+
+ Cy is: 
+49
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+58
+
+ Cy is: 
+50
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+59
+
+ Cy is: 
+51
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+60
+
+ Cy is: 
+52
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+61
+
+ Cy is: 
+53
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+62
+
+ Cy is: 
+54
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+63
+
+ Cy is: 
+55
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+64
+
+ Cy is: 
+56
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+65
+
+ Cy is: 
+57
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+66
+
+ Cy is: 
+58
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+67
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+68
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+69
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+70
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+71
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+72
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+73
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+74
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+75
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+76
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+77
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+78
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+79
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+80
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+81
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+82
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+83
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+84
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+85
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+86
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+87
+
+ Cy is: 
+58
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+88
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+89
+
+ Cy is: 
+59
+
+ Cx is: 
+0
+
+
+
+
+
+
+
+
+
+
+FRAME NUMBER : 
+90
+
+ Cy is: 
+58
+
+ Cx is: 
 426
 
- Cy is: 
-2
 
- Cx is: 
-18
 
 
 
@@ -7670,1313 +1624,15 @@ FRAME NUMBER :
 
 
 
-
-
-FRAME NUMBER : 
-427
-
- Cy is: 
-2
-
- Cx is: 
-19
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-428
-
- Cy is: 
-2
-
- Cx is: 
-20
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-429
-
- Cy is: 
-2
-
- Cx is: 
-21
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-430
-
- Cy is: 
-2
-
- Cx is: 
-22
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-431
-
- Cy is: 
-2
-
- Cx is: 
-23
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-432
-
- Cy is: 
-2
-
- Cx is: 
-24
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-433
-
- Cy is: 
-2
-
- Cx is: 
-25
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-434
-
- Cy is: 
-2
-
- Cx is: 
-26
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-435
-
- Cy is: 
-2
-
- Cx is: 
-27
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-436
-
- Cy is: 
-2
-
- Cx is: 
-28
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-437
-
- Cy is: 
-2
-
- Cx is: 
-29
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-438
-
- Cy is: 
-2
-
- Cx is: 
-30
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-439
-
- Cy is: 
-2
-
- Cx is: 
-31
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-440
-
- Cy is: 
-2
-
- Cx is: 
-32
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-441
-
- Cy is: 
-2
-
- Cx is: 
-33
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-442
-
- Cy is: 
-2
-
- Cx is: 
-34
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-443
-
- Cy is: 
-2
-
- Cx is: 
-35
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-444
-
- Cy is: 
-2
-
- Cx is: 
-36
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-445
-
- Cy is: 
-2
-
- Cx is: 
-37
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-446
-
- Cy is: 
-2
-
- Cx is: 
-38
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-447
-
- Cy is: 
-2
-
- Cx is: 
-39
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-448
-
- Cy is: 
-2
-
- Cx is: 
-40
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-449
-
- Cy is: 
-2
-
- Cx is: 
-41
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-450
-
- Cy is: 
-2
-
- Cx is: 
-42
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-451
-
- Cy is: 
-2
-
- Cx is: 
-43
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-452
-
- Cy is: 
-2
-
- Cx is: 
-44
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-453
-
- Cy is: 
-2
-
- Cx is: 
-45
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-454
-
- Cy is: 
-2
-
- Cx is: 
-46
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-455
-
- Cy is: 
-2
-
- Cx is: 
-47
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-456
-
- Cy is: 
-2
-
- Cx is: 
-48
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-457
-
- Cy is: 
-2
-
- Cx is: 
-49
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-458
-
- Cy is: 
-2
-
- Cx is: 
-50
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-459
-
- Cy is: 
-2
-
- Cx is: 
-51
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-460
-
- Cy is: 
-2
-
- Cx is: 
-52
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-461
-
- Cy is: 
-2
-
- Cx is: 
-53
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-462
-
- Cy is: 
-2
-
- Cx is: 
-54
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-463
-
- Cy is: 
-2
-
- Cx is: 
-55
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-464
-
- Cy is: 
-2
-
- Cx is: 
-56
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-465
-
- Cy is: 
-2
-
- Cx is: 
-57
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-466
-
- Cy is: 
-2
-
- Cx is: 
-58
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-467
-
- Cy is: 
-2
-
- Cx is: 
-59
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-468
-
- Cy is: 
-2
-
- Cx is: 
-60
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-469
-
- Cy is: 
-2
-
- Cx is: 
-61
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-470
-
- Cy is: 
-2
-
- Cx is: 
-62
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-471
-
- Cy is: 
-2
-
- Cx is: 
-63
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-472
-
- Cy is: 
-2
-
- Cx is: 
-64
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-473
-
- Cy is: 
-2
-
- Cx is: 
-65
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-474
-
- Cy is: 
-2
-
- Cx is: 
-66
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-475
-
- Cy is: 
-2
-
- Cx is: 
-67
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-476
-
- Cy is: 
-2
-
- Cx is: 
-68
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-477
-
- Cy is: 
-2
-
- Cx is: 
-69
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-478
-
- Cy is: 
-2
-
- Cx is: 
-70
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-479
-
- Cy is: 
-2
-
- Cx is: 
-71
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-480
-
- Cy is: 
-2
-
- Cx is: 
-72
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-481
-
- Cy is: 
-2
-
- Cx is: 
-73
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-482
-
- Cy is: 
-2
-
- Cx is: 
-74
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-483
-
- Cy is: 
-2
-
- Cx is: 
-75
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-484
-
- Cy is: 
-2
-
- Cx is: 
-76
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-485
-
- Cy is: 
-2
-
- Cx is: 
-77
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-486
-
- Cy is: 
-2
-
- Cx is: 
-78
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-487
-
- Cy is: 
-2
-
- Cx is: 
-79
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-488
-
- Cy is: 
-2
-
- Cx is: 
-80
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-489
-
- Cy is: 
-2
-
- Cx is: 
-81
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-490
-
- Cy is: 
-2
-
- Cx is: 
-82
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-491
-
- Cy is: 
-2
-
- Cx is: 
-83
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-492
-
- Cy is: 
-2
-
- Cx is: 
-84
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-493
-
- Cy is: 
-2
-
- Cx is: 
-85
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-494
-
- Cy is: 
-2
-
- Cx is: 
-86
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-495
-
- Cy is: 
-2
-
- Cx is: 
-87
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-496
-
- Cy is: 
-2
-
- Cx is: 
-88
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-497
-
- Cy is: 
-2
-
- Cx is: 
-89
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-498
-
- Cy is: 
-2
-
- Cx is: 
-90
-
-
-
-
-
-
-
-
-
-
 FRAME NUMBER : 
-499
-
- Cy is: 
-2
-
- Cx is: 
 91
 
+ Cy is: 
+59
+
+ Cx is: 
+0
+
 
 
 
@@ -8987,14 +1643,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-500
-
- Cy is: 
-2
-
- Cx is: 
 92
 
+ Cy is: 
+59
+
+ Cx is: 
+0
+
 
 
 
@@ -9005,14 +1661,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-501
-
- Cy is: 
-2
-
- Cx is: 
 93
 
+ Cy is: 
+58
+
+ Cx is: 
+426
+
 
 
 
@@ -9023,14 +1679,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-502
-
- Cy is: 
-2
-
- Cx is: 
 94
 
+ Cy is: 
+58
+
+ Cx is: 
+425
+
 
 
 
@@ -9041,14 +1697,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-503
-
- Cy is: 
-2
-
- Cx is: 
 95
 
+ Cy is: 
+58
+
+ Cx is: 
+424
+
 
 
 
@@ -9059,14 +1715,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-504
-
- Cy is: 
-2
-
- Cx is: 
 96
 
+ Cy is: 
+57
+
+ Cx is: 
+0
+
 
 
 
@@ -9077,14 +1733,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-505
-
- Cy is: 
-2
-
- Cx is: 
 97
 
+ Cy is: 
+56
+
+ Cx is: 
+503
+
 
 
 
@@ -9095,14 +1751,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-506
-
- Cy is: 
-2
-
- Cx is: 
 98
 
+ Cy is: 
+57
+
+ Cx is: 
+0
+
 
 
 
@@ -9113,14 +1769,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-507
-
- Cy is: 
-2
-
- Cx is: 
 99
 
+ Cy is: 
+58
+
+ Cx is: 
+0
+
 
 
 
@@ -9131,14 +1787,14 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-508
-
- Cy is: 
-2
-
- Cx is: 
 100
 
+ Cy is: 
+58
+
+ Cx is: 
+1
+
 
 
 
@@ -9149,5537 +1805,10 @@ FRAME NUMBER :
 
 
 FRAME NUMBER : 
-509
-
- Cy is: 
-2
-
- Cx is: 
 101
 
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-510
-
  Cy is: 
-2
-
- Cx is: 
-102
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-511
-
- Cy is: 
-2
-
- Cx is: 
-103
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-512
-
- Cy is: 
-2
-
- Cx is: 
-104
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-513
-
- Cy is: 
-2
-
- Cx is: 
-105
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-514
-
- Cy is: 
-2
-
- Cx is: 
-106
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-515
-
- Cy is: 
-2
-
- Cx is: 
-107
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-516
-
- Cy is: 
-2
-
- Cx is: 
-108
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-517
-
- Cy is: 
-2
-
- Cx is: 
-109
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-518
-
- Cy is: 
-2
-
- Cx is: 
-110
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-519
-
- Cy is: 
-2
-
- Cx is: 
-111
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-520
-
- Cy is: 
-2
-
- Cx is: 
-112
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-521
-
- Cy is: 
-2
-
- Cx is: 
-113
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-522
-
- Cy is: 
-2
-
- Cx is: 
-114
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-523
-
- Cy is: 
-2
-
- Cx is: 
-115
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-524
-
- Cy is: 
-2
-
- Cx is: 
-116
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-525
-
- Cy is: 
-2
-
- Cx is: 
-117
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-526
-
- Cy is: 
-2
-
- Cx is: 
-118
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-527
-
- Cy is: 
-2
-
- Cx is: 
-119
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-528
-
- Cy is: 
-2
-
- Cx is: 
-120
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-529
-
- Cy is: 
-2
-
- Cx is: 
-121
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-530
-
- Cy is: 
-2
-
- Cx is: 
-122
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-531
-
- Cy is: 
-2
-
- Cx is: 
-123
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-532
-
- Cy is: 
-2
-
- Cx is: 
-124
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-533
-
- Cy is: 
-2
-
- Cx is: 
-125
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-534
-
- Cy is: 
-2
-
- Cx is: 
-126
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-535
-
- Cy is: 
-2
-
- Cx is: 
-127
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-536
-
- Cy is: 
-2
-
- Cx is: 
-128
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-537
-
- Cy is: 
-2
-
- Cx is: 
-129
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-538
-
- Cy is: 
-2
-
- Cx is: 
-130
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-539
-
- Cy is: 
-2
-
- Cx is: 
-131
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-540
-
- Cy is: 
-2
-
- Cx is: 
-132
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-541
-
- Cy is: 
-2
-
- Cx is: 
-133
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-542
-
- Cy is: 
-2
-
- Cx is: 
-134
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-543
-
- Cy is: 
-2
-
- Cx is: 
-135
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-544
-
- Cy is: 
-2
-
- Cx is: 
-136
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-545
-
- Cy is: 
-2
-
- Cx is: 
-137
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-546
-
- Cy is: 
-2
-
- Cx is: 
-138
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-547
-
- Cy is: 
-2
-
- Cx is: 
-139
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-548
-
- Cy is: 
-2
-
- Cx is: 
-140
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-549
-
- Cy is: 
-2
-
- Cx is: 
-141
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-550
-
- Cy is: 
-2
-
- Cx is: 
-142
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-551
-
- Cy is: 
-2
-
- Cx is: 
-143
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-552
-
- Cy is: 
-2
-
- Cx is: 
-144
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-553
-
- Cy is: 
-2
-
- Cx is: 
-145
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-554
-
- Cy is: 
-2
-
- Cx is: 
-146
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-555
-
- Cy is: 
-2
-
- Cx is: 
-147
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-556
-
- Cy is: 
-2
-
- Cx is: 
-148
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-557
-
- Cy is: 
-2
-
- Cx is: 
-149
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-558
-
- Cy is: 
-2
-
- Cx is: 
-150
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-559
-
- Cy is: 
-2
-
- Cx is: 
-151
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-560
-
- Cy is: 
-2
-
- Cx is: 
-152
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-561
-
- Cy is: 
-2
-
- Cx is: 
-153
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-562
-
- Cy is: 
-2
-
- Cx is: 
-154
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-563
-
- Cy is: 
-2
-
- Cx is: 
-155
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-564
-
- Cy is: 
-2
-
- Cx is: 
-156
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-565
-
- Cy is: 
-2
-
- Cx is: 
-157
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-566
-
- Cy is: 
-2
-
- Cx is: 
-158
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-567
-
- Cy is: 
-2
-
- Cx is: 
-159
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-568
-
- Cy is: 
-2
-
- Cx is: 
-160
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-569
-
- Cy is: 
-2
-
- Cx is: 
-161
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-570
-
- Cy is: 
-2
-
- Cx is: 
-162
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-571
-
- Cy is: 
-2
-
- Cx is: 
-163
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-572
-
- Cy is: 
-2
-
- Cx is: 
-164
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-573
-
- Cy is: 
-2
-
- Cx is: 
-165
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-574
-
- Cy is: 
-2
-
- Cx is: 
-166
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-575
-
- Cy is: 
-2
-
- Cx is: 
-167
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-576
-
- Cy is: 
-2
-
- Cx is: 
-168
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-577
-
- Cy is: 
-2
-
- Cx is: 
-169
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-578
-
- Cy is: 
-2
-
- Cx is: 
-170
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-579
-
- Cy is: 
-2
-
- Cx is: 
-171
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-580
-
- Cy is: 
-2
-
- Cx is: 
-172
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-581
-
- Cy is: 
-2
-
- Cx is: 
-173
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-582
-
- Cy is: 
-2
-
- Cx is: 
-174
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-583
-
- Cy is: 
-2
-
- Cx is: 
-175
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-584
-
- Cy is: 
-2
-
- Cx is: 
-176
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-585
-
- Cy is: 
-2
-
- Cx is: 
-177
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-586
-
- Cy is: 
-2
-
- Cx is: 
-178
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-587
-
- Cy is: 
-2
-
- Cx is: 
-179
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-588
-
- Cy is: 
-2
-
- Cx is: 
-180
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-589
-
- Cy is: 
-2
-
- Cx is: 
-181
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-590
-
- Cy is: 
-2
-
- Cx is: 
-182
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-591
-
- Cy is: 
-2
-
- Cx is: 
-183
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-592
-
- Cy is: 
-2
-
- Cx is: 
-184
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-593
-
- Cy is: 
-2
-
- Cx is: 
-185
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-594
-
- Cy is: 
-2
-
- Cx is: 
-186
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-595
-
- Cy is: 
-2
-
- Cx is: 
-187
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-596
-
- Cy is: 
-2
-
- Cx is: 
-188
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-597
-
- Cy is: 
-2
-
- Cx is: 
-189
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-598
-
- Cy is: 
-2
-
- Cx is: 
-190
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-599
-
- Cy is: 
-2
-
- Cx is: 
-191
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-600
-
- Cy is: 
-2
-
- Cx is: 
-192
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-601
-
- Cy is: 
-2
-
- Cx is: 
-193
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-602
-
- Cy is: 
-2
-
- Cx is: 
-194
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-603
-
- Cy is: 
-2
-
- Cx is: 
-195
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-604
-
- Cy is: 
-2
-
- Cx is: 
-196
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-605
-
- Cy is: 
-2
-
- Cx is: 
-197
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-606
-
- Cy is: 
-2
-
- Cx is: 
-198
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-607
-
- Cy is: 
-2
-
- Cx is: 
-199
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-608
-
- Cy is: 
-2
-
- Cx is: 
-200
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-609
-
- Cy is: 
-2
-
- Cx is: 
-201
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-610
-
- Cy is: 
-2
-
- Cx is: 
-202
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-611
-
- Cy is: 
-2
-
- Cx is: 
-203
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-612
-
- Cy is: 
-2
-
- Cx is: 
-204
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-613
-
- Cy is: 
-2
-
- Cx is: 
-205
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-614
-
- Cy is: 
-2
-
- Cx is: 
-206
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-615
-
- Cy is: 
-2
-
- Cx is: 
-207
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-616
-
- Cy is: 
-2
-
- Cx is: 
-208
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-617
-
- Cy is: 
-2
-
- Cx is: 
-209
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-618
-
- Cy is: 
-2
-
- Cx is: 
-210
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-619
-
- Cy is: 
-2
-
- Cx is: 
-211
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-620
-
- Cy is: 
-2
-
- Cx is: 
-212
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-621
-
- Cy is: 
-2
-
- Cx is: 
-213
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-622
-
- Cy is: 
-2
-
- Cx is: 
-214
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-623
-
- Cy is: 
-2
-
- Cx is: 
-215
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-624
-
- Cy is: 
-2
-
- Cx is: 
-216
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-625
-
- Cy is: 
-2
-
- Cx is: 
-217
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-626
-
- Cy is: 
-2
-
- Cx is: 
-218
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-627
-
- Cy is: 
-2
-
- Cx is: 
-219
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-628
-
- Cy is: 
-2
-
- Cx is: 
-220
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-629
-
- Cy is: 
-2
-
- Cx is: 
-221
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-630
-
- Cy is: 
-2
-
- Cx is: 
-222
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-631
-
- Cy is: 
-2
-
- Cx is: 
-223
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-632
-
- Cy is: 
-2
-
- Cx is: 
-224
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-633
-
- Cy is: 
-2
-
- Cx is: 
-225
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-634
-
- Cy is: 
-2
-
- Cx is: 
-226
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-635
-
- Cy is: 
-2
-
- Cx is: 
-227
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-636
-
- Cy is: 
-2
-
- Cx is: 
-228
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-637
-
- Cy is: 
-2
-
- Cx is: 
-229
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-638
-
- Cy is: 
-2
-
- Cx is: 
-230
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-639
-
- Cy is: 
-2
-
- Cx is: 
-231
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-640
-
- Cy is: 
-2
-
- Cx is: 
-232
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-641
-
- Cy is: 
-2
-
- Cx is: 
-233
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-642
-
- Cy is: 
-2
-
- Cx is: 
-234
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-643
-
- Cy is: 
-2
-
- Cx is: 
-235
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-644
-
- Cy is: 
-2
-
- Cx is: 
-236
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-645
-
- Cy is: 
-2
-
- Cx is: 
-237
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-646
-
- Cy is: 
-2
-
- Cx is: 
-238
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-647
-
- Cy is: 
-2
-
- Cx is: 
-239
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-648
-
- Cy is: 
-2
-
- Cx is: 
-240
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-649
-
- Cy is: 
-2
-
- Cx is: 
-241
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-650
-
- Cy is: 
-2
-
- Cx is: 
-242
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-651
-
- Cy is: 
-2
-
- Cx is: 
-243
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-652
-
- Cy is: 
-2
-
- Cx is: 
-244
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-653
-
- Cy is: 
-2
-
- Cx is: 
-245
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-654
-
- Cy is: 
-2
-
- Cx is: 
-246
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-655
-
- Cy is: 
-2
-
- Cx is: 
-247
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-656
-
- Cy is: 
-2
-
- Cx is: 
-248
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-657
-
- Cy is: 
-2
-
- Cx is: 
-249
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-658
-
- Cy is: 
-2
-
- Cx is: 
-250
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-659
-
- Cy is: 
-2
-
- Cx is: 
-251
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-660
-
- Cy is: 
-2
-
- Cx is: 
-252
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-661
-
- Cy is: 
-2
-
- Cx is: 
-253
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-662
-
- Cy is: 
-2
-
- Cx is: 
-254
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-663
-
- Cy is: 
-2
-
- Cx is: 
-255
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-664
-
- Cy is: 
-2
-
- Cx is: 
-256
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-665
-
- Cy is: 
-2
-
- Cx is: 
-257
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-666
-
- Cy is: 
-2
-
- Cx is: 
-258
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-667
-
- Cy is: 
-2
-
- Cx is: 
-259
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-668
-
- Cy is: 
-2
-
- Cx is: 
-260
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-669
-
- Cy is: 
-2
-
- Cx is: 
-261
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-670
-
- Cy is: 
-2
-
- Cx is: 
-262
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-671
-
- Cy is: 
-2
-
- Cx is: 
-263
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-672
-
- Cy is: 
-2
-
- Cx is: 
-264
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-673
-
- Cy is: 
-2
-
- Cx is: 
-265
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-674
-
- Cy is: 
-2
-
- Cx is: 
-266
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-675
-
- Cy is: 
-2
-
- Cx is: 
-267
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-676
-
- Cy is: 
-2
-
- Cx is: 
-268
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-677
-
- Cy is: 
-2
-
- Cx is: 
-269
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-678
-
- Cy is: 
-2
-
- Cx is: 
-270
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-679
-
- Cy is: 
-2
-
- Cx is: 
-271
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-680
-
- Cy is: 
-2
-
- Cx is: 
-272
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-681
-
- Cy is: 
-2
-
- Cx is: 
-273
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-682
-
- Cy is: 
-2
-
- Cx is: 
-274
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-683
-
- Cy is: 
-2
-
- Cx is: 
-275
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-684
-
- Cy is: 
-2
-
- Cx is: 
-276
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-685
-
- Cy is: 
-2
-
- Cx is: 
-277
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-686
-
- Cy is: 
-2
-
- Cx is: 
-278
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-687
-
- Cy is: 
-2
-
- Cx is: 
-279
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-688
-
- Cy is: 
-2
-
- Cx is: 
-280
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-689
-
- Cy is: 
-2
-
- Cx is: 
-281
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-690
-
- Cy is: 
-2
-
- Cx is: 
-282
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-691
-
- Cy is: 
-2
-
- Cx is: 
-283
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-692
-
- Cy is: 
-2
-
- Cx is: 
-284
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-693
-
- Cy is: 
-2
-
- Cx is: 
-285
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-694
-
- Cy is: 
-2
-
- Cx is: 
-286
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-695
-
- Cy is: 
-2
-
- Cx is: 
-287
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-696
-
- Cy is: 
-2
-
- Cx is: 
-288
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-697
-
- Cy is: 
-2
-
- Cx is: 
-289
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-698
-
- Cy is: 
-2
-
- Cx is: 
-290
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-699
-
- Cy is: 
-2
-
- Cx is: 
-291
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-700
-
- Cy is: 
-2
-
- Cx is: 
-292
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-701
-
- Cy is: 
-2
-
- Cx is: 
-293
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-702
-
- Cy is: 
-2
-
- Cx is: 
-294
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-703
-
- Cy is: 
-2
-
- Cx is: 
-295
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-704
-
- Cy is: 
-2
-
- Cx is: 
-296
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-705
-
- Cy is: 
-2
-
- Cx is: 
-297
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-706
-
- Cy is: 
-2
-
- Cx is: 
-298
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-707
-
- Cy is: 
-2
-
- Cx is: 
-299
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-708
-
- Cy is: 
-2
-
- Cx is: 
-300
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-709
-
- Cy is: 
-2
-
- Cx is: 
-301
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-710
-
- Cy is: 
-2
-
- Cx is: 
-302
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-711
-
- Cy is: 
-2
-
- Cx is: 
-303
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-712
-
- Cy is: 
-2
-
- Cx is: 
-304
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-713
-
- Cy is: 
-2
-
- Cx is: 
-305
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-714
-
- Cy is: 
-2
-
- Cx is: 
-306
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-715
-
- Cy is: 
-2
-
- Cx is: 
-307
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-716
-
- Cy is: 
-2
-
- Cx is: 
-308
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-717
-
- Cy is: 
-2
-
- Cx is: 
-309
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-718
-
- Cy is: 
-2
-
- Cx is: 
-310
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-719
-
- Cy is: 
-2
-
- Cx is: 
-311
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-720
-
- Cy is: 
-2
-
- Cx is: 
-312
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-721
-
- Cy is: 
-2
-
- Cx is: 
-313
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-722
-
- Cy is: 
-2
-
- Cx is: 
-314
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-723
-
- Cy is: 
-2
-
- Cx is: 
-315
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-724
-
- Cy is: 
-2
-
- Cx is: 
-316
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-725
-
- Cy is: 
-2
-
- Cx is: 
-317
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-726
-
- Cy is: 
-2
-
- Cx is: 
-318
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-727
-
- Cy is: 
-2
-
- Cx is: 
-319
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-728
-
- Cy is: 
-2
-
- Cx is: 
-320
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-729
-
- Cy is: 
-2
-
- Cx is: 
-321
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-730
-
- Cy is: 
-2
-
- Cx is: 
-322
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-731
-
- Cy is: 
-2
-
- Cx is: 
-323
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-732
-
- Cy is: 
-2
-
- Cx is: 
-324
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-733
-
- Cy is: 
-2
-
- Cx is: 
-325
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-734
-
- Cy is: 
-2
-
- Cx is: 
-326
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-735
-
- Cy is: 
-2
-
- Cx is: 
-327
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-736
-
- Cy is: 
-2
-
- Cx is: 
-328
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-737
-
- Cy is: 
-2
-
- Cx is: 
-329
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-738
-
- Cy is: 
-2
-
- Cx is: 
-330
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-739
-
- Cy is: 
-2
-
- Cx is: 
-331
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-740
-
- Cy is: 
-2
-
- Cx is: 
-332
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-741
-
- Cy is: 
-2
-
- Cx is: 
-333
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-742
-
- Cy is: 
-2
-
- Cx is: 
-334
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-743
-
- Cy is: 
-2
-
- Cx is: 
-335
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-744
-
- Cy is: 
-2
-
- Cx is: 
-336
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-745
-
- Cy is: 
-2
-
- Cx is: 
-337
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-746
-
- Cy is: 
-2
-
- Cx is: 
-338
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-747
-
- Cy is: 
-2
-
- Cx is: 
-339
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-748
-
- Cy is: 
-2
-
- Cx is: 
-340
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-749
-
- Cy is: 
-2
-
- Cx is: 
-341
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-750
-
- Cy is: 
-2
-
- Cx is: 
-342
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-751
-
- Cy is: 
-2
-
- Cx is: 
-343
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-752
-
- Cy is: 
-2
-
- Cx is: 
-344
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-753
-
- Cy is: 
-2
-
- Cx is: 
-345
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-754
-
- Cy is: 
-2
-
- Cx is: 
-346
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-755
-
- Cy is: 
-2
-
- Cx is: 
-347
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-756
-
- Cy is: 
-2
-
- Cx is: 
-348
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-757
-
- Cy is: 
-2
-
- Cx is: 
-349
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-758
-
- Cy is: 
-2
-
- Cx is: 
-350
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-759
-
- Cy is: 
-2
-
- Cx is: 
-351
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-760
-
- Cy is: 
-2
-
- Cx is: 
-352
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-761
-
- Cy is: 
-2
-
- Cx is: 
-353
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-762
-
- Cy is: 
-2
-
- Cx is: 
-354
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-763
-
- Cy is: 
-2
-
- Cx is: 
-355
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-764
-
- Cy is: 
-2
-
- Cx is: 
-356
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-765
-
- Cy is: 
-2
-
- Cx is: 
-357
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-766
-
- Cy is: 
-2
-
- Cx is: 
-358
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-767
-
- Cy is: 
-2
-
- Cx is: 
-359
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-768
-
- Cy is: 
-2
-
- Cx is: 
-360
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-769
-
- Cy is: 
-2
-
- Cx is: 
-361
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-770
-
- Cy is: 
-2
-
- Cx is: 
-362
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-771
-
- Cy is: 
-2
-
- Cx is: 
-363
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-772
-
- Cy is: 
-2
-
- Cx is: 
-364
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-773
-
- Cy is: 
-2
-
- Cx is: 
-365
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-774
-
- Cy is: 
-2
-
- Cx is: 
-366
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-775
-
- Cy is: 
-2
-
- Cx is: 
-367
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-776
-
- Cy is: 
-2
-
- Cx is: 
-368
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-777
-
- Cy is: 
-2
-
- Cx is: 
-369
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-778
-
- Cy is: 
-2
-
- Cx is: 
-370
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-779
-
- Cy is: 
-2
-
- Cx is: 
-371
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-780
-
- Cy is: 
-2
-
- Cx is: 
-372
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-781
-
- Cy is: 
-2
-
- Cx is: 
-373
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-782
-
- Cy is: 
-2
-
- Cx is: 
-374
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-783
-
- Cy is: 
-2
-
- Cx is: 
-375
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-784
-
- Cy is: 
-2
-
- Cx is: 
-376
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-785
-
- Cy is: 
-2
-
- Cx is: 
-377
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-786
-
- Cy is: 
-2
-
- Cx is: 
-378
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-787
-
- Cy is: 
-2
-
- Cx is: 
-379
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-788
-
- Cy is: 
-2
-
- Cx is: 
-380
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-789
-
- Cy is: 
-2
-
- Cx is: 
-381
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-790
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-791
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-792
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-793
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-794
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-795
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-796
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-797
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-798
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-799
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-800
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-801
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-802
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-803
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-804
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-805
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-806
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-807
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-808
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-809
-
- Cy is: 
-2
-
- Cx is: 
-382
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-810
-
- Cy is: 
-3
+58
 
  Cx is: 
 0
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-811
-
- Cy is: 
-4
-
- Cx is: 
-0
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-812
-
- Cy is: 
-3
-
- Cx is: 
-0
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-813
-
- Cy is: 
-3
-
- Cx is: 
-0
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-814
-
- Cy is: 
-3
-
- Cx is: 
-0
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-815
-
- Cy is: 
-4
-
- Cx is: 
-0
-
-
-
-
-
-
-
-
-
-
-FRAME NUMBER : 
-816
-
- Cy is: 
-4
-
- Cx is: 
-0
-onse 
