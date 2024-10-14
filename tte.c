@@ -11,28 +11,17 @@
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 
-void debugMsg(char *msg) {
-    char buf[32];
-    int len = sprintf(buf, "%s\n\r", msg);
-    write(STDOUT_FILENO, buf, len);
-}
-
-void debugNumber(int num) {
-    char buf[32];
-    int len = sprintf(buf, "%d\n\r", num);
-    write(STDOUT_FILENO, buf, len);
-}
-
 /*** defines ***/
 #define TTE_VERSION "0.0.1"
 #define CTRL_KEY(k) ((k) & 0x1f)
-#define WRITEBUF_INIT {NULL, 0};
+#define WRITEBUF_INIT \
+    { NULL, 0 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == ==
 /*** function declaration ***/
 
 void editorClearScreen();
-
+void debugFileLog();
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** data ***/
@@ -46,19 +35,22 @@ enum editorKey {
 };
 
 typedef struct erow {
-    int size;
+    size_t size;
     char *chars;
 } erow;
 
 struct editorConfig {
-    int cx;
-    int cy;
-    int rowoff;
-    int screen_rows;
-    int screen_cols;
-    int data_rows;
-    int rows_cap;
-    erow *row;
+    int cx;             // Cursor Position X in the buffer
+    int cy;             // Cursor Position Y in the buffer
+    int rowoff;         // Offset row number
+    int coloff;         // offset column number
+    int screen_rows;    // Number of Rows on screen
+    int screen_cols;    // Number of Columns on Screen
+    int max_data_cols;  // longest row in the buffer.
+    int data_rows;  // Actual number of data lines/rows i.e. Actual number of
+                    // buffer row filled
+    int rows_cap;   // Actual capacity of buffer
+    erow *row;      // Array Buffer
     struct termios org_termios;
 };
 
@@ -71,6 +63,7 @@ struct writeBuf {
     char *pointer;
     int len;
 };
+struct writeBuf dLog = WRITEBUF_INIT;
 
 // realocate new memory for additional characters to append of size appendLen to
 // buffer wBuf
@@ -95,6 +88,8 @@ void die(const char *msg) {
     editorClearScreen();
     // prints the error message msg and errno.
     perror(msg);
+    debugFileLog();
+    bufFree(&dLog);
     exit(EXIT_FAILURE);
 }
 
@@ -139,6 +134,17 @@ void enableRawMode() {
     }
 }
 
+void debugMsg(char *msg) {
+    char buf[32];
+    int len = sprintf(buf, "%s\n", msg);
+    bufAppend(&dLog, buf, len);
+}
+
+void debugNumber(int num) {
+    char buf[32];
+    int len = sprintf(buf, "%d\n", num);
+    bufAppend(&dLog, buf, len);
+}
 int editorReadKey() {
     char char_read;
     int bytes_read = read(STDIN_FILENO, &char_read, 1);
@@ -205,7 +211,7 @@ void editorMoveCursor(int key) {
             if (EC.cx > 0) EC.cx--;
             break;
         case ARROW_RIGHT:
-            if (EC.cx < EC.screen_cols) EC.cx++;
+            if (EC.cx < EC.max_data_cols) EC.cx++;
             break;
         case ARROW_DOWN:
             if (EC.cy < EC.data_rows) EC.cy++;
@@ -222,6 +228,8 @@ void editorProcessKeyPress() {
     switch (key_read) {
         case CTRL_KEY('q'):
             editorClearScreen();
+            debugFileLog();
+            bufFree(&dLog);
             exit(EXIT_SUCCESS);
             break;
         case ARROW_LEFT:
@@ -242,7 +250,7 @@ void expandBuffer() {
     EC.rows_cap = newSize;
 }
 
-void editorRowAppend(char *row, size_t len) {
+void editorRowAppend(char *data, size_t len) {
     if (EC.data_rows >= EC.rows_cap) {
         expandBuffer();
     }
@@ -250,9 +258,13 @@ void editorRowAppend(char *row, size_t len) {
     int line_num = EC.data_rows;
     EC.row[line_num].size = len;
     EC.row[line_num].chars = malloc(len + 1);
-    memcpy(EC.row[line_num].chars, row, len);
+    memcpy(EC.row[line_num].chars, data, len);
     EC.row[line_num].chars[len] = '\0';
     EC.data_rows++;
+
+    if (EC.max_data_cols < len) {
+        EC.max_data_cols = len;
+    }
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -274,10 +286,20 @@ void editorOpen(char *filename) {
         }
 
         editorRowAppend(line, linelen);
+
         linelen = getline(&line, &linecap, fp);
     }
 
     free(line);
+    fclose(fp);
+}
+
+void debugFileLog() {
+    FILE *fp = fopen("Log.txt", "w");
+    if (!fp) die("dFileLog");
+
+    fprintf(fp, "%s", dLog.pointer);
+
     fclose(fp);
 }
 
@@ -307,7 +329,6 @@ void editorDrawRows(struct writeBuf *wBuf) {
     for (screen_line_num = 0; screen_line_num < EC.screen_rows;
          screen_line_num++) {
         clearLineRight(wBuf);
-
         int data_line_num = screen_line_num + EC.rowoff;
         if (screen_line_num >= EC.data_rows) {
             if (EC.data_rows == 0 && screen_line_num == EC.screen_rows / 2) {
@@ -316,9 +337,12 @@ void editorDrawRows(struct writeBuf *wBuf) {
                 bufAppend(wBuf, "~", 1);
             }
         } else {
-            int len = EC.row[data_line_num].size;
-            if (len > EC.screen_cols) len = EC.screen_cols;
-            bufAppend(wBuf, EC.row[data_line_num].chars, len);
+            int len = EC.row[data_line_num].size - EC.coloff;
+            if (len < 0)
+                len = 0;
+            else if (len > EC.screen_cols)
+                len = EC.screen_cols;
+            bufAppend(wBuf, &EC.row[data_line_num].chars[EC.coloff], len);
         }
         if (screen_line_num < EC.screen_rows - 1) {
             bufAppend(wBuf, "\r\n", 2);
@@ -330,7 +354,9 @@ void cursorToHome(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[H", 3); }
 
 void cursorToPosition(struct writeBuf *wBuf) {
     char buf[32];
-    snprintf(buf, sizeof(buf), "\x1b[%d;%dH", EC.cy + 1, EC.cx + 1);
+
+    snprintf(buf, sizeof(buf), "\x1b[%d;%dH", (EC.cy - EC.rowoff) + 1,
+             (EC.cx - EC.coloff) + 1);
     bufAppend(wBuf, buf, strlen(buf));
 }
 
@@ -341,11 +367,21 @@ void hideCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25l", 6); }
 void showCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25h", 6); }
 
 void editorScroll() {
+    // Update Row offset
     if (EC.cy < EC.rowoff) {
         EC.rowoff = EC.cy;
     }
-    if (EC.cy >= EC.rowoff + EC.screen_rows) {
+    if (EC.cy >= (EC.rowoff + EC.screen_rows)) {
         EC.rowoff = EC.cy - EC.screen_rows + 1;
+    }
+
+    // Update Coll offset
+    if (EC.cx < EC.coloff) {
+        EC.coloff = EC.cx;
+    }
+
+    if (EC.cx >= (EC.coloff + EC.screen_cols)) {
+        EC.coloff = EC.cx - EC.screen_cols + 1;
     }
 }
 
@@ -371,12 +407,14 @@ void initEditor() {
     EC.cx = 0;
     EC.cy = 0;
     EC.rowoff = 0;
+    EC.coloff = 0;
     EC.data_rows = 0;
     EC.rows_cap = 0;
     EC.row = NULL;
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
         die("getWindowSize");
     }
+    EC.max_data_cols = EC.screen_cols;
 }
 
 int main(int argc, char *argv[]) {
@@ -389,15 +427,29 @@ int main(int argc, char *argv[]) {
             => Problem: Can't tell when while loop ends. is this good
     programming?
             => Problem: program Exits from different places. 3 possibilities
-    Exit function for success, Exit function for failure and die function for
-    error.
-            => TODO: Combine all exits in 1 function -- Quit function. is this
-    good programming?
+    Exit function for success, Exit function for failure and die function
+    for error.
+            => TODO: Combine all exits in 1 function -- Quit function. is
+    this good programming?
     ***/
+    // dLog = WRITEBUF_INIT;
+    int frameNumber = 0;
     while (true) {
+        frameNumber++;
+        debugMsg("\n\n\n\n\n\nFRAME NUMBER : ");
+        debugNumber(frameNumber);
+        debugMsg("\n Cy is: ");
+        debugNumber(EC.cy);
+        debugMsg("\nScreen Rows are : ");
+        debugNumber(EC.screen_rows);
+        debugMsg("\nRow off is : ");
+        debugNumber(EC.rowoff);
+        debugNumber(EC.data_rows);
         editorRefreshScreen();
         editorProcessKeyPress();
+        debugMsg("\n Cy after is: ");
+        debugNumber(EC.cy);
+        debugMsg("\n\n\n");
     }
-
     return 0;
 }
