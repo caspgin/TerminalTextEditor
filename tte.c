@@ -206,12 +206,16 @@ int getWindowSize(int *rows, int *cols) {
 /*** input ***/
 
 void editorMoveCursor(int key) {
+    // curRow points to the row(line) of data that the cursor is currently on.
+    erow *curRow = (EC.cy >= EC.data_rows) ? NULL : &EC.row[EC.cy];
+
+    // Update Curosor Position
     switch (key) {
         case ARROW_LEFT:
             if (EC.cx > 0) EC.cx--;
             break;
         case ARROW_RIGHT:
-            if (EC.cx < EC.max_data_cols) EC.cx++;
+            if (curRow && EC.cx < curRow->size) EC.cx++;
             break;
         case ARROW_DOWN:
             if (EC.cy < EC.data_rows) EC.cy++;
@@ -220,6 +224,18 @@ void editorMoveCursor(int key) {
             if (EC.cy > 0) EC.cy--;
             break;
     }
+
+    // if curosr x position is greater than current rows size then move it back
+    // to the last character. 1 character exception as it will be needed to type
+    // new data.
+    curRow = (EC.cy >= EC.data_rows) ? NULL : &EC.row[EC.cy];
+    int curRowLen = curRow ? curRow->size : 0;
+    if (EC.cx > curRowLen) {
+        EC.cx = curRowLen;
+    }
+
+    // Setting curRow to NULL
+    curRow = NULL;
 }
 
 void editorProcessKeyPress() {
@@ -440,15 +456,10 @@ int main(int argc, char *argv[]) {
         debugNumber(frameNumber);
         debugMsg("\n Cy is: ");
         debugNumber(EC.cy);
-        debugMsg("\nScreen Rows are : ");
-        debugNumber(EC.screen_rows);
-        debugMsg("\nRow off is : ");
-        debugNumber(EC.rowoff);
-        debugNumber(EC.data_rows);
+        debugMsg("\n Cx is: ");
+        debugNumber(EC.cx);
         editorRefreshScreen();
         editorProcessKeyPress();
-        debugMsg("\n Cy after is: ");
-        debugNumber(EC.cy);
         debugMsg("\n\n\n");
     }
     return 0;
