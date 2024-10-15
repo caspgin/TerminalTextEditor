@@ -50,7 +50,8 @@ struct editorConfig {
     int data_rows;  // Actual number of data lines/rows i.e. Actual number of
                     // buffer row filled
     int rows_cap;   // Actual capacity of buffer
-    erow *row;      // Array Buffer
+    erow *row;      // Array buffer
+    bool wrap_mode;
     struct termios org_termios;
 };
 
@@ -362,6 +363,16 @@ void editorDrawRows(struct writeBuf *wBuf) {
             } else {
                 bufAppend(wBuf, "~", 1);
             }
+        } else if (EC.wrap_mode) {
+            int size = EC.row[data_line_num].size;
+            int start = 0;
+            do {
+                int len = size > EC.screen_cols ? EC.screen_cols : size;
+                bufAppend(wBuf, &EC.row[data_line_num].chars[start], len);
+                bufAppend(wBuf, "\n\r", 2);
+                size = size - len;
+                start = start + len;
+            } while (size > 0);
         } else {
             int len = EC.row[data_line_num].size - EC.coloff;
             if (len < 0)
@@ -437,6 +448,7 @@ void initEditor() {
     EC.data_rows = 0;
     EC.rows_cap = 0;
     EC.row = NULL;
+    EC.wrap_mode = true;
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
         die("getWindowSize");
     }

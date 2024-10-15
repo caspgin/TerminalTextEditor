@@ -1,6 +1,6 @@
 tte
 .vscode/
-
+*.txt
 # Prerequisites
 *.d
 
