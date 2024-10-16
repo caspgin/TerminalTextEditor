@@ -1,5 +1,6 @@
 /*** includes ***/
 #define _GNU_SOURCE
+#include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -353,36 +354,50 @@ void printWelcomeMsg(struct writeBuf *wBuf) {
 
 void editorDrawRows(struct writeBuf *wBuf) {
     int screen_line_num;
+    int data_line_num = 0;
     for (screen_line_num = 0; screen_line_num < EC.screen_rows;
          screen_line_num++) {
-        clearLineRight(wBuf);
-        int data_line_num = screen_line_num + EC.rowoff;
-        if (screen_line_num >= EC.data_rows) {
-            if (EC.data_rows == 0 && screen_line_num == EC.screen_rows / 2) {
-                printWelcomeMsg(wBuf);
+        if (!EC.wrap_mode) {
+            clearLineRight(wBuf);
+            data_line_num = screen_line_num + EC.rowoff;
+            if (screen_line_num >= EC.data_rows) {
+                if (EC.data_rows == 0 &&
+                    screen_line_num == EC.screen_rows / 2) {
+                    printWelcomeMsg(wBuf);
+                } else {
+                    bufAppend(wBuf, "~", 1);
+                }
             } else {
-                bufAppend(wBuf, "~", 1);
+                int len = EC.row[data_line_num].size - EC.coloff;
+                if (len < 0)
+                    len = 0;
+                else if (len > EC.screen_cols)
+                    len = EC.screen_cols;
+                bufAppend(wBuf, &EC.row[data_line_num].chars[EC.coloff], len);
             }
-        } else if (EC.wrap_mode) {
-            int size = EC.row[data_line_num].size;
-            int start = 0;
-            do {
-                int len = size > EC.screen_cols ? EC.screen_cols : size;
-                bufAppend(wBuf, &EC.row[data_line_num].chars[start], len);
-                bufAppend(wBuf, "\n\r", 2);
-                size = size - len;
-                start = start + len;
-            } while (size > 0);
+
+            if (screen_line_num < EC.screen_rows - 1) {
+                bufAppend(wBuf, "\r\n", 2);
+            }
         } else {
-            int len = EC.row[data_line_num].size - EC.coloff;
-            if (len < 0)
-                len = 0;
-            else if (len > EC.screen_cols)
-                len = EC.screen_cols;
-            bufAppend(wBuf, &EC.row[data_line_num].chars[EC.coloff], len);
-        }
-        if (screen_line_num < EC.screen_rows - 1) {
-            bufAppend(wBuf, "\r\n", 2);
+            if (data_line_num > EC.data_rows) continue;
+            int size = EC.row[data_line_num].size;
+            int loopLen = ceil(size / EC.screen_cols);
+            for (int i = 0; i < loopLen; i++) {
+                clearLineRight(wBuf);
+
+                int startIndex = i * EC.screen_cols;
+                int len =
+                    i != (loopLen - 1) ? EC.screen_cols : size - startIndex;
+
+                bufAppend(wBuf, &EC.row[data_line_num].chars[startIndex], len);
+                if (screen_line_num < EC.screen_rows - 1)
+                    bufAppend(wBuf, "\r\n", 2);
+                else
+                    break;
+                if (i != (loopLen - 1)) screen_line_num++;
+            }
+            data_line_num++;
         }
     }
 }
@@ -448,7 +463,7 @@ void initEditor() {
     EC.data_rows = 0;
     EC.rows_cap = 0;
     EC.row = NULL;
-    EC.wrap_mode = true;
+    EC.wrap_mode = false;
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
         die("getWindowSize");
     }
