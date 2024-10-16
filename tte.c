@@ -14,6 +14,7 @@
 
 /*** defines ***/
 #define TTE_VERSION "0.0.1"
+#define TTE_TAB_STOP 8
 #define CTRL_KEY(k) ((k) & 0x1f)
 #define WRITEBUF_INIT \
     { NULL, 0 }
@@ -37,12 +38,16 @@ enum editorKey {
 
 typedef struct erow {
     size_t size;
+    size_t rsize;
     char *chars;
+    char *render;
 } erow;
 
 struct editorConfig {
-    int cx;             // Cursor Position X in the buffer
-    int cy;             // Cursor Position Y in the buffer
+    int cx;             // Cursor Position X in the buffer (chars)
+    int cy;             // Cursor Position Y in the buffer (chars)
+    int rx;             // Cursor Position X in the buffer (render)
+    int ry;             // Cursor Position Y in the buffer (render)
     int rowoff;         // Offset row number
     int coloff;         // offset column number
     int screen_rows;    // Number of Rows on screen
@@ -278,6 +283,28 @@ void expandBuffer() {
     EC.rows_cap = newSize;
 }
 
+void editorUpdateRow(erow *row) {
+    int tabs = 0;
+    for (int i = 0; i < row->size; i++) {
+        if (row->chars[i] == '\t') tabs++;
+    }
+
+    free(row->render);
+    row->render = malloc(row->size + tabs * (TTE_TAB_STOP - 1) + 1);
+    int idx = 0;
+    for (int j = 0; j < row->size; j++) {
+        if (row->chars[j] == '\t') {
+            row->render[idx++] = ' ';
+            while (idx % TTE_TAB_STOP != 0) row->render[idx++] = ' ';
+        } else {
+            row->render[idx++] = row->chars[j];
+        }
+    }
+
+    row->render[idx] = '\0';
+    row->rsize = idx;
+}
+
 void editorRowAppend(char *data, size_t len) {
     if (EC.data_rows >= EC.rows_cap) {
         expandBuffer();
@@ -293,6 +320,10 @@ void editorRowAppend(char *data, size_t len) {
     if (EC.max_data_cols < len) {
         EC.max_data_cols = len;
     }
+
+    EC.row[line_num].rsize = 0;
+    EC.row[line_num].render = NULL;
+    editorUpdateRow(EC.row[line_num]);
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -368,12 +399,12 @@ void editorDrawRows(struct writeBuf *wBuf) {
                     bufAppend(wBuf, "~", 1);
                 }
             } else {
-                int len = EC.row[data_line_num].size - EC.coloff;
+                int len = EC.row[data_line_num].rsize - EC.coloff;
                 if (len < 0)
                     len = 0;
                 else if (len > EC.screen_cols)
                     len = EC.screen_cols;
-                bufAppend(wBuf, &EC.row[data_line_num].chars[EC.coloff], len);
+                bufAppend(wBuf, &EC.row[data_line_num].render[EC.coloff], len);
             }
 
             if (screen_line_num < EC.screen_rows - 1) {
@@ -458,6 +489,8 @@ void editorRefreshScreen() {
 void initEditor() {
     EC.cx = 0;
     EC.cy = 0;
+    EC.rx = 0;
+    EC.ry = 0;
     EC.rowoff = 0;
     EC.coloff = 0;
     EC.data_rows = 0;
