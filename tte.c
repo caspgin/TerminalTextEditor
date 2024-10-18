@@ -14,7 +14,7 @@
 
 /*** defines ***/
 #define TTE_VERSION "0.0.1"
-#define TTE_TAB_STOP 8
+#define TTE_TAB_STOP 4
 #define CTRL_KEY(k) ((k) & 0x1f)
 #define WRITEBUF_INIT \
     { NULL, 0 }
@@ -89,6 +89,16 @@ void bufFree(struct writeBuf *wBuf) { free(wBuf->pointer); }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** terminal ***/
+int editorRowCxtoRx(erow *row, int cx) {
+    int rx = 0;
+    for (int j = 0; j < cx; j++) {
+        if (row->chars[j] == '\t') {
+            rx += (TTE_TAB_STOP - 1) - (rx % TTE_TAB_STOP);
+        }
+        rx++;
+    }
+    return rx;
+}
 
 // Error printing before exiting
 void die(const char *msg) {
@@ -323,7 +333,7 @@ void editorRowAppend(char *data, size_t len) {
 
     EC.row[line_num].rsize = 0;
     EC.row[line_num].render = NULL;
-    editorUpdateRow(EC.row[line_num]);
+    editorUpdateRow(&EC.row[line_num]);
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -439,7 +449,7 @@ void cursorToPosition(struct writeBuf *wBuf) {
     char buf[32];
 
     snprintf(buf, sizeof(buf), "\x1b[%d;%dH", (EC.cy - EC.rowoff) + 1,
-             (EC.cx - EC.coloff) + 1);
+             (EC.rx - EC.coloff) + 1);
     bufAppend(wBuf, buf, strlen(buf));
 }
 
@@ -450,6 +460,11 @@ void hideCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25l", 6); }
 void showCursor(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[?25h", 6); }
 
 void editorScroll() {
+    EC.rx = 0;
+    if (EC.cy < EC.data_rows) {
+        EC.rx = editorRowCxtoRx(&EC.row[EC.cy], EC.cx);
+    }
+
     // Update Row offset
     if (EC.cy < EC.rowoff) {
         EC.rowoff = EC.cy;
@@ -459,12 +474,12 @@ void editorScroll() {
     }
 
     // Update Coll offset
-    if (EC.cx < EC.coloff) {
-        EC.coloff = EC.cx;
+    if (EC.rx < EC.coloff) {
+        EC.coloff = EC.rx;
     }
 
-    if (EC.cx >= (EC.coloff + EC.screen_cols)) {
-        EC.coloff = EC.cx - EC.screen_cols + 1;
+    if (EC.rx >= (EC.coloff + EC.screen_cols)) {
+        EC.coloff = EC.rx - EC.screen_cols + 1;
     }
 }
 
