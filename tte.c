@@ -258,13 +258,14 @@ void editorMoveCursor(int key) {
         case ARROW_UP:
             if (EC.cy > 0) EC.cy--;
             break;
-        case PAGE_UP:
-            EC.cy = EC.rowoff;
-            break;
-        case PAGE_DOWN:
-            EC.cy = EC.rowoff + EC.screen_rows;
-            if (EC.cy > EC.data_rows) EC.cy = EC.data_rows;
-            break;
+        case PAGE_UP: {
+            int newYPos = EC.cy - EC.screen_rows;
+            EC.cy = newYPos >= 0 ? newYPos : 0;
+        } break;
+        case PAGE_DOWN: {
+            int newYPos = EC.cy + EC.screen_rows;
+            EC.cy = newYPos <= EC.data_rows ? newYPos : EC.data_rows;
+        } break;
     }
 
     // if curosr x position is greater than current rows size then move it back
@@ -290,12 +291,12 @@ void editorProcessKeyPress() {
             bufFree(&dLog);
             exit(EXIT_SUCCESS);
             break;
+        case PAGE_UP:
+        case PAGE_DOWN:
         case ARROW_LEFT:
         case ARROW_RIGHT:
         case ARROW_DOWN:
         case ARROW_UP:
-        case PAGE_DOWN:
-        case PAGE_UP:
             editorMoveCursor(key_read);
             break;
     }
