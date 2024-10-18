@@ -36,6 +36,8 @@ enum editorKey {
     DEL_KEY,
     PAGE_UP,
     PAGE_DOWN,
+    HOME,
+    END,
 };
 
 typedef struct erow {
@@ -206,6 +208,10 @@ int editorReadKey() {
                         return ARROW_RIGHT;
                     case 'D':
                         return ARROW_LEFT;
+                    case 'F':
+                        return END;
+                    case 'H':
+                        return HOME;
                 }
             }
         }
@@ -266,6 +272,12 @@ void editorMoveCursor(int key) {
             int newYPos = EC.cy + EC.screen_rows;
             EC.cy = newYPos <= EC.data_rows ? newYPos : EC.data_rows;
         } break;
+        case END:
+            EC.cx = curRow->size;
+            break;
+        case HOME:
+            EC.cx = 0;
+            break;
     }
 
     // if curosr x position is greater than current rows size then move it back
@@ -291,6 +303,8 @@ void editorProcessKeyPress() {
             bufFree(&dLog);
             exit(EXIT_SUCCESS);
             break;
+        case END:
+        case HOME:
         case PAGE_UP:
         case PAGE_DOWN:
         case ARROW_LEFT:
