@@ -68,8 +68,12 @@ int main(int argc, char *argv[]) {
     enableRawMode();
     char c;
     while (1) {
-        if (read(STDIN_FILENO, &c, 1) == -1) {
+        int bytesRead = read(STDIN_FILENO, &c, 1);
+        if (bytesRead == -1) {
             die("read");
+        }
+        if (bytesRead == 0) {
+            continue;
         }
         if (iscntrl(c)) {
             printf("%d\r\n", c);
