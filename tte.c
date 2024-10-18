@@ -33,7 +33,9 @@ enum editorKey {
     ARROW_RIGHT,
     ARROW_UP,
     ARROW_DOWN,
-    DEL_KEY
+    DEL_KEY,
+    PAGE_UP,
+    PAGE_DOWN,
 };
 
 typedef struct erow {
@@ -164,7 +166,7 @@ void debugNumber(int num) {
 }
 int editorReadKey() {
     char char_read;
-    int bytes_read = read(STDIN_FILENO, &char_read, 1);
+    int bytes_read = read(STDIN_FILENO, &char_read, 1);  // Read the first byte
     while (bytes_read != 1) {
         if (bytes_read == -1) {
             die("read");  // Program Ends, Error Handling Section
@@ -173,19 +175,25 @@ int editorReadKey() {
                           1);  // Read Again because nothing read
     }
 
-    if (char_read == '\x1b') {
+    if (char_read == '\x1b') {  // if first byte is escape character
         char seq[3];
 
+        // Read 2 more bytes
         if (read(STDIN_FILENO, &seq[0], 1) != 1) return '\x1b';
         if (read(STDIN_FILENO, &seq[1], 1) != 1) return '\x1b';
 
         if (seq[0] == '[') {
-            if (seq[1] >= '0' && seq[1] <= '9') {
+            if (seq[1] >= '0' && seq[1] <= '9') {  // if seq[1] is a number
+                // Read another character
                 if (read(STDIN_FILENO, &seq[2], 1) != 1) return '\x1b';
                 if (seq[2] == '~') {
                     switch (seq[1]) {
                         case '3':
                             return DEL_KEY;
+                        case '5':
+                            return PAGE_UP;
+                        case '6':
+                            return PAGE_DOWN;
                     }
                 }
             } else {
@@ -250,6 +258,13 @@ void editorMoveCursor(int key) {
         case ARROW_UP:
             if (EC.cy > 0) EC.cy--;
             break;
+        case PAGE_UP:
+            EC.cy = EC.rowoff;
+            break;
+        case PAGE_DOWN:
+            EC.cy = EC.rowoff + EC.screen_rows;
+            if (EC.cy > EC.data_rows) EC.cy = EC.data_rows;
+            break;
     }
 
     // if curosr x position is greater than current rows size then move it back
@@ -279,6 +294,8 @@ void editorProcessKeyPress() {
         case ARROW_RIGHT:
         case ARROW_DOWN:
         case ARROW_UP:
+        case PAGE_DOWN:
+        case PAGE_UP:
             editorMoveCursor(key_read);
             break;
     }
