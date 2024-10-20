@@ -41,8 +41,8 @@ enum editorKey {
 };
 
 typedef struct erow {
-    size_t size;
-    size_t rsize;
+    int size;
+    int rsize;
     char *chars;
     char *render;
 } erow;
@@ -62,6 +62,7 @@ struct editorConfig {
     int rows_cap;   // Actual capacity of buffer
     erow *row;      // Array buffer
     bool wrap_mode;
+    char *filename;
     struct termios org_termios;
 };
 
@@ -375,6 +376,9 @@ void editorOpen(char *filename) {
     FILE *fp = fopen(filename, "r");
     if (!fp) die("fopen");
 
+    free(EC.filename);
+    EC.filename = strdup(filename);
+
     char *line = NULL;
     size_t linecap = 0;
     size_t linelen;
@@ -425,6 +429,19 @@ void printWelcomeMsg(struct writeBuf *wBuf) {
     bufAppend(wBuf, welcome, welcomelen);
 }
 
+void editorDrawStatusBar(struct writeBuf *wBuf) {
+    bufAppend(wBuf, "\x1b[7m", 4);
+    char status[80];
+    int len = snprintf(status, sizeof(status), "%s - %d lines",
+                       EC.filename ? EC.filename : "[NO Name]", EC.data_rows);
+    bufAppend(wBuf, status, len);
+    while (len < EC.screen_cols) {
+        bufAppend(wBuf, " ", 1);
+        len++;
+    }
+    bufAppend(wBuf, "\x1b[m", 3);
+}
+
 void editorDrawRows(struct writeBuf *wBuf) {
     int screen_line_num;
     int data_line_num = 0;
@@ -449,9 +466,7 @@ void editorDrawRows(struct writeBuf *wBuf) {
                 bufAppend(wBuf, &EC.row[data_line_num].render[EC.coloff], len);
             }
 
-            if (screen_line_num < EC.screen_rows - 1) {
-                bufAppend(wBuf, "\r\n", 2);
-            }
+            bufAppend(wBuf, "\r\n", 2);
         } else {
             if (data_line_num > EC.data_rows) continue;
             int size = EC.row[data_line_num].size;
@@ -522,6 +537,7 @@ void editorRefreshScreen() {
     hideCursor(&wBuf);
     cursorToHome(&wBuf);
     editorDrawRows(&wBuf);
+    editorDrawStatusBar(&wBuf);
     cursorToPosition(&wBuf);
     showCursor(&wBuf);
 
@@ -548,6 +564,8 @@ void initEditor() {
         die("getWindowSize");
     }
     EC.max_data_cols = EC.screen_cols;
+    EC.screen_rows -= 1;
+    EC.filename = NULL;
 }
 
 int main(int argc, char *argv[]) {
