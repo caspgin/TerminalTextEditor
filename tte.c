@@ -431,14 +431,25 @@ void printWelcomeMsg(struct writeBuf *wBuf) {
 
 void editorDrawStatusBar(struct writeBuf *wBuf) {
     bufAppend(wBuf, "\x1b[7m", 4);
-    char status[80];
-    int len = snprintf(status, sizeof(status), "%s - %d lines",
-                       EC.filename ? EC.filename : "[NO Name]", EC.data_rows);
+    char status[30], lineNumber[30];
+    int len = snprintf(status, sizeof(status), "%.20s%.03s",
+                       EC.filename ? EC.filename : "[NO Name]",
+                       strlen(EC.filename) > 20 ? "..." : "");
+    if (len > 30) len = 30;
     bufAppend(wBuf, status, len);
+
+    int lineNumberLen =
+        snprintf(lineNumber, sizeof(lineNumber), "<%3d:%-3d ", EC.cy, EC.cx);
+
     while (len < EC.screen_cols) {
+        if (len == EC.screen_cols - lineNumberLen) {
+            bufAppend(wBuf, lineNumber, lineNumberLen);
+            break;
+        }
         bufAppend(wBuf, " ", 1);
         len++;
     }
+
     bufAppend(wBuf, "\x1b[m", 3);
 }
 
