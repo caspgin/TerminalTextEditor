@@ -1,6 +1,7 @@
 /*** includes ***/
 #define _GNU_SOURCE
 #include <math.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +9,7 @@
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include <termios.h>
+#include <time.h>
 #include <unistd.h>
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -16,8 +18,7 @@
 #define TTE_VERSION "0.0.1"
 #define TTE_TAB_STOP 4
 #define CTRL_KEY(k) ((k) & 0x1f)
-#define WRITEBUF_INIT \
-    { NULL, 0 }
+#define WRITEBUF_INIT {NULL, 0}
 
 //== == == == == == == == == == == == == == == == == == == == == == == ==
 /*** function declaration ***/
@@ -63,6 +64,8 @@ struct editorConfig {
     erow *row;      // Array buffer
     bool wrap_mode;
     char *filename;
+    char status_msg[80];
+    time_t status_msg_time;
     struct termios org_termios;
 };
 
@@ -236,6 +239,13 @@ int getWindowSize(int *rows, int *cols) {
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** input ***/
+void editorSetStatusMsg(char *fmt, ...) {
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(EC.status_msg, sizeof(EC.status_msg), fmt, ap);
+    va_end(ap);
+    EC.status_msg_time = time(NULL);
+}
 
 void editorMoveCursor(int key) {
     // curRow points to the row(line) of data that the cursor is currently on.
@@ -400,6 +410,9 @@ void editorOpen(char *filename) {
 }
 
 void debugFileLog() {
+    if (!dLog.len) {
+        return;
+    }
     FILE *fp = fopen("Log.txt", "w");
     if (!fp) die("dFileLog");
 
@@ -432,7 +445,7 @@ void printWelcomeMsg(struct writeBuf *wBuf) {
 void editorDrawStatusBar(struct writeBuf *wBuf) {
     bufAppend(wBuf, "\x1b[7m", 4);
     char status[30], lineNumber[30];
-    int len = snprintf(status, sizeof(status), "%.20s%.03s",
+    int len = snprintf(status, sizeof(status), " %.20s%.03s",
                        EC.filename ? EC.filename : "[NO Name]",
                        strlen(EC.filename) > 20 ? "..." : "");
     if (len > 30) len = 30;
@@ -451,6 +464,16 @@ void editorDrawStatusBar(struct writeBuf *wBuf) {
     }
 
     bufAppend(wBuf, "\x1b[m", 3);
+    bufAppend(wBuf, "\r\n", 2);
+}
+
+void editorDrawStatusMsgBar(struct writeBuf *wBuf) {
+    clearLineRight(wBuf);
+    int msgLen = strlen(EC.status_msg);
+    if (msgLen > EC.screen_cols - 2) msgLen = EC.screen_cols - 2;
+    int timeLeft = time(NULL) - EC.status_msg_time;
+    bufAppend(wBuf, " ", 1);
+    if (msgLen && timeLeft < 5) bufAppend(wBuf, EC.status_msg, msgLen);
 }
 
 void editorDrawRows(struct writeBuf *wBuf) {
@@ -547,8 +570,11 @@ void editorRefreshScreen() {
 
     hideCursor(&wBuf);
     cursorToHome(&wBuf);
+
     editorDrawRows(&wBuf);
     editorDrawStatusBar(&wBuf);
+    editorDrawStatusMsgBar(&wBuf);
+
     cursorToPosition(&wBuf);
     showCursor(&wBuf);
 
@@ -575,8 +601,10 @@ void initEditor() {
         die("getWindowSize");
     }
     EC.max_data_cols = EC.screen_cols;
-    EC.screen_rows -= 1;
+    EC.screen_rows -= 2;
     EC.filename = NULL;
+    EC.status_msg[0] = '\0';
+    EC.status_msg_time = 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -594,19 +622,10 @@ int main(int argc, char *argv[]) {
             => TODO: Combine all exits in 1 function -- Quit function. is
     this good programming?
     ***/
-    // dLog = WRITEBUF_INIT;
-    int frameNumber = 0;
+    editorSetStatusMsg("HELP: CTRL-Q to quit");
     while (true) {
-        frameNumber++;
-        debugMsg("\n\n\n\n\n\nFRAME NUMBER : ");
-        debugNumber(frameNumber);
-        debugMsg("\n Cy is: ");
-        debugNumber(EC.cy);
-        debugMsg("\n Cx is: ");
-        debugNumber(EC.cx);
         editorRefreshScreen();
         editorProcessKeyPress();
-        debugMsg("\n\n\n");
     }
     return 0;
 }
