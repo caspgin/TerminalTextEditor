@@ -312,6 +312,30 @@ void editorRowDelChar(erow *row, int delAt) {
     EC.dirty = true;
 }
 
+void editorFreeRow(erow * row){
+	free(row->render);
+	free(row->chars);
+	row->render = NULL;
+	row->chars = NULL;
+}
+
+void editorDelRow(int rowIndex){
+	if(rowIndex < 0 || rowIndex >= EC.data_rows) return;
+	editorFreeRow(&EC.row[rowIndex]);
+	memmove(&EC.row[rowIndex], &EC.row[rowIndex + 1], sizeof(erow) * (EC.data_rows - rowIndex -1));
+	EC.data_rows--;
+	EC.dirty = true;
+}
+
+void editorRowAppendString(erow * row, char * s, size_t len){
+	row->chars = realloc(row->chars,row->size + len +1);
+	memcpy(&row->chars[row->size], s, len);
+	row->size += len;
+	row->chars[row->size] = '\0';
+	editorUpdateRenderRow(row);
+	EC.dirty = true;
+}
+
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** editor operations ***/
 void editorInsertChar(int c) {
@@ -324,12 +348,17 @@ void editorInsertChar(int c) {
 
 void editorDelChar() {
     if (EC.cy == EC.data_rows) return;
-
+	if(EC.cx == 0 && EC.cy == 0) return;
     erow *row = &EC.row[EC.cy];
     if (EC.cx > 0) {
         editorRowDelChar(row, EC.cx - 1);
         EC.cx--;
-    }
+    }else{
+		EC.cx = EC.row[EC.cy -1].size;
+		editorRowAppendString(&EC.row[EC.cy-1], row->chars,row->size);
+		editorDelRow(EC.cy);
+		EC.cy--;
+	}
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
