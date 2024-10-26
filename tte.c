@@ -20,7 +20,7 @@
 #define TTE_TAB_STOP 4
 #define CTRL_KEY(k) ((k) & 0x1f)
 #define WRITEBUF_INIT {NULL, 0}
-
+#define TTE_QUIT_TIMES 3;
 //== == == == == == == == == == == == == == == == == == == == == == == ==
 /*** function declaration ***/
 
@@ -243,7 +243,6 @@ int getWindowSize(int *rows, int *cols) {
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** row operations ***/
-
 void expandBuffer() {
     int newSize = (EC.rows_cap == 0) ? 1 : (EC.rows_cap * 2);
     EC.row = realloc(EC.row, sizeof(erow) * newSize);
@@ -305,6 +304,14 @@ void editorRowInsertChar(erow *row, int insertAt, int c) {
     EC.dirty = true;
 }
 
+void editorRowDelChar(erow *row, int delAt) {
+    if (delAt < 0 || delAt > row->size) return;
+    memmove(&row->chars[delAt], &row->chars[delAt + 1], row->size - delAt);
+    row->size--;
+    editorUpdateRenderRow(row);
+    EC.dirty = true;
+}
+
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** editor operations ***/
 void editorInsertChar(int c) {
@@ -313,6 +320,16 @@ void editorInsertChar(int c) {
     }
     editorRowInsertChar(&EC.row[EC.cy], EC.cx, c);
     EC.cx++;
+}
+
+void editorDelChar() {
+    if (EC.cy == EC.data_rows) return;
+
+    erow *row = &EC.row[EC.cy];
+    if (EC.cx > 0) {
+        editorRowDelChar(row, EC.cx - 1);
+        EC.cx--;
+    }
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -630,6 +647,7 @@ void editorMoveCursor(int key) {
 }
 
 void editorProcessKeyPress() {
+    static int quit_times = TTE_QUIT_TIMES;
     int key_read = editorReadKey();
 
     switch (key_read) {
@@ -637,6 +655,14 @@ void editorProcessKeyPress() {
             editorSave();
             break;
         case CTRL_KEY('q'):
+            if (EC.dirty && quit_times > 0) {
+                editorSetStatusMsg(
+                    "WARNING!!! File has unsaved changes. Press CTRL-q %d "
+                    "times to quit.",
+                    quit_times);
+                quit_times--;
+                return;
+            }
             editorClearScreen();
             debugFileLog();
             bufFree(&dLog);
@@ -649,6 +675,8 @@ void editorProcessKeyPress() {
         case BACKSPACE:
         case CTRL_KEY('h'):
         case DEL_KEY:
+            if (key_read == DEL_KEY) editorMoveCursor(ARROW_RIGHT);
+            editorDelChar();
             break;
             // Carriage Return
         case '\r':
@@ -676,6 +704,7 @@ void editorProcessKeyPress() {
             editorInsertChar(key_read);
             break;
     }
+    quit_times = TTE_QUIT_TIMES;
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
