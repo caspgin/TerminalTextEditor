@@ -1,5 +1,7 @@
 /*** includes ***/
 #define _GNU_SOURCE
+#include <errno.h>
+#include <fcntl.h>
 #include <math.h>
 #include <stdarg.h>
 #include <stdbool.h>
@@ -11,7 +13,6 @@
 #include <termios.h>
 #include <time.h>
 #include <unistd.h>
-
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** defines ***/
@@ -25,11 +26,13 @@
 
 void editorClearScreen();
 void debugFileLog();
+void editorSetStatusMsg(char *fmt, ...);
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** data ***/
 
 enum editorKey {
+    BACKSPACE = 127,
     ARROW_LEFT = 1000,
     ARROW_RIGHT,
     ARROW_UP,
@@ -66,6 +69,7 @@ struct editorConfig {
     char *filename;
     char status_msg[80];
     time_t status_msg_time;
+    bool dirty;
     struct termios org_termios;
 };
 
@@ -238,96 +242,6 @@ int getWindowSize(int *rows, int *cols) {
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
-/*** input ***/
-void editorSetStatusMsg(char *fmt, ...) {
-    va_list ap;
-    va_start(ap, fmt);
-    vsnprintf(EC.status_msg, sizeof(EC.status_msg), fmt, ap);
-    va_end(ap);
-    EC.status_msg_time = time(NULL);
-}
-
-void editorMoveCursor(int key) {
-    // curRow points to the row(line) of data that the cursor is currently on.
-    erow *curRow = (EC.cy >= EC.data_rows) ? NULL : &EC.row[EC.cy];
-
-    // Update Curosor Position
-    switch (key) {
-        case ARROW_LEFT:
-            if (EC.cx > 0) {
-                EC.cx--;
-            } else if (EC.cy > 0) {
-                EC.cy--;
-                EC.cx = EC.row[EC.cy].size;
-            }
-            break;
-        case ARROW_RIGHT:
-            if (curRow && EC.cx < curRow->size) {
-                EC.cx++;
-            } else if (EC.cy < EC.data_rows) {
-                EC.cy++;
-                EC.cx = 0;
-            }
-            break;
-        case ARROW_DOWN:
-            if (EC.cy < EC.data_rows) EC.cy++;
-            break;
-        case ARROW_UP:
-            if (EC.cy > 0) EC.cy--;
-            break;
-        case PAGE_UP: {
-            int newYPos = EC.cy - EC.screen_rows;
-            EC.cy = newYPos >= 0 ? newYPos : 0;
-        } break;
-        case PAGE_DOWN: {
-            int newYPos = EC.cy + EC.screen_rows;
-            EC.cy = newYPos <= EC.data_rows ? newYPos : EC.data_rows;
-        } break;
-        case END:
-            EC.cx = curRow->size;
-            break;
-        case HOME:
-            EC.cx = 0;
-            break;
-    }
-
-    // if curosr x position is greater than current rows size then move it back
-    // to the last character. 1 character exception as it will be needed to type
-    // new data.
-    curRow = (EC.cy >= EC.data_rows) ? NULL : &EC.row[EC.cy];
-    int curRowLen = curRow ? curRow->size : 0;
-    if (EC.cx > curRowLen) {
-        EC.cx = curRowLen;
-    }
-
-    // Setting curRow to NULL
-    curRow = NULL;
-}
-
-void editorProcessKeyPress() {
-    int key_read = editorReadKey();
-
-    switch (key_read) {
-        case CTRL_KEY('q'):
-            editorClearScreen();
-            debugFileLog();
-            bufFree(&dLog);
-            exit(EXIT_SUCCESS);
-            break;
-        case END:
-        case HOME:
-        case PAGE_UP:
-        case PAGE_DOWN:
-        case ARROW_LEFT:
-        case ARROW_RIGHT:
-        case ARROW_DOWN:
-        case ARROW_UP:
-            editorMoveCursor(key_read);
-            break;
-    }
-}
-
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** row operations ***/
 
 void expandBuffer() {
@@ -336,7 +250,7 @@ void expandBuffer() {
     EC.rows_cap = newSize;
 }
 
-void editorUpdateRow(erow *row) {
+void editorUpdateRenderRow(erow *row) {
     int tabs = 0;
     for (int i = 0; i < row->size; i++) {
         if (row->chars[i] == '\t') tabs++;
@@ -376,7 +290,29 @@ void editorRowAppend(char *data, size_t len) {
 
     EC.row[line_num].rsize = 0;
     EC.row[line_num].render = NULL;
-    editorUpdateRow(&EC.row[line_num]);
+    editorUpdateRenderRow(&EC.row[line_num]);
+    EC.dirty = true;
+}
+
+void editorRowInsertChar(erow *row, int insertAt, int c) {
+    if (insertAt < 0 || insertAt > row->size) insertAt = row->size;
+    row->chars = realloc(row->chars, row->size + 2);
+    memmove(&row->chars[insertAt + 1], &row->chars[insertAt],
+            row->size - insertAt + 1);
+    row->size++;
+    row->chars[insertAt] = c;
+    editorUpdateRenderRow(row);
+    EC.dirty = true;
+}
+
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
+/*** editor operations ***/
+void editorInsertChar(int c) {
+    if (EC.cy == EC.data_rows) {
+        editorRowAppend("", 0);
+    }
+    editorRowInsertChar(&EC.row[EC.cy], EC.cx, c);
+    EC.cx++;
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -407,6 +343,7 @@ void editorOpen(char *filename) {
 
     free(line);
     fclose(fp);
+    EC.dirty = false;
 }
 
 void debugFileLog() {
@@ -419,6 +356,48 @@ void debugFileLog() {
     fprintf(fp, "%s", dLog.pointer);
 
     fclose(fp);
+}
+
+char *editorRowsToString(int *buflen) {
+    int totalLen = 0;
+    for (int rowIndex = 0; rowIndex < EC.data_rows; rowIndex++)
+        totalLen += EC.row[rowIndex].size + 1;
+
+    *buflen = totalLen;
+
+    char *outBuf = malloc(totalLen);
+    char *rowPtr = outBuf;
+
+    for (int rowIndex = 0; rowIndex < EC.data_rows; rowIndex++) {
+        memcpy(rowPtr, EC.row[rowIndex].chars, EC.row[rowIndex].size);
+        rowPtr += EC.row[rowIndex].size;
+        *rowPtr = '\n';
+        rowPtr++;
+    }
+    rowPtr = NULL;
+    return outBuf;
+}
+
+void editorSave() {
+    int len;
+    char *buf = editorRowsToString(&len);
+
+    int fd = open(EC.filename, O_RDWR | O_CREAT, 0644);
+    if (fd != -1) {
+        if (ftruncate(fd, len) != -1) {
+            if (write(fd, buf, len) == len) {
+                close(fd);
+                free(buf);
+                editorSetStatusMsg("%d bytes written to disk. File is saved!",
+                                   len);
+                EC.dirty = false;
+                return;
+            }
+        }
+        close(fd);
+    }
+    free(buf);
+    editorSetStatusMsg("Saving Failed! ERROR: %s", strerror(errno));
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -445,9 +424,10 @@ void printWelcomeMsg(struct writeBuf *wBuf) {
 void editorDrawStatusBar(struct writeBuf *wBuf) {
     bufAppend(wBuf, "\x1b[7m", 4);
     char status[30], lineNumber[30];
-    int len = snprintf(status, sizeof(status), " %.20s%.03s",
-                       EC.filename ? EC.filename : "[NO Name]",
-                       strlen(EC.filename) > 20 ? "..." : "");
+    int len =
+        snprintf(status, sizeof(status), "%s%.20s%.03s", EC.dirty ? "*" : " ",
+                 EC.filename ? EC.filename : "[NO Name]",
+                 strlen(EC.filename) > 20 ? "..." : "");
     if (len > 30) len = 30;
     bufAppend(wBuf, status, len);
 
@@ -583,7 +563,122 @@ void editorRefreshScreen() {
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
+/*** input ***/
+void editorSetStatusMsg(char *fmt, ...) {
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(EC.status_msg, sizeof(EC.status_msg), fmt, ap);
+    va_end(ap);
+    EC.status_msg_time = time(NULL);
+}
 
+void editorMoveCursor(int key) {
+    // curRow points to the row(line) of data that the cursor is currently on.
+    erow *curRow = (EC.cy >= EC.data_rows) ? NULL : &EC.row[EC.cy];
+
+    // Update Curosor Position
+    switch (key) {
+        case ARROW_LEFT:
+            if (EC.cx > 0) {
+                EC.cx--;
+            } else if (EC.cy > 0) {
+                EC.cy--;
+                EC.cx = EC.row[EC.cy].size;
+            }
+            break;
+        case ARROW_RIGHT:
+            if (curRow && EC.cx < curRow->size) {
+                EC.cx++;
+            } else if (EC.cy < EC.data_rows) {
+                EC.cy++;
+                EC.cx = 0;
+            }
+            break;
+        case ARROW_DOWN:
+            if (EC.cy < EC.data_rows) EC.cy++;
+            break;
+        case ARROW_UP:
+            if (EC.cy > 0) EC.cy--;
+            break;
+        case PAGE_UP: {
+            int newYPos = EC.cy - EC.screen_rows;
+            EC.cy = newYPos >= 0 ? newYPos : 0;
+        } break;
+        case PAGE_DOWN: {
+            int newYPos = EC.cy + EC.screen_rows;
+            EC.cy = newYPos <= EC.data_rows ? newYPos : EC.data_rows;
+        } break;
+        case END:
+            EC.cx = curRow->size;
+            break;
+        case HOME:
+            EC.cx = 0;
+            break;
+    }
+
+    // if curosr x position is greater than current rows size then move it back
+    // to the last character. 1 character exception as it will be needed to type
+    // new data.
+    curRow = (EC.cy >= EC.data_rows) ? NULL : &EC.row[EC.cy];
+    int curRowLen = curRow ? curRow->size : 0;
+    if (EC.cx > curRowLen) {
+        EC.cx = curRowLen;
+    }
+
+    // Setting curRow to NULL
+    curRow = NULL;
+}
+
+void editorProcessKeyPress() {
+    int key_read = editorReadKey();
+
+    switch (key_read) {
+        case CTRL_KEY('s'):
+            editorSave();
+            break;
+        case CTRL_KEY('q'):
+            editorClearScreen();
+            debugFileLog();
+            bufFree(&dLog);
+            exit(EXIT_SUCCESS);
+            break;
+
+            // Backspace and delete
+            // CTRL + H because it gives out code 8 which was used as backspace
+            // in the olden days
+        case BACKSPACE:
+        case CTRL_KEY('h'):
+        case DEL_KEY:
+            break;
+            // Carriage Return
+        case '\r':
+            break;
+            // Move Cursor
+        case END:
+        case HOME:
+        case PAGE_UP:
+        case PAGE_DOWN:
+        case ARROW_LEFT:
+        case ARROW_RIGHT:
+        case ARROW_DOWN:
+        case ARROW_UP:
+            editorMoveCursor(key_read);
+            break;
+            // escape
+            // CTRL + L, used for refreshing but we refresh at every frame so
+            // not needed
+        case CTRL_KEY('l'):
+        case '\x1b':
+            break;
+
+            // Insert Characters
+        default:
+            editorInsertChar(key_read);
+            break;
+    }
+}
+
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** init ***/
 
 void initEditor() {
@@ -596,6 +691,7 @@ void initEditor() {
     EC.data_rows = 0;
     EC.rows_cap = 0;
     EC.row = NULL;
+    EC.dirty = false;
     EC.wrap_mode = false;
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
         die("getWindowSize");
@@ -613,16 +709,7 @@ int main(int argc, char *argv[]) {
     if (argc >= 2) {
         editorOpen(argv[1]);
     }
-    /***
-            => Problem: Can't tell when while loop ends. is this good
-    programming?
-            => Problem: program Exits from different places. 3 possibilities
-    Exit function for success, Exit function for failure and die function
-    for error.
-            => TODO: Combine all exits in 1 function -- Quit function. is
-    this good programming?
-    ***/
-    editorSetStatusMsg("HELP: CTRL-Q to quit");
+    editorSetStatusMsg("HELP: CTRL-s to save | CTRL-q to quit");
     while (true) {
         editorRefreshScreen();
         editorProcessKeyPress();
