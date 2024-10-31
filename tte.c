@@ -28,7 +28,7 @@
 void editorClearScreen();
 void debugFileLog();
 void editorSetStatusMsg(char *fmt, ...);
-char *editorPrompt(char *prompt);
+char *editorPrompt(char *prompt, void (*callback)(char *, int));
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** data ***/
@@ -409,23 +409,6 @@ bool fileExists(char *filename) {
     return true;
 }
 
-void editorFind() {
-    char *query = editorPrompt("Search: %s (ESC to cancel)");
-    if (query == NULL) return;
-    int i;
-    for (i = 0; i < EC.data_rows; i++) {
-        erow *row = &EC.row[i];
-        char *match = strstr(row->render, query);
-        if (match) {
-            EC.cy = i;
-            EC.cx = editorRowRxToCx(row, match - row->render);
-            // EC.rowoff = EC.data_rows;
-            break;
-        }
-    }
-    free(query);
-}
-
 void editorOpen(char *filename) {
     FILE *fp = fopen(filename, "r");
     if (!fp) die("fopen");
@@ -488,7 +471,7 @@ char *editorRowsToString(int *buflen) {
 
 void editorSave() {
     if (EC.filename == NULL) {
-        EC.filename = editorPrompt("save as:%s");
+        EC.filename = editorPrompt("save as:%s", NULL);
         if (EC.filename == NULL) {
             editorSetStatusMsg("save aborted");
             return;
@@ -498,7 +481,7 @@ void editorSave() {
     if (fileExists(EC.filename)) {
         char *response;
         response = editorPrompt(
-            "File already exists. overwrite? Enter [Y]es or [N]o?%s");
+            "File already exists. overwrite? Enter [Y]es or [N]o?%s", NULL);
         if (response == NULL || (response[0] != 'y' && response[0] != 'Y')) {
             editorSetStatusMsg("save aborted");
             free(EC.filename);
@@ -528,6 +511,95 @@ void editorSave() {
     editorSetStatusMsg("Saving Failed! ERROR: %s", strerror(errno));
 }
 
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
+
+char *editorFindCallbackRowSearch(int *currRow, int lastMatchRow, int direction,
+                                  char *buf) {
+    erow *row = &EC.row[*currRow];
+    int colIndex = lastMatchRow == *currRow ? editorRowCxtoRx(row, EC.cx) : 0;
+    char *match = NULL;
+    if (colIndex >= row->rsize) {
+        *currRow += direction;
+        return match;
+    }
+    if (direction) {
+        if (lastMatchRow == *currRow) colIndex++;
+        if (colIndex >= row->rsize || colIndex < 0) return match;
+        match = strstr(&row->render[colIndex], buf);
+    } else {
+        int tempIndex = 0;
+        char *prevMatch = NULL;
+        while (true) {
+            if (tempIndex >= row->rsize || tempIndex < 0) break;
+            match = strstr(&row->render[tempIndex], buf);
+            if (match && match < &row->render[colIndex]) {
+                prevMatch = match;
+                tempIndex = match - row->render + 1;
+            } else {
+                break;
+            }
+        }
+        if (prevMatch) {
+            match = prevMatch;
+        }
+    }
+
+    return match;
+}
+
+void editorFindCallback(char *buf, int c) {
+    static int last_match = -1;
+    static int direction = 1;
+
+    if (c == ARROW_DOWN || c == ARROW_RIGHT) {
+        direction = 1;
+    } else if (c == ARROW_LEFT || c == ARROW_UP) {
+        direction = -1;
+    } else {
+        last_match = -1;
+        direction = 1;
+        if (c == '\r' || c == '\x1b') {
+            return;
+        }
+    }
+    if (last_match == -1) direction = 1;
+    int current = last_match;
+    if (current == -1 && direction == 1) current += direction;
+
+    for (int loopNum = 0; loopNum < EC.data_rows; loopNum++) {
+        if (current == EC.data_rows)
+            current = 0;
+        else if (current == -1)
+            current = EC.data_rows - 1;
+
+        char *match =
+            editorFindCallbackRowSearch(&current, last_match, direction, buf);
+
+        if (match) {
+            last_match = current;
+            EC.cy = current;
+            EC.cx = editorRowRxToCx(&EC.row[current],
+                                    match - EC.row[current].render);
+            // EC.rowoff = EC.data_rows;
+            current += direction;
+            break;
+        }
+        current += direction;
+    }
+}
+
+void editorFind() {
+    int saved_cx = EC.cx;
+    int saved_cy = EC.cy;
+    char *query =
+        editorPrompt("Search: %s (ESC to cancel)", editorFindCallback);
+    if (query) {
+        free(query);
+    } else {
+        EC.cx = saved_cx;
+        EC.cy = saved_cy;
+    }
+}
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** output ***/
 void clearLineRight(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[K", 3); }
@@ -830,7 +902,7 @@ void editorProcessKeyPress() {
     quit_times = TTE_QUIT_TIMES;
 }
 
-char *editorPrompt(char *prompt) {
+char *editorPrompt(char *prompt, void (*callback)(char *, int)) {
     size_t bufsize = 128;
     char *buf = malloc(bufsize);
     size_t buflen = 0;
@@ -838,10 +910,11 @@ char *editorPrompt(char *prompt) {
     while (1) {
         editorSetStatusMsg(prompt, buf);
         editorRefreshScreen();
-        cursorToStatusPos(strlen(prompt) + buflen);
+        // cursorToStatusPos(strlen(prompt) + buflen);
         int c = editorReadKey();
         if (c == '\x1b') {
             editorSetStatusMsg("");
+            if (callback) callback(buf, c);
             free(buf);
             return NULL;
         } else if (c == DEL_KEY || c == CTRL_KEY('h') || c == BACKSPACE) {
@@ -852,6 +925,7 @@ char *editorPrompt(char *prompt) {
         } else if (c == '\r') {
             if (buflen != 0) {
                 editorSetStatusMsg("");
+                if (callback) callback(buf, c);
                 return buf;
             }
         } else if (!iscntrl(c) && c < 128) {
@@ -862,6 +936,7 @@ char *editorPrompt(char *prompt) {
             buf[buflen++] = c;
             buf[buflen] = '\0';
         }
+        if (callback) callback(buf, c);
     }
 }
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
