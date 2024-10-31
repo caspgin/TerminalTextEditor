@@ -27,6 +27,7 @@
 void editorClearScreen();
 void debugFileLog();
 void editorSetStatusMsg(char *fmt, ...);
+char *editorPrompt(char *prompt);
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** data ***/
@@ -271,26 +272,31 @@ void editorUpdateRenderRow(erow *row) {
     row->rsize = idx;
 }
 
-void editorRowAppend(char *data, size_t len) {
-    if (EC.data_rows >= EC.rows_cap) {
-        expandBuffer();
-    }
+void editorInsertRow(char *data, size_t len, int insertAt) {
+    if (insertAt < 0 || insertAt > EC.data_rows) return;
+    EC.row = realloc(EC.row, sizeof(erow) * (EC.data_rows + 1));
+    memmove(&EC.row[insertAt + 1], &EC.row[insertAt],
+            sizeof(erow) * (EC.data_rows - insertAt));
+            sizeof(erow) * (EC.data_rows - insertAt));
 
-    int line_num = EC.data_rows;
-    EC.row[line_num].size = len;
-    EC.row[line_num].chars = malloc(len + 1);
-    memcpy(EC.row[line_num].chars, data, len);
-    EC.row[line_num].chars[len] = '\0';
-    EC.data_rows++;
+            if (EC.data_rows >= EC.rows_cap) {
+                expandBuffer();
+            }
 
-    if (EC.max_data_cols < len) {
-        EC.max_data_cols = len;
-    }
+            EC.row[insertAt].size = len;
+            EC.row[insertAt].chars = malloc(len + 1);
+            memcpy(EC.row[insertAt].chars, data, len);
+            EC.row[insertAt].chars[len] = '\0';
+            EC.data_rows++;
 
-    EC.row[line_num].rsize = 0;
-    EC.row[line_num].render = NULL;
-    editorUpdateRenderRow(&EC.row[line_num]);
-    EC.dirty = true;
+            if (EC.max_data_cols < len) {
+                EC.max_data_cols = len;
+            }
+
+            EC.row[insertAt].rsize = 0;
+            EC.row[insertAt].render = NULL;
+            editorUpdateRenderRow(&EC.row[insertAt]);
+            EC.dirty = true;
 }
 
 void editorRowInsertChar(erow *row, int insertAt, int c) {
@@ -312,35 +318,36 @@ void editorRowDelChar(erow *row, int delAt) {
     EC.dirty = true;
 }
 
-void editorFreeRow(erow * row){
-	free(row->render);
-	free(row->chars);
-	row->render = NULL;
-	row->chars = NULL;
+void editorFreeRow(erow *row) {
+    free(row->render);
+    free(row->chars);
+    row->render = NULL;
+    row->chars = NULL;
 }
 
-void editorDelRow(int rowIndex){
-	if(rowIndex < 0 || rowIndex >= EC.data_rows) return;
-	editorFreeRow(&EC.row[rowIndex]);
-	memmove(&EC.row[rowIndex], &EC.row[rowIndex + 1], sizeof(erow) * (EC.data_rows - rowIndex -1));
-	EC.data_rows--;
-	EC.dirty = true;
+void editorDelRow(int rowIndex) {
+    if (rowIndex < 0 || rowIndex >= EC.data_rows) return;
+    editorFreeRow(&EC.row[rowIndex]);
+    memmove(&EC.row[rowIndex], &EC.row[rowIndex + 1],
+            sizeof(erow) * (EC.data_rows - rowIndex - 1));
+    EC.data_rows--;
+    EC.dirty = true;
 }
 
-void editorRowAppendString(erow * row, char * s, size_t len){
-	row->chars = realloc(row->chars,row->size + len +1);
-	memcpy(&row->chars[row->size], s, len);
-	row->size += len;
-	row->chars[row->size] = '\0';
-	editorUpdateRenderRow(row);
-	EC.dirty = true;
+void editorRowAppendString(erow *row, char *s, size_t len) {
+    row->chars = realloc(row->chars, row->size + len + 1);
+    memcpy(&row->chars[row->size], s, len);
+    row->size += len;
+    row->chars[row->size] = '\0';
+    editorUpdateRenderRow(row);
+    EC.dirty = true;
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** editor operations ***/
 void editorInsertChar(int c) {
     if (EC.cy == EC.data_rows) {
-        editorRowAppend("", 0);
+        editorInsertRow("", 0, EC.data_rows);
     }
     editorRowInsertChar(&EC.row[EC.cy], EC.cx, c);
     EC.cx++;
@@ -348,17 +355,32 @@ void editorInsertChar(int c) {
 
 void editorDelChar() {
     if (EC.cy == EC.data_rows) return;
-	if(EC.cx == 0 && EC.cy == 0) return;
+    if (EC.cx == 0 && EC.cy == 0) return;
     erow *row = &EC.row[EC.cy];
     if (EC.cx > 0) {
         editorRowDelChar(row, EC.cx - 1);
         EC.cx--;
-    }else{
-		EC.cx = EC.row[EC.cy -1].size;
-		editorRowAppendString(&EC.row[EC.cy-1], row->chars,row->size);
-		editorDelRow(EC.cy);
-		EC.cy--;
-	}
+    } else {
+        EC.cx = EC.row[EC.cy - 1].size;
+        editorRowAppendString(&EC.row[EC.cy - 1], row->chars, row->size);
+        editorDelRow(EC.cy);
+        EC.cy--;
+    }
+}
+
+void editorInsertNewline() {
+    if (EC.cx == 0) {
+        editorInsertRow(EC.cy, "", 0);
+    } else {
+        erow *row = &EC.row[EC.cy];
+        editorInsertRow(EC.cy + 1, &row->chars[EC.cx], row->size - EC.cx);
+        row = &EC.row[EC.cy];
+        row->size = EC.cx;
+        row->chars[row->size] = '\0';
+        editorUpdateRow(row);
+    }
+    EC.cy++;
+    EC.cx = 0;
 }
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
@@ -382,7 +404,7 @@ void editorOpen(char *filename) {
             linelen--;
         }
 
-        editorRowAppend(line, linelen);
+        editorInsertRow(line, linelen, EC.data_rows);
 
         linelen = getline(&line, &linecap, fp);
     }
@@ -425,6 +447,13 @@ char *editorRowsToString(int *buflen) {
 }
 
 void editorSave() {
+    if (EC.filename == NULL) {
+        EC.filename = editorPrompt("Save as: %s");
+        if (EC.filename == NULL) {
+            editorSetStatusMsg("save aborted");
+            return;
+        }
+    }
     int len;
     char *buf = editorRowsToString(&len);
 
@@ -709,6 +738,7 @@ void editorProcessKeyPress() {
             break;
             // Carriage Return
         case '\r':
+            editorInsertNewline();
             break;
             // Move Cursor
         case END:
@@ -736,6 +766,34 @@ void editorProcessKeyPress() {
     quit_times = TTE_QUIT_TIMES;
 }
 
+char *editorPrompt(char *prompt) {
+    size_t bufsize = 128;
+    char *buf = malloc(bufsize);
+    size_t buflen = 0;
+    buf[0] = '\0';
+    while (1) {
+        editorSetStatusMessage(prompt, buf);
+        editorRefreshScreen();
+        int c = editorReadKey();
+        if (c == '\x1b') {
+            editorSetStatusMessage("");
+            free(buf);
+            return NULL;
+        } else if (c == '\r') {
+            if (buflen != 0) {
+                editorSetStatusMessage("");
+                return buf;
+            }
+        } else if (!iscntrl(c) && c < 128) {
+            if (buflen == bufsize - 1) {
+                bufsize *= 2;
+                buf = realloc(buf, bufsize);
+            }
+            buf[buflen++] = c;
+            buf[buflen] = '\0';
+        }
+    }
+}
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** init ***/
 
