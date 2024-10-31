@@ -251,6 +251,18 @@ void expandBuffer() {
     EC.rows_cap = newSize;
 }
 
+int editorRowRxToCx(erow *row, int rx) {
+    int cur_rx = 0;
+    int cx;
+    for (cx = 0; cx < row->size; cx++) {
+        if (row->chars[cx] == '\t')
+            cur_rx += (TTE_TAB_STOP - 1) - (cur_rx % TTE_TAB_STOP);
+        cur_rx++;
+        if (cur_rx > rx) return cx;
+    }
+    return cx;
+}
+
 void editorUpdateRenderRow(erow *row) {
     int tabs = 0;
     for (int i = 0; i < row->size; i++) {
@@ -386,16 +398,32 @@ void editorInsertNewline() {
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** file i/o ***/
 
-bool fileExists(char * filename){
-	if(filename == NULL)
-		return false;
+bool fileExists(char *filename) {
+    if (filename == NULL) return false;
 
-	int fd = open(filename, O_RDONLY);
-	if(fd == -1 && errno == ENOENT){
-		return false;
-	}
-	close(fd);
-	return true;
+    int fd = open(filename, O_RDONLY);
+    if (fd == -1 && errno == ENOENT) {
+        return false;
+    }
+    close(fd);
+    return true;
+}
+
+void editorFind() {
+    char *query = editorPrompt("Search: %s (ESC to cancel)");
+    if (query == NULL) return;
+    int i;
+    for (i = 0; i < EC.data_rows; i++) {
+        erow *row = &EC.row[i];
+        char *match = strstr(row->render, query);
+        if (match) {
+            EC.cy = i;
+            EC.cx = editorRowRxToCx(row, match - row->render);
+            // EC.rowoff = EC.data_rows;
+            break;
+        }
+    }
+    free(query);
 }
 
 void editorOpen(char *filename) {
@@ -466,17 +494,18 @@ void editorSave() {
             return;
         }
     }
-	
-	if(fileExists(EC.filename)){
-		char* response;
-		response = editorPrompt("File already exists. overwrite? Enter [Y]es or [N]o?%s");
-		if(response == NULL || (response[0] != 'y' && response[0] != 'Y')){
-			editorSetStatusMsg("save aborted");
-			free(EC.filename);
-			EC.filename = NULL;
-			return;
-		}
-	}
+
+    if (fileExists(EC.filename)) {
+        char *response;
+        response = editorPrompt(
+            "File already exists. overwrite? Enter [Y]es or [N]o?%s");
+        if (response == NULL || (response[0] != 'y' && response[0] != 'Y')) {
+            editorSetStatusMsg("save aborted");
+            free(EC.filename);
+            EC.filename = NULL;
+            return;
+        }
+    }
 
     int len;
     char *buf = editorRowsToString(&len);
@@ -741,6 +770,9 @@ void editorProcessKeyPress() {
     int key_read = editorReadKey();
 
     switch (key_read) {
+        case CTRL_KEY('f'):
+            editorFind();
+            break;
         case CTRL_KEY('s'):
             editorSave();
             break;

@@ -1,0 +1,3 @@
+# In .clangd file
+Diagnostics:
+  UnusedIncludes: None
