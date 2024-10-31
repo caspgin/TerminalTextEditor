@@ -1,5 +1,6 @@
 /*** includes ***/
 #define _GNU_SOURCE
+#include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <math.h>
@@ -116,7 +117,7 @@ int editorRowCxtoRx(erow *row, int cx) {
 // Error printing before exiting
 void die(const char *msg) {
     editorClearScreen();
-    // prints the error message msg and errno.
+    //  prints the error message msg and errno.
     perror(msg);
     debugFileLog();
     bufFree(&dLog);
@@ -277,26 +278,25 @@ void editorInsertRow(char *data, size_t len, int insertAt) {
     EC.row = realloc(EC.row, sizeof(erow) * (EC.data_rows + 1));
     memmove(&EC.row[insertAt + 1], &EC.row[insertAt],
             sizeof(erow) * (EC.data_rows - insertAt));
-            sizeof(erow) * (EC.data_rows - insertAt));
 
-            if (EC.data_rows >= EC.rows_cap) {
-                expandBuffer();
-            }
+    if (EC.data_rows >= EC.rows_cap) {
+        expandBuffer();
+    }
 
-            EC.row[insertAt].size = len;
-            EC.row[insertAt].chars = malloc(len + 1);
-            memcpy(EC.row[insertAt].chars, data, len);
-            EC.row[insertAt].chars[len] = '\0';
-            EC.data_rows++;
+    EC.row[insertAt].size = len;
+    EC.row[insertAt].chars = malloc(len + 1);
+    memcpy(EC.row[insertAt].chars, data, len);
+    EC.row[insertAt].chars[len] = '\0';
+    EC.data_rows++;
 
-            if (EC.max_data_cols < len) {
-                EC.max_data_cols = len;
-            }
+    if (EC.max_data_cols < len) {
+        EC.max_data_cols = len;
+    }
 
-            EC.row[insertAt].rsize = 0;
-            EC.row[insertAt].render = NULL;
-            editorUpdateRenderRow(&EC.row[insertAt]);
-            EC.dirty = true;
+    EC.row[insertAt].rsize = 0;
+    EC.row[insertAt].render = NULL;
+    editorUpdateRenderRow(&EC.row[insertAt]);
+    EC.dirty = true;
 }
 
 void editorRowInsertChar(erow *row, int insertAt, int c) {
@@ -370,14 +370,14 @@ void editorDelChar() {
 
 void editorInsertNewline() {
     if (EC.cx == 0) {
-        editorInsertRow(EC.cy, "", 0);
+        editorInsertRow("", 0, EC.cy);
     } else {
         erow *row = &EC.row[EC.cy];
-        editorInsertRow(EC.cy + 1, &row->chars[EC.cx], row->size - EC.cx);
+        editorInsertRow(&row->chars[EC.cx], row->size - EC.cx, EC.cy + 1);
         row = &EC.row[EC.cy];
         row->size = EC.cx;
         row->chars[row->size] = '\0';
-        editorUpdateRow(row);
+        editorUpdateRenderRow(row);
     }
     EC.cy++;
     EC.cx = 0;
@@ -385,6 +385,18 @@ void editorInsertNewline() {
 
 //== == == == == == == == == == == == == == == == == == == == == == == == ==
 /*** file i/o ***/
+
+bool fileExists(char * filename){
+	if(filename == NULL)
+		return false;
+
+	int fd = open(filename, O_RDONLY);
+	if(fd == -1 && errno == ENOENT){
+		return false;
+	}
+	close(fd);
+	return true;
+}
 
 void editorOpen(char *filename) {
     FILE *fp = fopen(filename, "r");
@@ -448,12 +460,24 @@ char *editorRowsToString(int *buflen) {
 
 void editorSave() {
     if (EC.filename == NULL) {
-        EC.filename = editorPrompt("Save as: %s");
+        EC.filename = editorPrompt("save as:%s");
         if (EC.filename == NULL) {
             editorSetStatusMsg("save aborted");
             return;
         }
     }
+	
+	if(fileExists(EC.filename)){
+		char* response;
+		response = editorPrompt("File already exists. overwrite? Enter [Y]es or [N]o?%s");
+		if(response == NULL || (response[0] != 'y' && response[0] != 'Y')){
+			editorSetStatusMsg("save aborted");
+			free(EC.filename);
+			EC.filename = NULL;
+			return;
+		}
+	}
+
     int len;
     char *buf = editorRowsToString(&len);
 
@@ -502,7 +526,7 @@ void editorDrawStatusBar(struct writeBuf *wBuf) {
     int len =
         snprintf(status, sizeof(status), "%s%.20s%.03s", EC.dirty ? "*" : " ",
                  EC.filename ? EC.filename : "[NO Name]",
-                 strlen(EC.filename) > 20 ? "..." : "");
+                 EC.filename ? (strlen(EC.filename) > 20 ? "..." : "") : "");
     if (len > 30) len = 30;
     bufAppend(wBuf, status, len);
 
@@ -556,26 +580,27 @@ void editorDrawRows(struct writeBuf *wBuf) {
             }
 
             bufAppend(wBuf, "\r\n", 2);
-        } else {
-            if (data_line_num > EC.data_rows) continue;
-            int size = EC.row[data_line_num].size;
-            int loopLen = ceil(size / EC.screen_cols);
-            for (int i = 0; i < loopLen; i++) {
-                clearLineRight(wBuf);
-
-                int startIndex = i * EC.screen_cols;
-                int len =
-                    i != (loopLen - 1) ? EC.screen_cols : size - startIndex;
-
-                bufAppend(wBuf, &EC.row[data_line_num].chars[startIndex], len);
-                if (screen_line_num < EC.screen_rows - 1)
-                    bufAppend(wBuf, "\r\n", 2);
-                else
-                    break;
-                if (i != (loopLen - 1)) screen_line_num++;
-            }
-            data_line_num++;
         }
+        //		else {
+        //      if (data_line_num > EC.data_rows) continue;
+        //      int size = EC.row[data_line_num].size;
+        //      int loopLen = ceil(size / EC.screen_cols);
+        //      for (int i = 0; i < loopLen; i++) {
+        //          clearLineRight(wBuf);
+
+        //          int startIndex = i * EC.screen_cols;
+        //          int len =
+        //              i != (loopLen - 1) ? EC.screen_cols : size - startIndex;
+
+        //          bufAppend(wBuf, &EC.row[data_line_num].chars[startIndex],
+        //          len); if (screen_line_num < EC.screen_rows - 1)
+        //              bufAppend(wBuf, "\r\n", 2);
+        //          else
+        //              break;
+        //          if (i != (loopLen - 1)) screen_line_num++;
+        //      }
+        //      data_line_num++;
+        //  }
     }
 }
 
@@ -587,6 +612,13 @@ void cursorToPosition(struct writeBuf *wBuf) {
     snprintf(buf, sizeof(buf), "\x1b[%d;%dH", (EC.cy - EC.rowoff) + 1,
              (EC.rx - EC.coloff) + 1);
     bufAppend(wBuf, buf, strlen(buf));
+}
+
+void cursorToStatusPos(int x) {
+    char buf[32];
+
+    snprintf(buf, sizeof(buf), "\x1b[%d;%dH", EC.screen_cols, x);
+    write(STDOUT_FILENO, buf, strlen(buf));
 }
 
 void editorClearScreen() { write(STDOUT_FILENO, "\x1b[2J\x1b[H", 7); }
@@ -772,16 +804,22 @@ char *editorPrompt(char *prompt) {
     size_t buflen = 0;
     buf[0] = '\0';
     while (1) {
-        editorSetStatusMessage(prompt, buf);
+        editorSetStatusMsg(prompt, buf);
         editorRefreshScreen();
+        cursorToStatusPos(strlen(prompt) + buflen);
         int c = editorReadKey();
         if (c == '\x1b') {
-            editorSetStatusMessage("");
+            editorSetStatusMsg("");
             free(buf);
             return NULL;
+        } else if (c == DEL_KEY || c == CTRL_KEY('h') || c == BACKSPACE) {
+            if (buflen > 0) {
+                buflen--;
+                buf[buflen] = '\0';
+            }
         } else if (c == '\r') {
             if (buflen != 0) {
-                editorSetStatusMessage("");
+                editorSetStatusMsg("");
                 return buf;
             }
         } else if (!iscntrl(c) && c < 128) {
