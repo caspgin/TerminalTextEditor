@@ -1,6 +1,17 @@
+
+
+# clangd files for compiling and neovim lsp
+./.clang-format
+./.clangd
+./compile_commands.json
+
+#executable
 tte
 .vscode/
+
+# files used for testing purposes
 *.txt
+
 # Prerequisites
 *.d
 
