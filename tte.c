@@ -165,6 +165,15 @@ void enableRawMode() {
     }
 }
 
+void debugFormat(char *fmt, ...) {
+    char buf[128];
+    va_list p;
+    va_start(p, fmt);
+    int len = vsnprintf(buf, sizeof(buf), fmt, p);
+    bufAppend(&dLog, buf, len);
+    va_end(p);
+}
+
 void debugMsg(char *msg) {
     char buf[32];
     int len = sprintf(buf, "%s\n", msg);
@@ -243,7 +252,8 @@ int getWindowSize(int *rows, int *cols) {
     return 0;
 }
 
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
+//== == == == == == == == == == == == == == == == == == == == == == == ==
+//==
 /*** row operations ***/
 void expandBuffer() {
     int newSize = (EC.rows_cap == 0) ? 1 : (EC.rows_cap * 2);
@@ -355,7 +365,8 @@ void editorRowAppendString(erow *row, char *s, size_t len) {
     EC.dirty = true;
 }
 
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
+//== == == == == == == == == == == == == == == == == == == == == == == ==
+//==
 /*** editor operations ***/
 void editorInsertChar(int c) {
     if (EC.cy == EC.data_rows) {
@@ -395,7 +406,8 @@ void editorInsertNewline() {
     EC.cx = 0;
 }
 
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
+//== == == == == == == == == == == == == == == == == == == == == == == ==
+//==
 /*** file i/o ***/
 
 bool fileExists(char *filename) {
@@ -511,7 +523,8 @@ void editorSave() {
     editorSetStatusMsg("Saving Failed! ERROR: %s", strerror(errno));
 }
 
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
+//== == == == == == == == == == == == == == == == == == == == == == == ==
+//==
 
 char *editorFindCallbackRowSearch(int *currRow, int lastMatchRow, int direction,
                                   char *buf) {
@@ -522,13 +535,15 @@ char *editorFindCallbackRowSearch(int *currRow, int lastMatchRow, int direction,
         *currRow += direction;
         return match;
     }
-    if (direction) {
+    if (direction == 1) {
         if (lastMatchRow == *currRow) colIndex++;
         if (colIndex >= row->rsize || colIndex < 0) return match;
         match = strstr(&row->render[colIndex], buf);
     } else {
+        if (lastMatchRow != *currRow) colIndex = row->rsize - 1;
         int tempIndex = 0;
         char *prevMatch = NULL;
+        debugNumber(tempIndex);
         while (true) {
             if (tempIndex >= row->rsize || tempIndex < 0) break;
             match = strstr(&row->render[tempIndex], buf);
@@ -541,9 +556,10 @@ char *editorFindCallbackRowSearch(int *currRow, int lastMatchRow, int direction,
         }
         if (prevMatch) {
             match = prevMatch;
+        } else {
+            match = NULL;
         }
     }
-
     return match;
 }
 
@@ -600,7 +616,8 @@ void editorFind() {
         EC.cy = saved_cy;
     }
 }
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
+//== == == == == == == == == == == == == == == == == == == == == ==
+//== == ==
 /*** output ***/
 void clearLineRight(struct writeBuf *wBuf) { bufAppend(wBuf, "\x1b[K", 3); }
 
@@ -691,10 +708,12 @@ void editorDrawRows(struct writeBuf *wBuf) {
 
         //          int startIndex = i * EC.screen_cols;
         //          int len =
-        //              i != (loopLen - 1) ? EC.screen_cols : size - startIndex;
+        //              i != (loopLen - 1) ? EC.screen_cols : size -
+        //              startIndex;
 
-        //          bufAppend(wBuf, &EC.row[data_line_num].chars[startIndex],
-        //          len); if (screen_line_num < EC.screen_rows - 1)
+        //          bufAppend(wBuf,
+        //          &EC.row[data_line_num].chars[startIndex], len);
+        //          if (screen_line_num < EC.screen_rows - 1)
         //              bufAppend(wBuf, "\r\n", 2);
         //          else
         //              break;
@@ -770,7 +789,8 @@ void editorRefreshScreen() {
     bufFree(&wBuf);
 }
 
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
+//== == == == == == == == == == == == == == == == == == == == == ==
+//== == ==
 /*** input ***/
 void editorSetStatusMsg(char *fmt, ...) {
     va_list ap;
@@ -781,7 +801,8 @@ void editorSetStatusMsg(char *fmt, ...) {
 }
 
 void editorMoveCursor(int key) {
-    // curRow points to the row(line) of data that the cursor is currently on.
+    // curRow points to the row(line) of data that the cursor is
+    // currently on.
     erow *curRow = (EC.cy >= EC.data_rows) ? NULL : &EC.row[EC.cy];
 
     // Update Curosor Position
@@ -824,9 +845,9 @@ void editorMoveCursor(int key) {
             break;
     }
 
-    // if curosr x position is greater than current rows size then move it back
-    // to the last character. 1 character exception as it will be needed to type
-    // new data.
+    // if curosr x position is greater than current rows size then
+    // move it back to the last character. 1 character exception as
+    // it will be needed to type new data.
     curRow = (EC.cy >= EC.data_rows) ? NULL : &EC.row[EC.cy];
     int curRowLen = curRow ? curRow->size : 0;
     if (EC.cx > curRowLen) {
@@ -851,7 +872,8 @@ void editorProcessKeyPress() {
         case CTRL_KEY('q'):
             if (EC.dirty && quit_times > 0) {
                 editorSetStatusMsg(
-                    "WARNING!!! File has unsaved changes. Press CTRL-q %d "
+                    "WARNING!!! File has unsaved changes. Press "
+                    "CTRL-q %d "
                     "times to quit.",
                     quit_times);
                 quit_times--;
@@ -864,8 +886,8 @@ void editorProcessKeyPress() {
             break;
 
             // Backspace and delete
-            // CTRL + H because it gives out code 8 which was used as backspace
-            // in the olden days
+            // CTRL + H because it gives out code 8 which was used as
+            // backspace in the olden days
         case BACKSPACE:
         case CTRL_KEY('h'):
         case DEL_KEY:
@@ -888,8 +910,8 @@ void editorProcessKeyPress() {
             editorMoveCursor(key_read);
             break;
             // escape
-            // CTRL + L, used for refreshing but we refresh at every frame so
-            // not needed
+            // CTRL + L, used for refreshing but we refresh at every
+            // frame so not needed
         case CTRL_KEY('l'):
         case '\x1b':
             break;
@@ -939,7 +961,8 @@ char *editorPrompt(char *prompt, void (*callback)(char *, int)) {
         if (callback) callback(buf, c);
     }
 }
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
+//== == == == == == == == == == == == == == == == == == == == == ==
+//== == ==
 /*** init ***/
 
 void initEditor() {
