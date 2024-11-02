@@ -1,9 +1,9 @@
 
 
 # clangd files for compiling and neovim lsp
-./.clang-format
-./.clangd
-./compile_commands.json
+.clang-format
+.clangd
+compile_commands.json
 
 #executable
 tte
