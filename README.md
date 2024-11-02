@@ -4,7 +4,7 @@ A terminal-based text editor for Linux, made by following the kilo editor and ex
 
 ## Purpose
 - To learn how to make a text editor.
-- To learn software development with project.
+- To learn software development with a project.
 
 ## Features
 
@@ -24,12 +24,12 @@ A terminal-based text editor for Linux, made by following the kilo editor and ex
 ## Usage
 
 To open a file:
-1. Run the executable file and give file name that is to be opened.
+1. Run the executable file and give the file name to be opened.
 
 To create a new file:
 1. Run the executable file
 2. `Ctrl-S`: Save the file. It will prompt for a name.
-3. Don't forget to pass the filetype at the end.
+3. Don't forget to pass the file type at the end.
 
 
 ## Keyboard Shortcuts
@@ -38,14 +38,22 @@ To create a new file:
 
 - `Ctrl-S`: Save file
 - `Ctrl-Q`: Quit
-- `Ctrl-F`: Find in file
+- `Ctrl-F`: Find in the file
 
 ## Acknowledgements
 - Based on the [kilo editor tutorial](https://viewsourcecode.org/snaptoken/kilo/) by snaptoken.
 
+## Tools used
+- Language -> C
+- Neovim
+- WSL -> Ubuntu distro
+- <termios.h> library
+- GCC compiler
+
+
 ## Further Development
 
-Feature I would like to add and learn.
+Features I would like to add and learn.
 
 1. Support for more filetypes
 2. Wrapping
