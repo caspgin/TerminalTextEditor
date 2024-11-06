@@ -20,8 +20,7 @@
 #define TTE_VERSION "0.0.1"
 #define TTE_TAB_STOP 4
 #define CTRL_KEY(k) ((k) & 0x1f)
-#define WRITEBUF_INIT \
-    { NULL, 0 }
+#define WRITEBUF_INIT {NULL, 0}
 #define TTE_QUIT_TIMES 3;
 //== == == == == == == == == == == == == == == == == == == == == == == ==
 /*** function declaration ***/
@@ -675,9 +674,8 @@ void editorDrawStatusMsgBar(struct writeBuf *wBuf) {
 }
 
 void editorDrawRows(struct writeBuf *wBuf) {
-    int screen_line_num;
-    int data_line_num = 0;
-    for (screen_line_num = 0; screen_line_num < EC.screen_rows;
+    int data_line_num = EC.rowoff;
+    for (int screen_line_num = 0; screen_line_num < EC.screen_rows;
          screen_line_num++) {
         if (!EC.wrap_mode) {
             clearLineRight(wBuf);
@@ -700,8 +698,9 @@ void editorDrawRows(struct writeBuf *wBuf) {
 
             bufAppend(wBuf, "\r\n", 2);
         } else {
-            float size = EC.row[data_line_num].size;
+            float size = EC.row[data_line_num].rsize;
             int loopLen = ceil(size / EC.screen_cols);
+            if (loopLen == 0) loopLen = 1;
             for (int i = 0; i < loopLen; i++) {
                 clearLineRight(wBuf);
 
