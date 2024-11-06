@@ -20,7 +20,8 @@
 #define TTE_VERSION "0.0.1"
 #define TTE_TAB_STOP 4
 #define CTRL_KEY(k) ((k) & 0x1f)
-#define WRITEBUF_INIT {NULL, 0}
+#define WRITEBUF_INIT \
+    { NULL, 0 }
 #define TTE_QUIT_TIMES 3;
 //== == == == == == == == == == == == == == == == == == == == == == == ==
 /*** function declaration ***/
@@ -698,29 +699,22 @@ void editorDrawRows(struct writeBuf *wBuf) {
             }
 
             bufAppend(wBuf, "\r\n", 2);
+        } else {
+            float size = EC.row[data_line_num].size;
+            int loopLen = ceil(size / EC.screen_cols);
+            for (int i = 0; i < loopLen; i++) {
+                clearLineRight(wBuf);
+
+                int startIndex = i * EC.screen_cols;
+                int len =
+                    i != (loopLen - 1) ? EC.screen_cols : size - startIndex;
+
+                bufAppend(wBuf, &EC.row[data_line_num].render[startIndex], len);
+                bufAppend(wBuf, "\r\n", 2);
+            }
+            screen_line_num += loopLen - 1;
+            data_line_num++;
         }
-        //		else {
-        //      if (data_line_num > EC.data_rows) continue;
-        //      int size = EC.row[data_line_num].size;
-        //      int loopLen = ceil(size / EC.screen_cols);
-        //      for (int i = 0; i < loopLen; i++) {
-        //          clearLineRight(wBuf);
-
-        //          int startIndex = i * EC.screen_cols;
-        //          int len =
-        //              i != (loopLen - 1) ? EC.screen_cols : size -
-        //              startIndex;
-
-        //          bufAppend(wBuf,
-        //          &EC.row[data_line_num].chars[startIndex], len);
-        //          if (screen_line_num < EC.screen_rows - 1)
-        //              bufAppend(wBuf, "\r\n", 2);
-        //          else
-        //              break;
-        //          if (i != (loopLen - 1)) screen_line_num++;
-        //      }
-        //      data_line_num++;
-        //  }
     }
 }
 
@@ -868,6 +862,9 @@ void editorProcessKeyPress() {
             break;
         case CTRL_KEY('s'):
             editorSave();
+            break;
+        case CTRL_KEY('w'):
+            EC.wrap_mode = !EC.wrap_mode;
             break;
         case CTRL_KEY('q'):
             if (EC.dirty && quit_times > 0) {
