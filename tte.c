@@ -25,7 +25,6 @@
 #define TTE_SIDE_PANEL_WIDTH 5
 #define TTE_MAX_FILENAME_DISPLAYED 20
 //== == == == == == == == == == == == == == == == == == == == == == == ==
-
 /*** data ***/
 
 enum editorKey {
@@ -748,29 +747,21 @@ void editorDrawRows(struct writeBuf *wBuf) {
             }
 
             bufAppend(wBuf, "\r\n", 2);
+        } else {
+            float size = EC.row[data_line_num].size;
+            int loopLen = ceil(size / EC.screen_cols);
+            for (int i = 0; i < loopLen; i++) {
+                clearLineRight(wBuf);
+
+                int startIndex = i * EC.screen_cols;
+                int len =
+                    i != (loopLen - 1) ? EC.screen_cols : size - startIndex;
+
+                bufAppend(wBuf, &EC.row[data_line_num].render[startIndex], len);
+                bufAppend(wBuf, "\r\n", 2);
+            }
+            screen_line_num += loopLen - 1;
         }
-        //		else {
-        //      if (data_line_num > EC.data_rows) continue;
-        //      int size = EC.row[data_line_num].size;
-        //      int loopLen = ceil(size / EC.screen_cols);
-        //      for (int i = 0; i < loopLen; i++) {
-        //          clearLineRight(wBuf);
-
-        //          int startIndex = i * EC.screen_cols;
-        //          int len =
-        //              i != (loopLen - 1) ? EC.screen_cols : size -
-        //              startIndex;
-
-        //          bufAppend(wBuf,
-        //          &EC.row[data_line_num].chars[startIndex], len);
-        //          if (screen_line_num < EC.screen_rows - 1)
-        //              bufAppend(wBuf, "\r\n", 2);
-        //          else
-        //              break;
-        //          if (i != (loopLen - 1)) screen_line_num++;
-        //      }
-        //      data_line_num++;
-        //  }
         data_line_num++;
     }
 }
@@ -919,6 +910,9 @@ void editorProcessKeyPress() {
             break;
         case CTRL_KEY('s'):
             editorSave();
+            break;
+        case CTRL_KEY('w'):
+            EC.wrap_mode = !EC.wrap_mode;
             break;
         case CTRL_KEY('q'):
             if (EC.dirty && quit_times > 0) {

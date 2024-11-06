@@ -1,2 +1,2 @@
 tte: tte.c 
-	$(CC) tte.c -o tte -Wall -Wextra -pedantic -std=c99
+	$(CC) tte.c -o tte -Wall -Wextra -pedantic -std=c99 -lm
