@@ -21,15 +21,9 @@
 #define TTE_TAB_STOP 4
 #define CTRL_KEY(k) ((k) & 0x1f)
 #define WRITEBUF_INIT {NULL, 0}
-#define TTE_QUIT_TIMES 3;
+#define TTE_QUIT_TIMES 3
+#define TTE_SIDE_PANEL_WIDTH 5
 //== == == == == == == == == == == == == == == == == == == == == == == ==
-/*** function declaration ***/
-
-void editorClearScreen();
-void debugFileLog();
-void editorSetStatusMsg(char *fmt, ...);
-char *editorPrompt(char *prompt, void (*callback)(char *, int));
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** data ***/
 
@@ -44,6 +38,15 @@ enum editorKey {
     PAGE_DOWN,
     HOME,
     END,
+};
+
+enum graphicPara {
+    BACKGROUND = 48,
+    FOREGROUND = 38,
+    D_BACKGROUND = 49,
+    D_FOREGROUND = 39,
+    INVERT_FG_BG = 7,
+    RESET = 0
 };
 
 typedef struct erow {
@@ -77,14 +80,24 @@ struct editorConfig {
 
 struct editorConfig EC;
 
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
-/*** buffers ***/
-
 struct writeBuf {
     char *pointer;
     int len;
 };
 struct writeBuf dLog = WRITEBUF_INIT;
+
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
+
+/*** function declaration ***/
+
+void editorClearScreen();
+void debugFileLog();
+void editorSetStatusMsg(char *fmt, ...);
+char *editorPrompt(char *prompt, void (*callback)(char *, int));
+void editorAppendClrToBuf(struct writeBuf *wBuf, int code, int r, int g, int b);
+//== == == == == == == == == == == == == == == == == == == == == == == == ==
+
+/*** terminal ***/
 
 // realocate new memory for additional characters to append of size appendLen to
 // buffer wBuf
@@ -101,8 +114,6 @@ void bufAppend(struct writeBuf *wBuf, const char *appendSrc, int appendLen) {
 // dealocate memory using free function from stdlib
 void bufFree(struct writeBuf *wBuf) { free(wBuf->pointer); }
 
-//== == == == == == == == == == == == == == == == == == == == == == == == ==
-/*** terminal ***/
 int editorRowCxtoRx(erow *row, int cx) {
     int rx = 0;
     for (int j = 0; j < cx; j++) {
@@ -639,7 +650,8 @@ void printWelcomeMsg(struct writeBuf *wBuf) {
 }
 
 void editorDrawStatusBar(struct writeBuf *wBuf) {
-    bufAppend(wBuf, "\x1b[7m", 4);
+    // bufAppend(wBuf, "\x1b[7m", 4);
+    editorAppendClrToBuf(wBuf, INVERT_FG_BG, 0, 0, 0);
     char status[30], lineNumber[30];
     int len =
         snprintf(status, sizeof(status), "%s%.20s%.03s", EC.dirty ? "*" : " ",
@@ -652,15 +664,15 @@ void editorDrawStatusBar(struct writeBuf *wBuf) {
         snprintf(lineNumber, sizeof(lineNumber), "<%3d:%-3d ", EC.cy, EC.cx);
 
     while (len < EC.screen_cols) {
-        if (len == EC.screen_cols - lineNumberLen) {
+        if (len == (EC.screen_cols - lineNumberLen)) {
             bufAppend(wBuf, lineNumber, lineNumberLen);
             break;
         }
         bufAppend(wBuf, " ", 1);
         len++;
     }
-
-    bufAppend(wBuf, "\x1b[m", 3);
+    editorAppendClrToBuf(wBuf, RESET, 0, 0, 0);
+    // bufAppend(wBuf, "\x1b[m", 3);
     bufAppend(wBuf, "\r\n", 2);
 }
 
@@ -673,14 +685,43 @@ void editorDrawStatusMsgBar(struct writeBuf *wBuf) {
     if (msgLen && timeLeft < 5) bufAppend(wBuf, EC.status_msg, msgLen);
 }
 
+void editorAppendClrToBuf(struct writeBuf *wBuf, int code, int r, int g,
+                          int b) {
+    char buf[32];
+    int len = 0;
+    switch (code) {
+        case FOREGROUND:
+            len = snprintf(buf, sizeof(buf), "\x1b[%d;2;%d;%d;%dm", code, r, g,
+                           b);
+            break;
+        case BACKGROUND:
+            len = snprintf(buf, sizeof(buf), "\x1b[%d;2;%d;%d;%dm", code, r, g,
+                           b);
+            break;
+        default:
+            len = snprintf(buf, sizeof(buf), "\x1b[%dm", code);
+            break;
+    }
+    bufAppend(wBuf, buf, len);
+}
+
+void editorDrawSidePanel(struct writeBuf *wBuf, const int lineNumber) {
+    char sideBuf[TTE_SIDE_PANEL_WIDTH + 1];
+    int len = snprintf(sideBuf, sizeof(sideBuf), "%4d ", lineNumber);
+
+    editorAppendClrToBuf(wBuf, BACKGROUND, 31, 31, 40);
+    bufAppend(wBuf, sideBuf, len);
+    editorAppendClrToBuf(wBuf, D_BACKGROUND, 0, 0, 0);
+}
+
 void editorDrawRows(struct writeBuf *wBuf) {
     int screen_line_num;
-    int data_line_num = 0;
+    int data_line_num = EC.rowoff;
     for (screen_line_num = 0; screen_line_num < EC.screen_rows;
          screen_line_num++) {
+        editorDrawSidePanel(wBuf, data_line_num + 1);
         if (!EC.wrap_mode) {
             clearLineRight(wBuf);
-            data_line_num = screen_line_num + EC.rowoff;
             if (screen_line_num >= EC.data_rows) {
                 if (EC.data_rows == 0 &&
                     screen_line_num == EC.screen_rows / 2) {
@@ -721,6 +762,7 @@ void editorDrawRows(struct writeBuf *wBuf) {
         //      }
         //      data_line_num++;
         //  }
+        data_line_num++;
     }
 }
 
@@ -730,7 +772,7 @@ void cursorToPosition(struct writeBuf *wBuf) {
     char buf[32];
 
     snprintf(buf, sizeof(buf), "\x1b[%d;%dH", (EC.cy - EC.rowoff) + 1,
-             (EC.rx - EC.coloff) + 1);
+             (EC.rx - EC.coloff) + 1 + TTE_SIDE_PANEL_WIDTH);
     bufAppend(wBuf, buf, strlen(buf));
 }
 
@@ -980,6 +1022,7 @@ void initEditor() {
     if (getWindowSize(&EC.screen_rows, &EC.screen_cols) == -1) {
         die("getWindowSize");
     }
+    EC.screen_cols -= TTE_SIDE_PANEL_WIDTH;
     EC.max_data_cols = EC.screen_cols;
     EC.screen_rows -= 2;
     EC.filename = NULL;
