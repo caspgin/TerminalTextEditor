@@ -21,13 +21,9 @@
 #define TTE_TAB_STOP 4
 #define CTRL_KEY(k) ((k) & 0x1f)
 #define WRITEBUF_INIT {NULL, 0}
-<<<<<<< HEAD
 #define TTE_QUIT_TIMES 3
 #define TTE_SIDE_PANEL_WIDTH 5
 #define TTE_MAX_FILENAME_DISPLAYED 20
-=======
-#define TTE_QUIT_TIMES 3;
->>>>>>> 7571ba8 (Fixed empty lines not rendering when wrap mode is on bug.)
 //== == == == == == == == == == == == == == == == == == == == == == == ==
 /*** data ***/
 
@@ -727,14 +723,8 @@ void editorDrawSidePanel(struct writeBuf *wBuf, const int lineNumber) {
 }
 
 void editorDrawRows(struct writeBuf *wBuf) {
-<<<<<<< HEAD
-    int screen_line_num;
-    int data_line_num = EC.rowoff;
-    for (screen_line_num = 0; screen_line_num < EC.screen_rows;
-=======
     int data_line_num = EC.rowoff;
     for (int screen_line_num = 0; screen_line_num < EC.screen_rows;
->>>>>>> 7571ba8 (Fixed empty lines not rendering when wrap mode is on bug.)
          screen_line_num++) {
         editorDrawSidePanel(wBuf, data_line_num + 1);
         if (!EC.wrap_mode) {
