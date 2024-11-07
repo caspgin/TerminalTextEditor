@@ -23,6 +23,7 @@
 #define WRITEBUF_INIT {NULL, 0}
 #define TTE_QUIT_TIMES 3
 #define TTE_SIDE_PANEL_WIDTH 5
+#define TTE_MAX_FILENAME_DISPLAYED 20
 //== == == == == == == == == == == == == == == == == == == == == == == ==
 
 /*** data ***/
@@ -196,6 +197,7 @@ void debugNumber(int num) {
     int len = sprintf(buf, "%d\n", num);
     bufAppend(&dLog, buf, len);
 }
+
 int editorReadKey() {
     char char_read;
     int bytes_read = read(STDIN_FILENO, &char_read, 1);  // Read the first byte
@@ -650,29 +652,36 @@ void printWelcomeMsg(struct writeBuf *wBuf) {
 }
 
 void editorDrawStatusBar(struct writeBuf *wBuf) {
-    // bufAppend(wBuf, "\x1b[7m", 4);
+    // Invert Foreground and background color for status bar
     editorAppendClrToBuf(wBuf, INVERT_FG_BG, 0, 0, 0);
-    char status[30], lineNumber[30];
-    int len =
-        snprintf(status, sizeof(status), "%s%.20s%.03s", EC.dirty ? "*" : " ",
-                 EC.filename ? EC.filename : "[NO Name]",
-                 EC.filename ? (strlen(EC.filename) > 20 ? "..." : "") : "");
-    if (len > 30) len = 30;
+
+    int totalCols = EC.screen_cols + TTE_SIDE_PANEL_WIDTH;
+    const int LINE_NUM_LEN = 9;
+    char *status = malloc(totalCols + 1);
+
+    const char *dirty = EC.dirty ? "*" : " ";
+    const char *fileName = EC.filename ? EC.filename : "[NO Name]";
+    const char *longFNDots =
+        (EC.filename && strlen(EC.filename) > TTE_MAX_FILENAME_DISPLAYED)
+            ? "..."
+            : "";
+
+    // Limit FileNameLen to 20 characters.
+    int fileNameLen = strlen(fileName);
+    fileNameLen = fileNameLen > TTE_MAX_FILENAME_DISPLAYED
+                      ? TTE_MAX_FILENAME_DISPLAYED - 3
+                      : fileNameLen;
+
+    int len = strlen(dirty) + fileNameLen + strlen(longFNDots);
+    int spaces = totalCols - LINE_NUM_LEN - len;
+
+    len = snprintf(status, totalCols + 1, "%s%*s%.03s%*s<%3d:%-3d ", dirty,
+                   fileNameLen, fileName, longFNDots, spaces, "", EC.cy + 1,
+                   EC.rx + 1);
+
     bufAppend(wBuf, status, len);
-
-    int lineNumberLen =
-        snprintf(lineNumber, sizeof(lineNumber), "<%3d:%-3d ", EC.cy, EC.cx);
-
-    while (len < EC.screen_cols) {
-        if (len == (EC.screen_cols - lineNumberLen)) {
-            bufAppend(wBuf, lineNumber, lineNumberLen);
-            break;
-        }
-        bufAppend(wBuf, " ", 1);
-        len++;
-    }
+    // Reset all graphical rendering settings to default.
     editorAppendClrToBuf(wBuf, RESET, 0, 0, 0);
-    // bufAppend(wBuf, "\x1b[m", 3);
     bufAppend(wBuf, "\r\n", 2);
 }
 
