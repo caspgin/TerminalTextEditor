@@ -59,3 +59,5 @@ Features I would like to add and learn.
 2. Wrapping
 3. Syntax Highlighting
 4. Multiple Buffers
+
+## Made a windows version https://github.com/caspgin/TerminalTextEditorWindows.git
